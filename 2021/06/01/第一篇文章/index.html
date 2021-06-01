@@ -272,6 +272,8 @@
         <h1 id="测试文章"><a href="#测试文章" class="headerlink" title="测试文章"></a>测试文章</h1><hr>
 <p>cehijjkljl</p>
 <p>这是测试文章</p>
+<figure class="highlight mipsasm"><table><tr><td class="code"><pre><code class="hljs mipsasm">hello<br>hkjkljjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj<br><span class="hljs-keyword">jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj</span><br><span class="hljs-keyword"></span>dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd<br>sssssssssssssssssssssssssssssssssssssssssssssssssssssssssss<br><span class="hljs-keyword">jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj</span><br><span class="hljs-keyword"></span>kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk<br><span class="hljs-keyword">lllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll</span><br></code></pre></td></tr></table></figure>
+
 
     </div>
 </div>
@@ -300,6 +302,13 @@
     $(function () { $('#article').click(function (e) { if (e.target.tagName == "IMG") { if ($('#nonediv').length == 0) { let MImg = `<div id='noneimg'><img src='${e.target.currentSrc}'></div>`; let MDiv = "<div id='nonediv' style='cursor: pointer;display: none; position: fixed;left: 0;top: 0; right: 0;bottom: 0;background-color: #333;opacity:0.5;z-index: 108;'></div>"; $('#article').append(MDiv); $('#article').append(MImg); $("#nonediv").fadeIn("slow"); $("#noneimg img").fadeIn("slow") } } else { if ($('#nonediv').length !== 0) { $("#noneimg ").fadeOut("slow"); $("#nonediv").fadeOut("slow"); setTimeout(function () { $('#nonediv').remove(); $('#noneimg').remove() }, 500) } } }); $('.article-content').addClass('content-move') });
 </script>
 <div class="Last-Next">
+    
+    <a href="/2021/06/01/nginx%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98/">
+        <div class="last">
+            <span>上一篇</span>
+            <p></p>
+        </div>
+    </a>
     
 
     

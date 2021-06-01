@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		
+<title>Hexo主题-Quiet主题-Hexo扁平化主题安装-Quiet</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" type="image/x-icon" href="/image/favicon.ico">
+
+<meta name="keywords" content="hexo主题,hexo扁平化主题,Quiet主题">
+<meta name="description" content="描述">
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+	<meta name="generator" content="Hexo 5.4.0"></head>
+
+	<body>
+		
+<link rel="stylesheet" href="/css/page.css">
+
+
+<link rel="stylesheet" href="/css/page_cente.css">
+
+
+<link rel="stylesheet" href="/css/atom-one-dark.css">
+
+
+<link rel="stylesheet" href="/css/header.css">
+
+	<div class="header">
+		<div class="header-top">
+			<div class="h-left">
+				<a href="/">
+					<img src="/image/logo.png" alt="Quiet">
+				</a>
+			</div>
+			<div class="h-right">
+				<ul>
+					
+						
+								<li>
+									<a href="/">
+										HOME
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/archives">
+										ARCHIVE
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/categories">
+										CATEGORIES
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/tags">
+										TAGS
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/links">
+										LINKS
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+						
+								<li>
+									<a href="/about">
+										ABOUT
+									</a>
+									<span class="dot"></span>
+								</li>
+								
+									
+				</ul>
+			</div>
+			<div class="h-right-close">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+					<path fill="none" d="M0 0h24v24H0z" />
+					<path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z" fill="rgba(68,68,68,1)" />
+				</svg>
+			</div>
+		</div>
+	</div>
+	<div class="sidebar">
+    <div class="topo">
+        <h2>CHANGEQ</h2>
+    </div>
+    <ul>
+        
+        <li>
+            <a href="/">HOME</a>
+        </li>
+        
+        <li>
+            <a href="/archives">ARCHIVE</a>
+        </li>
+        
+        <li>
+            <a href="/categories">CATEGORIES</a>
+        </li>
+        
+        <li>
+            <a href="/tags">TAGS</a>
+        </li>
+        
+        <li>
+            <a href="/links">LINKS</a>
+        </li>
+        
+        <li>
+            <a href="/about">ABOUT</a>
+        </li>
+        
+    </ul>
+    <div class="my_foot">
+        
+        <a target="_blank" rel="noopener" href="https://github.com/qiaobug">
+            <img src="https://cdn.jsdelivr.net/gh/duogongneng/MyBlogImg/imggithub.png" alt="Quiet主题">
+        </a>
+        
+    </div>
+</div>
+<div class='shelter'
+    style='cursor: pointer;display: none; position: fixed;left: 0;top: 0; right: 0;bottom: 0;background-color: #333;opacity:0.5;z-index: 108;'>
+</div>
+<style>
+    .sidebar {
+        width: 0;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        background: #fff;
+        z-index: 999;
+        text-align: center;
+        box-shadow: -6px 0 20px rgba(98, 94, 94, .815)
+    }
+
+    .topo {
+        width: 100%;
+        height: 200px;
+        background: url(https://api.ixiaowai.cn/gqapi/gqapi.php) no-repeat;
+        background-size: 100% 100%;
+        position: relative;
+        display: flex;
+        align-items: flex-end
+    }
+
+    .topo h2 {
+        color: #fff;
+        z-index: 1;
+        position: relative;
+        margin: 0 0 10px 10px;
+        font-size: 1.2em;
+        box-sizing: border-box
+    }
+
+    .topo:before {
+        content: '';
+        background-image: url(/image/pattern.png);
+        background-repeat: repeat;
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 1
+    }
+
+    .sidebar ul {
+        width: 100%;
+        margin-top: 50px
+    }
+
+    .sidebar ul li {
+        height: 50px;
+        list-style: none;
+        font-size: 1.2em;
+        text-align: right;
+        margin-right: 10px
+    }
+
+    .sidebar ul li a {
+        display: grid;
+        color: #5d606a;
+        text-overflow: ellipsis;
+        width: 100%;
+        text-decoration: none
+    }
+
+    .my_foot {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        position: absolute;
+        bottom: 0
+    }
+
+    .my_foot a {
+        text-decoration: none;
+        margin-right: 10px;
+        display: inline-block
+    }
+
+    .my_foot a img {
+        width: 30px;
+        height: 30px
+    }
+</style>
+
+<script>
+    $(function () { $('.h-right-close>svg').click(function () { $('.sidebar').animate({ width: "66%" }, 500); $('.shelter').fadeIn("slow") }); $('.shelter').click(function (e) { $('.sidebar').animate({ width: "0" }, 500); $('.shelter').fadeOut("slow") }) })
+</script>
+		<script>
+			$(function () { $(window).scroll(function () { if ($(document).scrollTop() > 100) { $(".header-top").removeClass("header-move2"); $('.header-top').addClass('header-move1') } else { $(".header-top").removeClass("header-move1"); $('.header-top').addClass('header-move2') } }) });
+		</script>
+<div class="header-bg ">
+    <div class="bg-content">
+        <ul class="tag">
+            
+        </ul>
+        <h1></h1>
+        <div class="article-info">
+            <div class="article-author">
+                
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+                    <g>
+                        <path fill="#12183A"
+                            d="M6.187 15.265A6.47 6.47 0 0 0 10 16.5a6.47 6.47 0 0 0 3.813-1.235A4.99 4.99 0 0 0 10 13.5a4.99 4.99 0 0 0-3.813 1.765zM5.082 14.25A6.485 6.485 0 0 1 10 12c1.965 0 3.726.872 4.918 2.25a6.5 6.5 0 1 0-9.836 0zM10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0-1.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z">
+                        </path>
+                    </g>
+                </svg>
+                
+                <span> <a href="">CHANGEQ</a></span>
+                <p>2021-06-01 12:33:12</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article-content">
+    <div id="article" class="content">
+        <h1 id="JAVA动态代理"><a href="#JAVA动态代理" class="headerlink" title="JAVA动态代理"></a>JAVA动态代理</h1><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/u/589a52fcab37"><img src="https://upload.jianshu.io/users/upload_avatars/2109481/3d7dbed1-d42a-4812-9cd5-bd083dd1ba1c.jpeg?imageMogr2/auto-orient/strip%7CimageView2/1/w/96/h/96/format/webp" alt="img"></a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/u/589a52fcab37">只是肿态度</a>关注</p>
+<p>62019.05.12 23:25:39字数 964阅读 137,431</p>
+<h2 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h2><p>为其他对象提供一个代理以控制对某个对象的访问。代理类主要负责为委托了（真实对象）预处理消息、过滤消息、传递消息给委托类，代理类不现实具体服务，而是利用委托类来完成服务，并将执行结果封装处理。</p>
+<p>其实就是代理类为被代理类预处理消息、过滤消息并在此之后将消息转发给被代理类，之后还能进行消息的后置处理。代理类和被代理类通常会存在关联关系(即上面提到的持有的被带离对象的引用)，代理类本身不实现服务，而是通过调用被代理类中的方法来提供服务。</p>
+<h2 id="静态代理"><a href="#静态代理" class="headerlink" title="静态代理"></a>静态代理</h2><p>创建一个接口，然后创建被代理的类实现该接口并且实现该接口中的抽象方法。之后再创建一个代理类，同时使其也实现这个接口。在代理类中持有一个被代理对象的引用，而后在代理类方法中调用该对象的方法。</p>
+<p>接口：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">HelloInterface</span> &#123;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">sayHello</span>(<span class="hljs-params"></span>)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>被代理类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Hello</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">HelloInterface</span></span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sayHello</span><span class="hljs-params">()</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;Hello zhanghao!&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>代理类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HelloProxy</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">HelloInterface</span></span>&#123;<br>    <span class="hljs-keyword">private</span> HelloInterface helloInterface = <span class="hljs-keyword">new</span> Hello();<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sayHello</span><span class="hljs-params">()</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;Before invoke sayHello&quot;</span> );<br>        helloInterface.sayHello();<br>        System.out.println(<span class="hljs-string">&quot;After invoke sayHello&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>代理类调用：<br>被代理类被传递给了代理类HelloProxy，代理类在执行具体方法时通过所持用的被代理类完成调用。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs cpp">    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>        HelloProxy helloProxy = <span class="hljs-keyword">new</span> <span class="hljs-built_in">HelloProxy</span>();<br>        helloProxy.<span class="hljs-built_in">sayHello</span>();<br>    &#125;<br>    <br>输出：<br>Before invoke sayHello<br>Hello zhanghao!<br>After invoke sayHello<br></code></pre></td></tr></table></figure>
+
+<p>使用静态代理很容易就完成了对一个类的代理操作。但是静态代理的缺点也暴露了出来：由于代理只能为一个类服务，如果需要代理的类很多，那么就需要编写大量的代理类，比较繁琐。</p>
+<h2 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h2><p>利用反射机制在运行时创建代理类。<br>接口、被代理类不变，我们构建一个handler类来实现InvocationHandler接口。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProxyHandler</span> <span class="hljs-title">implements</span> <span class="hljs-title">InvocationHandler</span></span>&#123;<br>    <span class="hljs-keyword">private</span> Object <span class="hljs-keyword">object</span>;<br>    <span class="hljs-keyword">public</span> ProxyHandler(Object <span class="hljs-keyword">object</span>)&#123;<br>        <span class="hljs-keyword">this</span>.<span class="hljs-keyword">object</span> = <span class="hljs-keyword">object</span>;<br>    &#125;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> Object invoke(Object proxy, Method method, Object[] args) throws Throwable &#123;<br>        System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;Before invoke &quot;</span>  + method.getName());<br>        method.invoke(<span class="hljs-keyword">object</span>, args);<br>        System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;After invoke &quot;</span> + method.getName());<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>执行动态代理：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>    System.<span class="hljs-built_in">getProperties</span>().<span class="hljs-built_in">setProperty</span>(<span class="hljs-string">&quot;sun.misc.ProxyGenerator.saveGeneratedFiles&quot;</span>, <span class="hljs-string">&quot;true&quot;</span>);<br><br>    HelloInterface hello = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Hello</span>();<br>    <br>    InvocationHandler handler = <span class="hljs-keyword">new</span> <span class="hljs-built_in">ProxyHandler</span>(hello);<br><br>    HelloInterface proxyHello = (HelloInterface) Proxy.<span class="hljs-built_in">newProxyInstance</span>(hello.<span class="hljs-built_in">getClass</span>().<span class="hljs-built_in">getClassLoader</span>(), hello.<span class="hljs-built_in">getClass</span>().<span class="hljs-built_in">getInterfaces</span>(), handler);<br><br>    proxyHello.<span class="hljs-built_in">sayHello</span>();<br>&#125;<br>输出：<br>Before invoke sayHello<br>Hello zhanghao!<br>After invoke sayHello<br></code></pre></td></tr></table></figure>
+
+<p>通过Proxy类的静态方法newProxyInstance返回一个接口的代理实例。针对不同的代理类，传入相应的代理程序控制器InvocationHandler。<br>如果新来一个被代理类Bye，如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">ByeInterface</span> </span>&#123;<br>    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">sayBye</span><span class="hljs-params">()</span></span>;<br>&#125;<br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bye</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">ByeInterface</span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">sayBye</span><span class="hljs-params">()</span> </span>&#123;<br>        System.out.println(<span class="hljs-string">&quot;Bye zhanghao!&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>那么执行过程：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs jsx">public <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-function"><span class="hljs-title">main</span>(<span class="hljs-params"><span class="hljs-built_in">String</span>[] args</span>)</span> &#123;<br>    System.getProperties().setProperty(<span class="hljs-string">&quot;sun.misc.ProxyGenerator.saveGeneratedFiles&quot;</span>, <span class="hljs-string">&quot;true&quot;</span>);<br><br>    HelloInterface hello = <span class="hljs-keyword">new</span> Hello();<br>    ByeInterface bye = <span class="hljs-keyword">new</span> Bye();<br><br>    InvocationHandler handler = <span class="hljs-keyword">new</span> ProxyHandler(hello);<br>    InvocationHandler handler1 = <span class="hljs-keyword">new</span> ProxyHandler(bye);<br><br>    HelloInterface proxyHello = (HelloInterface) <span class="hljs-built_in">Proxy</span>.newProxyInstance(hello.getClass().getClassLoader(), hello.getClass().getInterfaces(), handler);<br><br>    ByeInterface proxyBye = (ByeInterface) <span class="hljs-built_in">Proxy</span>.newProxyInstance(bye.getClass().getClassLoader(), bye.getClass().getInterfaces(), handler1);<br>    proxyHello.sayHello();<br>    proxyBye.sayBye();<br>&#125;<br>输出：<br>Before invoke sayHello<br>Hello zhanghao!<br>After invoke sayHello<br>Before invoke sayBye<br>Bye zhanghao!<br>After invoke sayBye<br></code></pre></td></tr></table></figure>
+
+<h2 id="动态代理底层实现"><a href="#动态代理底层实现" class="headerlink" title="动态代理底层实现"></a>动态代理底层实现</h2><p>动态代理具体步骤：</p>
+<ol>
+<li>通过实现 InvocationHandler 接口创建自己的调用处理器；</li>
+<li>通过为 Proxy 类指定 ClassLoader 对象和一组 interface 来创建动态代理类；</li>
+<li>通过反射机制获得动态代理类的构造函数，其唯一参数类型是调用处理器接口类型；</li>
+<li>通过构造函数创建动态代理类实例，构造时调用处理器对象作为参数被传入。</li>
+</ol>
+<p>既然生成代理对象是用的Proxy类的静态方newProxyInstance，那么我们就去它的源码里看一下它到底都做了些什么？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Object <span class="hljs-title">newProxyInstance</span><span class="hljs-params">(ClassLoader loader,</span></span><br><span class="hljs-params"><span class="hljs-function">                                      Class&lt;?&gt;[] interfaces,</span></span><br><span class="hljs-params"><span class="hljs-function">                                      InvocationHandler h)</span></span><br><span class="hljs-function">    <span class="hljs-keyword">throws</span> IllegalArgumentException</span><br><span class="hljs-function"></span>&#123;<br>    Objects.requireNonNull(h);<br><br>    <span class="hljs-keyword">final</span> Class&lt;?&gt;[] intfs = interfaces.clone();<br>    <span class="hljs-keyword">final</span> SecurityManager sm = System.getSecurityManager();<br>    <span class="hljs-keyword">if</span> (sm != <span class="hljs-keyword">null</span>) &#123;<br>        checkProxyAccess(Reflection.getCallerClass(), loader, intfs);<br>    &#125;<br>     <span class="hljs-comment">//生成代理类对象</span><br>    Class&lt;?&gt; cl = getProxyClass0(loader, intfs);<br><br>    <span class="hljs-comment">//使用指定的调用处理程序获取代理类的构造函数对象</span><br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-keyword">if</span> (sm != <span class="hljs-keyword">null</span>) &#123;<br>            checkNewProxyPermission(Reflection.getCallerClass(), cl);<br>        &#125;<br><br>        <span class="hljs-keyword">final</span> Constructor&lt;?&gt; cons = cl.getConstructor(constructorParams);<br>        <span class="hljs-keyword">final</span> InvocationHandler ih = h;<br>        <span class="hljs-comment">//如果Class作用域为私有，通过 setAccessible 支持访问</span><br>        <span class="hljs-keyword">if</span> (!Modifier.isPublic(cl.getModifiers())) &#123;<br>            AccessController.doPrivileged(<span class="hljs-keyword">new</span> PrivilegedAction&lt;Void&gt;() &#123;<br>                <span class="hljs-function"><span class="hljs-keyword">public</span> Void <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>&#123;<br>                    cons.setAccessible(<span class="hljs-keyword">true</span>);<br>                    <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;<br>                &#125;<br>            &#125;);<br>        &#125;<br>        <span class="hljs-comment">//获取Proxy Class构造函数，创建Proxy代理实例。</span><br>        <span class="hljs-keyword">return</span> cons.newInstance(<span class="hljs-keyword">new</span> Object[]&#123;h&#125;);<br>    &#125; <span class="hljs-keyword">catch</span> (IllegalAccessException|InstantiationException e) &#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> InternalError(e.toString(), e);<br>    &#125; <span class="hljs-keyword">catch</span> (InvocationTargetException e) &#123;<br>        Throwable t = e.getCause();<br>        <span class="hljs-keyword">if</span> (t <span class="hljs-keyword">instanceof</span> RuntimeException) &#123;<br>            <span class="hljs-keyword">throw</span> (RuntimeException) t;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> InternalError(t.toString(), t);<br>        &#125;<br>    &#125; <span class="hljs-keyword">catch</span> (NoSuchMethodException e) &#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> InternalError(e.toString(), e);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>利用getProxyClass0(loader, intfs)生成代理类Proxy的Class对象。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Class&lt;?&gt; getProxyClass0(ClassLoader loader,<br>                                       Class&lt;?&gt;... interfaces) &#123;<br>    <span class="hljs-comment">//如果接口数量大于65535，抛出非法参数错误</span><br>    <span class="hljs-keyword">if</span> (interfaces.length &gt; <span class="hljs-number">65535</span>) &#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException(<span class="hljs-string">&quot;interface limit exceeded&quot;</span>);<br>    &#125;<br><br>   <br>    <span class="hljs-comment">//如果指定接口的代理类已经存在与缓存中，则不用新创建，直接从缓存中取即可；</span><br>    <span class="hljs-comment">//如果缓存中没有指定代理对象，则通过ProxyClassFactory来创建一个代理对象。</span><br>    <span class="hljs-keyword">return</span> proxyClassCache.<span class="hljs-keyword">get</span>(loader, interfaces);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>ProxyClassFactory内部类创建、定义代理类，返回给定ClassLoader 和interfaces的代理类。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><code class="hljs dart">    private <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProxyClassFactory</span></span><br><span class="hljs-class">    <span class="hljs-keyword">implements</span> <span class="hljs-title">BiFunction</span>&lt;<span class="hljs-title">ClassLoader</span>, <span class="hljs-title">Class</span>&lt;?&gt;[], <span class="hljs-title">Class</span>&lt;?&gt;&gt;</span>&#123;<br>    <span class="hljs-comment">// 代理类的名字的前缀统一为“$Proxy”</span><br>    private <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-built_in">String</span> proxyClassNamePrefix = <span class="hljs-string">&quot;<span class="hljs-subst">$Proxy</span>&quot;</span>;<br><br>    <span class="hljs-comment">// 每个代理类前缀后面都会跟着一个唯一的编号，如$Proxy0、$Proxy1、$Proxy2</span><br>    private <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> AtomicLong nextUniqueNumber = <span class="hljs-keyword">new</span> AtomicLong();<br><br>    <span class="hljs-meta">@Override</span><br>    public Class&lt;?&gt; apply(ClassLoader loader, Class&lt;?&gt;[] interfaces) &#123;<br><br>        <span class="hljs-built_in">Map</span>&lt;Class&lt;?&gt;, Boolean&gt; interfaceSet = <span class="hljs-keyword">new</span> IdentityHashMap&lt;&gt;(interfaces.length);<br>        <span class="hljs-keyword">for</span> (Class&lt;?&gt; intf : interfaces) &#123;<br>            <span class="hljs-comment">//验证类加载器加载接口得到对象是否与由apply函数参数传入的对象相同</span><br>            Class&lt;?&gt; interfaceClass = <span class="hljs-keyword">null</span>;<br>            <span class="hljs-keyword">try</span> &#123;<br>                interfaceClass = Class.forName(intf.getName(), <span class="hljs-keyword">false</span>, loader);<br>            &#125; <span class="hljs-keyword">catch</span> (ClassNotFoundException e) &#123;<br>            &#125;<br>            <span class="hljs-keyword">if</span> (interfaceClass != intf) &#123;<br>                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException(<br>                    intf + <span class="hljs-string">&quot; is not visible from class loader&quot;</span>);<br>            &#125;<br>            <span class="hljs-comment">//验证这个Class对象是不是接口</span><br>            <span class="hljs-keyword">if</span> (!interfaceClass.isInterface()) &#123;<br>                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException(<br>                    interfaceClass.getName() + <span class="hljs-string">&quot; is not an interface&quot;</span>);<br>            &#125;<br>            <span class="hljs-keyword">if</span> (interfaceSet.put(interfaceClass, Boolean.TRUE) != <span class="hljs-keyword">null</span>) &#123;<br>                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException(<br>                    <span class="hljs-string">&quot;repeated interface: &quot;</span> + interfaceClass.getName());<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-built_in">String</span> proxyPkg = <span class="hljs-keyword">null</span>;     <span class="hljs-comment">// package to define proxy class in</span><br>        <span class="hljs-built_in">int</span> accessFlags = Modifier.PUBLIC | Modifier.FINAL;<br><br>        <span class="hljs-comment">/*</span><br><span class="hljs-comment">         * Record the package of a non-public proxy interface so that the</span><br><span class="hljs-comment">         * proxy class will be defined in the same package.  Verify that</span><br><span class="hljs-comment">         * all non-public proxy interfaces are in the same package.</span><br><span class="hljs-comment">         */</span><br>        <span class="hljs-keyword">for</span> (Class&lt;?&gt; intf : interfaces) &#123;<br>            <span class="hljs-built_in">int</span> flags = intf.getModifiers();<br>            <span class="hljs-keyword">if</span> (!Modifier.isPublic(flags)) &#123;<br>                accessFlags = Modifier.FINAL;<br>                <span class="hljs-built_in">String</span> name = intf.getName();<br>                <span class="hljs-built_in">int</span> n = name.lastIndexOf(<span class="hljs-string">&#x27;.&#x27;</span>);<br>                <span class="hljs-built_in">String</span> pkg = ((n == <span class="hljs-number">-1</span>) ? <span class="hljs-string">&quot;&quot;</span> : name.substring(<span class="hljs-number">0</span>, n + <span class="hljs-number">1</span>));<br>                <span class="hljs-keyword">if</span> (proxyPkg == <span class="hljs-keyword">null</span>) &#123;<br>                    proxyPkg = pkg;<br>                &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (!pkg.equals(proxyPkg)) &#123;<br>                    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException(<br>                        <span class="hljs-string">&quot;non-public interfaces from different packages&quot;</span>);<br>                &#125;<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-keyword">if</span> (proxyPkg == <span class="hljs-keyword">null</span>) &#123;<br>            <span class="hljs-comment">// if no non-public proxy interfaces, use com.sun.proxy package</span><br>            proxyPkg = ReflectUtil.PROXY_PACKAGE + <span class="hljs-string">&quot;.&quot;</span>;<br>        &#125;<br><br>        <span class="hljs-comment">/*</span><br><span class="hljs-comment">         * Choose a name for the proxy class to generate.</span><br><span class="hljs-comment">         */</span><br>        long <span class="hljs-built_in">num</span> = nextUniqueNumber.getAndIncrement();<br>        <span class="hljs-built_in">String</span> proxyName = proxyPkg + proxyClassNamePrefix + <span class="hljs-built_in">num</span>;<br><br>        <span class="hljs-comment">/*</span><br><span class="hljs-comment">         * </span><br><span class="hljs-comment">         * 生成指定代理类的字节码文件</span><br><span class="hljs-comment">         */</span><br>        byte[] proxyClassFile = ProxyGenerator.generateProxyClass(<br>            proxyName, interfaces, accessFlags);<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-keyword">return</span> defineClass0(loader, proxyName,<br>                                proxyClassFile, <span class="hljs-number">0</span>, proxyClassFile.length);<br>        &#125; <span class="hljs-keyword">catch</span> (ClassFormatError e) &#123;<br>            <span class="hljs-comment">/*</span><br><span class="hljs-comment">             * A ClassFormatError here means that (barring bugs in the</span><br><span class="hljs-comment">             * proxy class generation code) there was some other</span><br><span class="hljs-comment">             * invalid aspect of the arguments supplied to the proxy</span><br><span class="hljs-comment">             * class creation (such as virtual machine limitations</span><br><span class="hljs-comment">             * exceeded).</span><br><span class="hljs-comment">             */</span><br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> IllegalArgumentException(e.toString());<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>一系列检查后，调用ProxyGenerator.generateProxyClass来生成字节码文件。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-built_in">byte</span>[] <span class="hljs-title">generateProxyClass</span>(<span class="hljs-params">final String var0, Class&lt;?&gt;[] var1, <span class="hljs-built_in">int</span> var2</span>)</span> &#123;<br>      ProxyGenerator var3 = <span class="hljs-keyword">new</span> ProxyGenerator(var0, var1, var2);<br>      <span class="hljs-comment">// 真正用来生成代理类字节码文件的方法在这里</span><br>      final <span class="hljs-built_in">byte</span>[] var4 = var3.generateClassFile();<br>      <span class="hljs-comment">// 保存代理类的字节码文件</span><br>      <span class="hljs-keyword">if</span>(saveGeneratedFiles) &#123;<br>          AccessController.doPrivileged(<span class="hljs-keyword">new</span> PrivilegedAction&lt;Void&gt;() &#123;<br>              <span class="hljs-function"><span class="hljs-keyword">public</span> Void <span class="hljs-title">run</span>(<span class="hljs-params"></span>)</span> &#123;<br>                  <span class="hljs-keyword">try</span> &#123;<br>                      <span class="hljs-built_in">int</span> var1 = var0.lastIndexOf(<span class="hljs-number">46</span>);<br>                      Path var2;<br>                      <span class="hljs-keyword">if</span>(var1 &gt; <span class="hljs-number">0</span>) &#123;<br>                          Path var3 = Paths.<span class="hljs-keyword">get</span>(var0.substring(<span class="hljs-number">0</span>, var1).replace(<span class="hljs-string">&#x27;.&#x27;</span>, File.separatorChar), <span class="hljs-keyword">new</span> String[<span class="hljs-number">0</span>]);<br>                          Files.createDirectories(var3, <span class="hljs-keyword">new</span> FileAttribute[<span class="hljs-number">0</span>]);<br>                          var2 = var3.resolve(var0.substring(var1 + <span class="hljs-number">1</span>, var0.length()) + <span class="hljs-string">&quot;.class&quot;</span>);<br>                      &#125; <span class="hljs-keyword">else</span> &#123;<br>                          var2 = Paths.<span class="hljs-keyword">get</span>(var0 + <span class="hljs-string">&quot;.class&quot;</span>, <span class="hljs-keyword">new</span> String[<span class="hljs-number">0</span>]);<br>                      &#125;<br><br>                      Files.write(var2, var4, <span class="hljs-keyword">new</span> OpenOption[<span class="hljs-number">0</span>]);<br>                      <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>                  &#125; catch (IOException var4x) &#123;<br>                      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> InternalError(<span class="hljs-string">&quot;I/O exception saving generated file: &quot;</span> + var4x);<br>                  &#125;<br>              &#125;<br>          &#125;);<br>      &#125;<br><br>      <span class="hljs-keyword">return</span> var4;<br>  &#125;<br></code></pre></td></tr></table></figure>
+
+<p>生成代理类字节码文件的generateClassFile方法:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">private</span> byte[] generateClassFile() &#123;<br>    <span class="hljs-comment">//下面一系列的addProxyMethod方法是将接口中的方法和Object中的方法添加到代理方法中(proxyMethod)</span><br>    <span class="hljs-keyword">this</span>.addProxyMethod(hashCodeMethod, Object.<span class="hljs-keyword">class</span>);<br>    <span class="hljs-keyword">this</span>.addProxyMethod(equalsMethod, Object.<span class="hljs-keyword">class</span>);<br>    <span class="hljs-keyword">this</span>.addProxyMethod(toStringMethod, Object.<span class="hljs-keyword">class</span>);<br>    Class[] var1 = <span class="hljs-keyword">this</span>.interfaces;<br>    int var2 = var1.length;<br><br>    int var3;<br>    Class var4;<br>    <span class="hljs-comment">//获得接口中所有方法并添加到代理方法中</span><br>    <span class="hljs-keyword">for</span>(var3 = <span class="hljs-number">0</span>; var3 &lt; var2; ++var3) &#123;<br>        var4 = var1[var3];<br>        Method[] var5 = var4.getMethods();<br>        int var6 = var5.length;<br><br>        <span class="hljs-keyword">for</span>(int var7 = <span class="hljs-number">0</span>; var7 &lt; var6; ++var7) &#123;<br>            Method var8 = var5[var7];<br>            <span class="hljs-keyword">this</span>.addProxyMethod(var8, var4);<br>        &#125;<br>    &#125;<br><br>    Iterator var11 = <span class="hljs-keyword">this</span>.proxyMethods.values().iterator();<br><br>    List var12;<br>    <span class="hljs-keyword">while</span>(var11.hasNext()) &#123;<br>        var12 = (List)var11.next();<br>        checkReturnTypes(var12);<br>    &#125;<br><br>    Iterator var15;<br>    <span class="hljs-keyword">try</span> &#123;<br>        <span class="hljs-comment">//生成代理类的构造函数</span><br>        <span class="hljs-keyword">this</span>.methods.add(<span class="hljs-keyword">this</span>.generateConstructor());<br>        var11 = <span class="hljs-keyword">this</span>.proxyMethods.values().iterator();<br><br>        <span class="hljs-keyword">while</span>(var11.hasNext()) &#123;<br>            var12 = (List)var11.next();<br>            var15 = var12.iterator();<br>                <br>            <span class="hljs-keyword">while</span>(var15.hasNext()) &#123;<br>                ProxyGenerator.ProxyMethod var16 = (ProxyGenerator.ProxyMethod)var15.next();<br>                <span class="hljs-keyword">this</span>.fields.add(new ProxyGenerator.FieldInfo(var16.methodFieldName, <span class="hljs-string">&quot;Ljava/lang/reflect/Method;&quot;</span>, <span class="hljs-number">10</span>));<br>                <span class="hljs-keyword">this</span>.methods.add(var16.generateMethod());<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-keyword">this</span>.methods.add(<span class="hljs-keyword">this</span>.generateStaticInitializer());<br>    &#125; <span class="hljs-keyword">catch</span> (IOException var10) &#123;<br>        <span class="hljs-keyword">throw</span> new InternalError(<span class="hljs-string">&quot;unexpected I/O Exception&quot;</span>, var10);<br>    &#125;<br><br>    <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.methods.size() &gt; <span class="hljs-string">&#x27;\uffff&#x27;</span>) &#123;<br>        <span class="hljs-keyword">throw</span> new IllegalArgumentException(<span class="hljs-string">&quot;method limit exceeded&quot;</span>);<br>    &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.fields.size() &gt; <span class="hljs-string">&#x27;\uffff&#x27;</span>) &#123;<br>        <span class="hljs-keyword">throw</span> new IllegalArgumentException(<span class="hljs-string">&quot;field limit exceeded&quot;</span>);<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">this</span>.cp.getClass(dotToSlash(<span class="hljs-keyword">this</span>.className));<br>        <span class="hljs-keyword">this</span>.cp.getClass(<span class="hljs-string">&quot;java/lang/reflect/Proxy&quot;</span>);<br>        var1 = <span class="hljs-keyword">this</span>.interfaces;<br>        var2 = var1.length;<br><br>        <span class="hljs-keyword">for</span>(var3 = <span class="hljs-number">0</span>; var3 &lt; var2; ++var3) &#123;<br>            var4 = var1[var3];<br>            <span class="hljs-keyword">this</span>.cp.getClass(dotToSlash(var4.getName()));<br>        &#125;<br><br>        <span class="hljs-keyword">this</span>.cp.setReadOnly();<br>        ByteArrayOutputStream var13 = new ByteArrayOutputStream();<br>        DataOutputStream var14 = new DataOutputStream(var13);<br><br>        <span class="hljs-keyword">try</span> &#123;<br>            var14.writeInt(-<span class="hljs-number">889275714</span>);<br>            var14.writeShort(<span class="hljs-number">0</span>);<br>            var14.writeShort(<span class="hljs-number">49</span>);<br>            <span class="hljs-keyword">this</span>.cp.write(var14);<br>            var14.writeShort(<span class="hljs-keyword">this</span>.accessFlags);<br>            var14.writeShort(<span class="hljs-keyword">this</span>.cp.getClass(dotToSlash(<span class="hljs-keyword">this</span>.className)));<br>            var14.writeShort(<span class="hljs-keyword">this</span>.cp.getClass(<span class="hljs-string">&quot;java/lang/reflect/Proxy&quot;</span>));<br>            var14.writeShort(<span class="hljs-keyword">this</span>.interfaces.length);<br>            Class[] var17 = <span class="hljs-keyword">this</span>.interfaces;<br>            int var18 = var17.length;<br><br>            <span class="hljs-keyword">for</span>(int var19 = <span class="hljs-number">0</span>; var19 &lt; var18; ++var19) &#123;<br>                Class var22 = var17[var19];<br>                var14.writeShort(<span class="hljs-keyword">this</span>.cp.getClass(dotToSlash(var22.getName())));<br>            &#125;<br><br>            var14.writeShort(<span class="hljs-keyword">this</span>.fields.size());<br>            var15 = <span class="hljs-keyword">this</span>.fields.iterator();<br><br>            <span class="hljs-keyword">while</span>(var15.hasNext()) &#123;<br>                ProxyGenerator.FieldInfo var20 = (ProxyGenerator.FieldInfo)var15.next();<br>                var20.write(var14);<br>            &#125;<br><br>            var14.writeShort(<span class="hljs-keyword">this</span>.methods.size());<br>            var15 = <span class="hljs-keyword">this</span>.methods.iterator();<br><br>            <span class="hljs-keyword">while</span>(var15.hasNext()) &#123;<br>                ProxyGenerator.MethodInfo var21 = (ProxyGenerator.MethodInfo)var15.next();<br>                var21.write(var14);<br>            &#125;<br><br>            var14.writeShort(<span class="hljs-number">0</span>);<br>            <span class="hljs-keyword">return</span> var13.toByteArray();<br>        &#125; <span class="hljs-keyword">catch</span> (IOException var9) &#123;<br>            <span class="hljs-keyword">throw</span> new InternalError(<span class="hljs-string">&quot;unexpected I/O Exception&quot;</span>, var9);<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>字节码生成后，调用defineClass0来解析字节码，生成了Proxy的Class对象。在了解完代理类动态生成过程后，生产的代理类是怎样的，谁来执行这个代理类。</p>
+<p>其中，在ProxyGenerator.generateProxyClass函数中 saveGeneratedFiles定义如下，其指代是否保存生成的代理类class文件，默认false不保存。</p>
+<p>在前面的示例中，我们修改了此系统变量：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">System<span class="hljs-selector-class">.getProperties</span>()<span class="hljs-selector-class">.setProperty</span>(&quot;sun<span class="hljs-selector-class">.misc</span><span class="hljs-selector-class">.ProxyGenerator</span><span class="hljs-selector-class">.saveGeneratedFiles</span>&quot;, &quot;true&quot;);<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://upload-images.jianshu.io/upload_images/2109481-c68c854238142932.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp" alt="img"></p>
+<p>image.png</p>
+<p>如图，生成了两个名为 <img src="https://math.jianshu.com/math?formula=Proxy0.class%E3%80%81" alt="Proxy0.class、">Proxy1.class的class文件。</p>
+<p>动态代理流程图：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/2109481-5bc36d36f5997da1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1200/format/webp" alt="img"></p>
+
+    </div>
+</div>
+<style>
+    #noneimg img {
+        display: none;
+        z-index: 109;
+        width: 600px !important;
+        border-radius: 0px;
+        position: fixed;
+        box-shadow: 0 0 0px #c3c3c300 !important;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto !important;
+    }
+
+    @media screen and (max-width:600px) {
+        #noneimg img {
+            width: 88%
+        }
+    }
+</style>
+<script>
+    $(function () { $('#article').click(function (e) { if (e.target.tagName == "IMG") { if ($('#nonediv').length == 0) { let MImg = `<div id='noneimg'><img src='${e.target.currentSrc}'></div>`; let MDiv = "<div id='nonediv' style='cursor: pointer;display: none; position: fixed;left: 0;top: 0; right: 0;bottom: 0;background-color: #333;opacity:0.5;z-index: 108;'></div>"; $('#article').append(MDiv); $('#article').append(MImg); $("#nonediv").fadeIn("slow"); $("#noneimg img").fadeIn("slow") } } else { if ($('#nonediv').length !== 0) { $("#noneimg ").fadeOut("slow"); $("#nonediv").fadeOut("slow"); setTimeout(function () { $('#nonediv').remove(); $('#noneimg').remove() }, 500) } } }); $('.article-content').addClass('content-move') });
+</script>
+<div class="Last-Next">
+    
+
+    
+    <a href="/2021/06/01/Java%20%E6%B3%A8%E8%A7%A3%E5%AE%8C%E5%85%A8%E8%A7%A3%E6%9E%90/">
+        <div class="next">
+            <span>下一篇</span>
+            <p></p>
+        </div>
+    </a>
+    
+</div>
+		
+<link rel="stylesheet" href="/css/food.css">
+
+<div class="footer">
+	<div class="Copyright">
+		©2021 By CHANGEQ. 主题：<a
+			style="text-decoration: none;display: contents; color: #898F9F;"
+			target="_blank" rel="noopener" href="https://github.com/qiaobug/hexo-theme-quiet">Quiet</a>
+	</div>
+	<div class="contact">
+		
+		<a target="_blank" rel="noopener" href="https://github.com/qiaobug">
+			<img src="https://cdn.jsdelivr.net/gh/duogongneng/MyBlogImg/imggithub.png" alt="Quiet主题">
+		</a>
+		
+	</div>
+</div>
+
+<script src="/js/jquery.min.js"></script>
+
+
+<script src="/js/gotop.js"></script>
+
+
+<style type="text/css">
+    @media screen and (min-width: 600px) {
+        .goTop>span {
+            display: block;
+            border-radius: 50%;
+            width: 66px;
+            height: 66px;
+            cursor: pointer;
+            opacity: 0.8;
+            background: rgba(18, 24, 58, 0.06);
+            text-align: center;
+            border: 1px solid rgba(18, 24, 58, 0.06);
+
+            transition: border .5s;
+            -moz-transition: border .5s;
+            /* Firefox 4 */
+            -webkit-transition: border .5s;
+            /* Safari 和 Chrome */
+            -o-transition: border .5s;
+            /* Opera */
+        }
+
+        .goTop>span:hover {
+            border: 1px solid #6680B3;
+        }
+
+
+        .goTop {
+            position: fixed;
+            right: 30px;
+            bottom: 80px;
+        }
+
+        .goTop>span>svg {
+            width: 30px;
+            height: 30px;
+            margin-top: 17.5px;
+            opacity: 0.7;
+        }
+
+    }
+
+    @media screen and (max-width: 600px) {
+        .goTop {
+            display: none;
+        }
+    }
+</style>
+<div class="goTop" id="js-go_top">
+    <span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <g>
+                <path d="M13 12v8h-2v-8H4l8-8 8 8z"></path>
+            </g>
+        </svg>
+    </span>
+</div>
+<script>
+    $('#js-go_top').gotoTop({ offset: 500, speed: 300, animationShow: { 'transform': 'translate(0,0)', 'transition': 'transform .5s ease-in-out' }, animationHide: { 'transform': 'translate(100px,0)', 'transition': 'transform .5s ease-in-out' } });
+</script>
+<script>
+	console.log('\n %c Hexo-Quiet 主题 %c https://github.com/QiaoBug/hexo-theme-quiet \n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;')
+</script>
+	</body>
+
+</html>
