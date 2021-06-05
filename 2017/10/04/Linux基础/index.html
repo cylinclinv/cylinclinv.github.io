@@ -173,8 +173,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2017-10-03 11:53" pubdate>
-        2017年10月3日 中午
+      <time datetime="2017-10-04 11:53" pubdate>
+        2017年10月4日 中午
       </time>
     </span>
   
@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      4.5k 字
+      5.3k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      56
+      67
        分钟
     </span>
   
@@ -634,6 +634,62 @@
 <h3 id="3-3-3-重新启动tomcat"><a href="#3-3-3-重新启动tomcat" class="headerlink" title="3.3.3.  重新启动tomcat"></a>3.3.3.  重新启动tomcat</h3><p>cd ../bin/</p>
 <p>sh startup.sh &amp;&amp; tail -f ../logs/catalina.out</p>
 <h3 id="3-3-4-启动浏览器测试"><a href="#3-3-4-启动浏览器测试" class="headerlink" title="3.3.4.  启动浏览器测试"></a>3.3.4.  启动浏览器测试</h3><p><a target="_blank" rel="noopener" href="http://192.168.0.160:8080/user/page/query">http://192.168.0.160:8080/user/page/query</a></p>
+<h1 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h1><p>Nginx (“engine x”) 是一个高性能的 HTTP和反向代理服务器，也是一个 IMAP/POP3/SMTP 服务器。</p>
+<p>正向代理：</p>
+<p><img src="/img/cphoto/nginx01.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>反向代理:</p>
+<p><img src="/img/cphoto/nginx02.jpg" srcset="/img/loading.gif" lazyload></p>
+<p> 很多大网站都是使用nginx做反向代理，应用非常广泛。</p>
+<p>Nginx是一款高性能的http 服务器/反向代理服务器及电子邮件（IMAP/POP3）代理服务器。由俄罗斯的程序设计师Igor Sysoev所开发，官方测试nginx能够支支撑5万并发链接，并且cpu、内存等资源消耗却非常低，运行非常稳定。</p>
+<h1 id="2-应用场景"><a href="#2-应用场景" class="headerlink" title="2  应用场景"></a>2  应用场景</h1><p>1、http服务器，可以做静态网页的http服务器。</p>
+<p>2、配置虚拟机。</p>
+<p>一个域名可以被多个ip绑定。可以根据域名的不同吧请求转发给运行在不同端口的服务器。</p>
+<p>3、反向代理，负载均衡。把请求转发给不同的服务器。</p>
+<h1 id="3-安装及配置"><a href="#3-安装及配置" class="headerlink" title="3  安装及配置"></a>3  安装及配置</h1><h2 id="3-1-下载"><a href="#3-1-下载" class="headerlink" title="3.1  下载"></a>3.1  下载</h2><p>官方网站：<a target="_blank" rel="noopener" href="http://nginx.org/">http://nginx.org/</a></p>
+<p>最后的一个稳定版本：1.8.0版本。有两个版本windows版本和linux版本。生产环境都是使用linux版本。</p>
+<h2 id="3-2-安装"><a href="#3-2-安装" class="headerlink" title="3.2  安装"></a>3.2  安装</h2><h3 id="3-2-1-环境要求"><a href="#3-2-1-环境要求" class="headerlink" title="3.2.1 环境要求"></a>3.2.1 环境要求</h3><p>nginx是C语言开发，建议在linux上运行，本教程使用Centos6.4作为安装环境。</p>
+<p>n gcc</p>
+<p>​    安装nginx需要先将官网下载的源码进行编译，编译依赖gcc环境，如果没有gcc环境，需要安装gcc：yum install gcc-c++ </p>
+<p>n PCRE</p>
+<p>​    PCRE(Perl Compatible Regular Expressions)是一个Perl库，包括 perl 兼容的正则表达式库。nginx的http模块使用pcre来解析正则表达式，所以需要在linux上安装pcre库。</p>
+<p><strong>yum install -y pcre pcre-devel</strong></p>
+<p>注：pcre-devel是使用pcre开发的一个二次开发库。nginx也需要此库。</p>
+<p>n zlib</p>
+<p>​    zlib库提供了很多种压缩和解压缩的方式，nginx使用zlib对http包的内容进行gzip，所以需要在linux上安装zlib库。</p>
+<p><strong>yum install -y zlib zlib-devel</strong></p>
+<p>n openssl</p>
+<p>​    OpenSSL 是一个强大的安全套接字层密码库，囊括主要的密码算法、常用的密钥和证书封装管理功能及SSL协议，并提供丰富的应用程序供测试或其它目的使用。</p>
+<p>​    nginx不仅支持http协议，还支持https（即在ssl协议上传输http），所以需要在linux安装openssl库。</p>
+<p><strong>yum install -y openssl openssl-devel</strong></p>
+<h3 id="3-2-2-编译及安装"><a href="#3-2-2-编译及安装" class="headerlink" title="3.2.2 编译及安装"></a>3.2.2 编译及安装</h3><p>第一步：把nginx的源码包上传至linux服务器</p>
+<p>第二步：解压源码包。 tar -zxf nginx-1.8.0.tar.gz </p>
+<p>第三步：进入nginx-1.8.0文件夹。使用configure命令创建makefile。</p>
+<p>第四步：参数设置如下：</p>
+<p>./configure \</p>
+<p>–prefix=/usr/local/nginx \</p>
+<p>–pid-path=/var/run/nginx/nginx.pid \</p>
+<p>–lock-path=/var/lock/nginx.lock \</p>
+<p>–error-log-path=/var/log/nginx/error.log \</p>
+<p>–http-log-path=/var/log/nginx/access.log \</p>
+<p>–with-http_gzip_static_module \</p>
+<p>–http-client-body-temp-path=/var/temp/nginx/client \</p>
+<p>–http-proxy-temp-path=/var/temp/nginx/proxy \</p>
+<p>–http-fastcgi-temp-path=/var/temp/nginx/fastcgi \</p>
+<p>–http-uwsgi-temp-path=/var/temp/nginx/uwsgi \</p>
+<p>–http-scgi-temp-path=/var/temp/nginx/scgi</p>
+<p><strong>注意：上边将临时文件目录指定为**</strong>/var/temp/nginx<strong><strong>，需要在</strong></strong>/var<strong><strong>下创建</strong></strong>temp<strong><strong>及</strong></strong>nginx**<strong>目录</strong></p>
+<p>第五步：make</p>
+<p>第六步 make install </p>
+<h2 id="3-3-Nginx的启动及关闭"><a href="#3-3-Nginx的启动及关闭" class="headerlink" title="3.3  Nginx的启动及关闭"></a>3.3  Nginx的启动及关闭</h2><h3 id="3-3-1-启动"><a href="#3-3-1-启动" class="headerlink" title="3.3.1 启动"></a>3.3.1 启动</h3><p>在nginx目录下有一个sbin目录，sbin目录下有一个nginx可执行程序。</p>
+<p>./nginx</p>
+<p> <img src="/img/cphoto/nginx03.jpg" srcset="/img/loading.gif" lazyload></p>
+<h3 id="3-3-2-关闭nginx"><a href="#3-3-2-关闭nginx" class="headerlink" title="3.3.2 关闭nginx"></a>3.3.2 关闭nginx</h3><p>关闭命令：相当于找到nginx进程kill。</p>
+<p>./nginx <strong>-s</strong> stop</p>
+<p>退出命令：</p>
+<p>./nginx -s quit</p>
+<p>等程序执行完毕后关闭，建议使用此命令。</p>
+<h3 id="3-3-3-动态加载配置文件"><a href="#3-3-3-动态加载配置文件" class="headerlink" title="3.3.3 动态加载配置文件"></a>3.3.3 动态加载配置文件</h3><p>./nginx -s reload</p>
+<p>可以不关闭nginx的情况下更新配置文件。</p>
 
             </div>
             <hr>
@@ -668,9 +724,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2017/10/03/rpm%E6%89%A7%E8%A1%8C%E5%AE%89%E8%A3%85%E5%8C%85/">
+                      <a href="/2017/10/04/Vim%E5%91%BD%E4%BB%A4/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">rpm执行安装包</span>
+                        <span class="hidden-mobile">Vim命令</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -678,8 +734,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2017/10/03/Linux%E7%9B%AE%E5%BD%95%E4%BB%8B%E7%BB%8D/">
-                        <span class="hidden-mobile">Linux目录介绍</span>
+                      <a href="/2017/10/03/Linux%E4%B8%8BTop%E5%91%BD%E4%BB%A4/">
+                        <span class="hidden-mobile">Linux下Top命令</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -704,7 +760,7 @@
         var options = Object.assign(
           {"clientID":"fc36e17008bd1e3e898d","clientSecret":"d9d3bc7feb2b8abbb2d05b43b2d16a1d19c9bba2","repo":"cylinclinv.github.io","owner":"cylinclinv","admin":["cylinclinv"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":true,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
           {
-            id: '004c6f1a8aa4e3e2a842b01a44270924'
+            id: 'd98b2555231167976ee334c80e22d1fc'
           }
         )
         var gitalk = new Gitalk(options);
