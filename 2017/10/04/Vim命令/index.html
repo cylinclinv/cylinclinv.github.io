@@ -1,0 +1,564 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/logo.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="clyde">
+  <meta name="keywords" content="">
+  
+  <title>Vim命令 - Clyde</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Clyde</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/cover/07.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Vim命令">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2017-10-04 21:53" pubdate>
+        2017年10月4日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.8k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      65
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Vim命令</h1>
+            
+            <div class="markdown-body">
+              <h1 id="Vim命令合集"><a href="#Vim命令合集" class="headerlink" title="Vim命令合集"></a>Vim命令合集</h1><h2 id="命令历史"><a href="#命令历史" class="headerlink" title="命令历史"></a>命令历史</h2><p>以:和/开头的命令都有历史纪录，可以首先键入:或/然后按上下箭头来选择某个历史命令。</p>
+<h2 id="启动vim"><a href="#启动vim" class="headerlink" title="启动vim"></a>启动vim</h2><p>在命令行窗口中输入以下命令即可<br>vim 直接启动vim<br>vim filename 打开vim并创建名为filename的文件</p>
+<h2 id="文件命令"><a href="#文件命令" class="headerlink" title="文件命令"></a>文件命令</h2><p>打开单个文件<br>vim file<br>同时打开多个文件<br>vim file1 file2 file3 …<br>在vim窗口中打开一个新文件<br>:open file<br>在新窗口中打开文件<br>:split file<br>切换到下一个文件<br>:bn<br>切换到上一个文件<br>:bp<br>查看当前打开的文件列表，当前正在编辑的文件会用[]括起来。<br>:args<br>打开远程文件，比如ftp或者share folder<br>:e <a href="ftp://192.168.10.76/abc.txt">ftp://192.168.10.76/abc.txt</a><br>:e \qadrive\test\1.txt</p>
+<h2 id="vim的模式"><a href="#vim的模式" class="headerlink" title="vim的模式"></a>vim的模式</h2><p>正常模式（按Esc或Ctrl+[进入） 左下角显示文件名或为空<br>插入模式（按i键进入） 左下角显示–INSERT–<br>可视模式（不知道如何进入） 左下角显示–VISUAL–</p>
+<h2 id="导航命令"><a href="#导航命令" class="headerlink" title="导航命令"></a>导航命令</h2><p>% 括号匹配</p>
+<h2 id="插入命令"><a href="#插入命令" class="headerlink" title="插入命令"></a>插入命令</h2><p>i 在当前位置生前插入<br>I 在当前行首插入<br>a 在当前位置后插入<br>A 在当前行尾插入<br>o 在当前行之后插入一行<br>O 在当前行之前插入一行</p>
+<h2 id="查找命令"><a href="#查找命令" class="headerlink" title="查找命令"></a>查找命令</h2><p>/text　　查找text，按n健查找下一个，按N健查找前一个。<br>?text　　查找text，反向查找，按n健查找下一个，按N健查找前一个。<br>vim中有一些特殊字符在查找时需要转义　　.<em>[]^%/?~$<br>:set ignorecase　　忽略大小写的查找<br>:set noignorecase　　不忽略大小写的查找<br>查找很长的词，如果一个词很长，键入麻烦，可以将光标移动到该词上，按</em>或#键即可以该单词进行搜索，相当于/搜索。而#命令相当于?搜索。<br>:set hlsearch　　高亮搜索结果，所有结果都高亮显示，而不是只显示一个匹配。<br>:set nohlsearch　　关闭高亮搜索显示<br>:nohlsearch　　关闭当前的高亮显示，如果再次搜索或者按下n或N键，则会再次高亮。<br>:set incsearch　　逐步搜索模式，对当前键入的字符进行搜索而不必等待键入完成。<br>:set wrapscan　　重新搜索，在搜索到文件头或尾时，返回继续搜索，默认开启。</p>
+<h2 id="替换命令"><a href="#替换命令" class="headerlink" title="替换命令"></a>替换命令</h2><p>ra 将当前字符替换为a，当期字符即光标所在字符。<br>s/old/new/ 用old替换new，替换当前行的第一个匹配<br>s/old/new/g 用old替换new，替换当前行的所有匹配<br>%s/old/new/ 用old替换new，替换所有行的第一个匹配<br>%s/old/new/g 用old替换new，替换整个文件的所有匹配<br>:10,20 s/^/    /g 在第10行知第20行每行前面加四个空格，用于缩进。<br>ddp 交换光标所在行和其下紧邻的一行。</p>
+<h2 id="移动命令"><a href="#移动命令" class="headerlink" title="移动命令"></a>移动命令</h2><p>h 左移一个字符<br>l 右移一个字符，这个命令很少用，一般用w代替。<br>k 上移一个字符<br>j 下移一个字符<br>以上四个命令可以配合数字使用，比如20j就是向下移动20行，5h就是向左移动5个字符，在Vim中，很多命令都可以配合数字使用，比如删除10个字符10x，在当前位置后插入3个！，3a！<Esc>，这里的Esc是必须的，否则命令不生效。<br>w 向前移动一个单词（光标停在单词首部），如果已到行尾，则转至下一行行首。此命令快，可以## 代替l命令。<br>b 向后移动一个单词 2b 向后移动2个单词<br>e，同w，只不过是光标停在单词尾部<br>ge，同b，光标停在单词尾部。<br>^ 移动到本行第一个非空白字符上。<br>0（数字0）移动到本行第一个字符上，<br><HOME> 移动到本行第一个字符。同0健。<br>$ 移动到行尾 3$ 移动到下面3行的行尾<br>gg 移动到文件头。 = [[<br>G（shift + g） 移动到文件尾。 = ]]<br>f（find）命令也可以用于移动，fx将找到光标后第一个为x的字符，3fd将找到第三个为d的字符。<br>F 同f，反向查找。<br>跳到指定行，冒号+行号，回车，比如跳到240行就是 :240回车。另一个方法是行号+G，比如230G跳到230行。<br>Ctrl + e 向下滚动一行<br>Ctrl + y 向上滚动一行<br>Ctrl + d 向下滚动半屏<br>Ctrl + u 向上滚动半屏<br>Ctrl + f 向下滚动一屏<br>Ctrl + b 向上滚动一屏</HOME></Esc></p>
+<h2 id="撤销和重做"><a href="#撤销和重做" class="headerlink" title="撤销和重做"></a>撤销和重做</h2><p>u 撤销（Undo）<br>U 撤销对整行的操作<br>Ctrl + r 重做（Redo），即撤销的撤销。</p>
+<h2 id="删除命令"><a href="#删除命令" class="headerlink" title="删除命令"></a>删除命令</h2><p>x 删除当前字符<br>3x 删除当前光标开始向后三个字符<br>X 删除当前字符的前一个字符。X=dh<br>dl 删除当前字符， dl=x<br>dh 删除前一个字符<br>dd 删除当前行<br>dj 删除上一行<br>dk 删除下一行<br>10d 删除当前行开始的10行。<br>D 删除当前字符至行尾。D=d$<br>d$ 删除当前字符之后的所有字符（本行）<br>kdgg 删除当前行之前所有行（不包括当前行）<br>jdG（jd shift + g）   删除当前行之后所有行（不包括当前行）<br>:1,10d 删除1-10行<br>:11,$d 删除11行及以后所有的行<br>:1,$d 删除所有行<br>J(shift + j)　　删除两行之间的空行，实际上是合并两行。</p>
+<h2 id="拷贝和粘贴"><a href="#拷贝和粘贴" class="headerlink" title="拷贝和粘贴"></a>拷贝和粘贴</h2><p>yy 拷贝当前行<br>nyy 拷贝当前后开始的n行，比如2yy拷贝当前行及其下一行。<br>p  在当前光标后粘贴,如果之前使用了yy命令来复制一行，那么就在当前行的下一行粘贴。<br>shift+p 在当前行前粘贴<br>:1,10 co 20 将1-10行插入到第20行之后。<br>:1,$ co $ 将整个文件复制一份并添加到文件尾部。<br>正常模式下按v（逐字）或V（逐行）进入可视模式，然后用jklh命令移动即可选择某些行或字符，再按y即可复制<br>ddp交换当前行和其下一行<br>xp交换当前字符和其后一个字符</p>
+<h2 id="剪切命令"><a href="#剪切命令" class="headerlink" title="剪切命令"></a>剪切命令</h2><p>正常模式下按v（逐字）或V（逐行）进入可视模式，然后用jklh命令移动即可选择某些行或字符，再按d即可剪切<br>ndd 剪切当前行之后的n行。利用p命令可以对剪切的内容进行粘贴<br>:1,10d 将1-10行剪切。利用p命令可将剪切后的内容进行粘贴。<br>:1, 10 m 20 将第1-10行移动到第20行之后。</p>
+<h2 id="退出命令"><a href="#退出命令" class="headerlink" title="退出命令"></a>退出命令</h2><p>:wq 保存并退出<br>ZZ 保存并退出<br>:q! 强制退出并忽略所有更改<br>:e! 放弃所有修改，并打开原来文件。</p>
+<h2 id="窗口命令"><a href="#窗口命令" class="headerlink" title="窗口命令"></a>窗口命令</h2><p>:split或new 打开一个新窗口，光标停在顶层的窗口上<br>:split file或:new file 用新窗口打开文件<br>split打开的窗口都是横向的，使用vsplit可以纵向打开窗口。<br>Ctrl+ww 移动到下一个窗口<br>Ctrl+wj 移动到下方的窗口<br>Ctrl+wk 移动到上方的窗口</p>
+<h2 id="关闭窗口"><a href="#关闭窗口" class="headerlink" title="关闭窗口"></a>关闭窗口</h2><p>:close 最后一个窗口不能使用此命令，可以防止意外退出vim。<br>:q 如果是最后一个被关闭的窗口，那么将退出vim。<br>ZZ 保存并退出。<br>关闭所有窗口，只保留当前窗口<br>:only</p>
+<h2 id="录制宏"><a href="#录制宏" class="headerlink" title="录制宏"></a>录制宏</h2><p>按q键加任意字母开始录制，再按q键结束录制（这意味着vim中的宏不可嵌套），使用的时候@加宏名，比如qa。。。q录制名为a的宏，@a使用这个宏。<br>执行shell命令<br>:!command<br>:!ls 列出当前目录下文件<br>:!perl -c script.pl 检查perl脚本语法，可以不用退出vim，非常方便。<br>:!perl script.pl 执行perl脚本，可以不用退出vim，非常方便。<br>:suspend或Ctrl - Z 挂起vim，回到shell，按fg可以返回vim。</p>
+<h2 id="注释命令"><a href="#注释命令" class="headerlink" title="注释命令"></a>注释命令</h2><p>perl程序中#开始的行为注释，所以要注释某些行，只需在行首加入#<br>3,5 s/^/#/g 注释第3-5行<br>3,5 s/^#//g 解除3-5行的注释<br>1,$ s/^/#/g 注释整个文档。<br>:%s/^/#/g 注释整个文档，此法更快。</p>
+<h2 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h2><p>:help or F1 显示整个帮助<br>:help xxx 显示xxx的帮助，比如 :help i, :help CTRL-[（即Ctrl+[的帮助）。<br>:help ‘number’ Vim选项的帮助用单引号括起<br>:help <Esc> 特殊键的帮助用&lt;&gt;扩起<br>:help -t Vim启动参数的帮助用-<br>：help i_<Esc> 插入模式下Esc的帮助，某个模式下的帮助用模式_主题的模式<br>帮助文件中位于||之间的内容是超链接，可以用Ctrl+]进入链接，Ctrl+o（Ctrl + t）返回</Esc></Esc></p>
+<h2 id="其他非编辑命令"><a href="#其他非编辑命令" class="headerlink" title="其他非编辑命令"></a>其他非编辑命令</h2><p>. 重复前一次命令<br>:set ruler?　　查看是否设置了ruler，在.vimrc中，使用set命令设制的选项都可以通过这个命令查看<br>:scriptnames　　查看vim脚本文件的位置，比如.vimrc文件，语法文件及plugin等。<br>:set list 显示非打印字符，如tab，空格，行尾等。如果tab无法显示，请确定用set lcs=tab:&gt;-命令设置了.vimrc文件，并确保你的文件中的确有tab，如果开启了expendtab，那么tab将被扩展为空格。<br>Vim教程<br>在Unix系统上<br>$ vimtutor<br>在Windows系统上<br>:help tutor</p>
+<p>:syntax 列出已经定义的语法项<br>:syntax clear 清除已定义的语法规则<br>:syntax case match 大小写敏感，int和Int将视为不同的语法元素<br>:syntax case ignore 大小写无关，int和Int将视为相同的语法元素，并使用同样的配色方案</p>
+<h1 id="vi命令"><a href="#vi命令" class="headerlink" title="vi命令"></a>vi命令</h1><p>vi使用方法详细介绍</p>
+<p>vi编辑器是所有Unix及Linux系统下标准的编辑器，它的强大不逊色于任何最新的文本编辑器，这里只是简单地介绍一下它的用法和一小部分指令。由于对Unix及Linux系统的任何版本，vi编辑器是完全相同的，因此您可以在其他任何介绍vi的地方进一步了解它。Vi也是Linux中最基本的文本编辑器，学会它后，您将在Linux的世界里畅行无阻。 </p>
+<h2 id="1、vi的基本概念"><a href="#1、vi的基本概念" class="headerlink" title="1、vi的基本概念"></a>1、vi的基本概念</h2><p>　　基本上vi可以分为三种状态，分别是命令模式（command mode）、插入模式（Insert mode）和底行模式（last line mode），各模式的功能区分如下：<br>    1) 命令行模式command mode）<br>　　控制屏幕光标的移动，字符、字或行的删除，移动复制某区段及进入Insert mode下，或者到 last line mode。<br>    2) 插入模式（Insert mode）<br>　　只有在Insert mode下，才可以做文字输入，按「ESC」键可回到命令行模式。<br>    3) 底行模式（last line mode）<br>　　将文件保存或退出vi，也可以设置编辑环境，如寻找字符串、列出行号……等。 </p>
+<blockquote>
+<p>不过一般我们在使用时把vi简化成两个模式，就是将底行模式（last line mode）也算入命令行模式command mode）。 </p>
+</blockquote>
+<h2 id="2、vi的基本操作"><a href="#2、vi的基本操作" class="headerlink" title="2、vi的基本操作"></a>2、vi的基本操作</h2><p>a) 进入vi<br>   　在系统提示符号输入vi及文件名称后，就进入vi全屏幕编辑画面：<br>　　　$ vi myfile<br>　　不过有一点要特别注意，就是您进入vi之后，是处于「命令行模式（command mode）」，您要切换到「插入模式（Insert mode）」才能够输入文字。初次使用vi的人都会想先用上下左右键移动光标，结果电脑一直哔哔叫，把自己气个半死，所以进入vi后，先不要乱动，转换到「插入模式（Insert mode）」再说吧！ </p>
+<p>b) 切换至插入模式（Insert mode）编辑文件<br>　　在「命令行模式（command mode）」下按一下字母「i」就可以进入「插入模式（Insert mode）」，这时候你就可以开始输入文字了。 </p>
+<p>c) Insert 的切换<br>　　您目前处于「插入模式（Insert mode）」，您就只能一直输入文字，如果您发现输错了字！想用光标键往回移动，将该字删除，就要先按一下「ESC」键转到「命令行模式（command mode）」再删除文字。 </p>
+<dl><dt>d) 退出vi及保存文件<br>　　在「命令行模式（command mode）」下，按一下「：」冒号键进入「Last line mode」，例如：<br>: w filename （输入 「w filename」将文章以指定的文件名filename保存）<br>: wq (输入「wq」，存盘并退出vi)</dt><dd>q! (输入q!， 不存盘强制退出vi) </dd></dl><h2 id="3、命令行模式（command-mode）功能键"><a href="#3、命令行模式（command-mode）功能键" class="headerlink" title="3、命令行模式（command mode）功能键"></a>3、命令行模式（command mode）功能键</h2><p>1）. 插入模式<br>       按「i」切换进入插入模式「insert mode」，按”i”进入插入模式后是从光标当前位置开始输入文件；<br>　　按「a」进入插入模式后，是从目前光标所在位置的下一个位置开始输入文字；<br>　　按「o」进入插入模式后，是插入新的一行，从行首开始输入文字。 </p>
+<p>2）. 从插入模式切换为命令行模式<br>      按「ESC」键。 </p>
+<p>3）. 移动光标<br>　　vi可以直接用键盘上的光标来上下左右移动，但正规的vi是用小写英文字母「h」、「j」、「k」、「l」，分别控制光标左、下、上、右移一格。<br>　　按「ctrl」+「b」：屏幕往”后”移动一页。<br>　　按「ctrl」+「f」：屏幕往”前”移动一页。<br>　　按「ctrl」+「u」：屏幕往”后”移动半页。<br>　　按「ctrl」+「d」：屏幕往”前”移动半页。<br>　　按数字「0」：移到文章的开头。<br>　　按「G」：移动到文章的最后。<br>　　按「$」：移动到光标所在行的”行尾”。<br>　　按「^」：移动到光标所在行的”行首”<br>　　按「w」：光标跳到下个字的开头<br>　　按「e」：光标跳到下个字的字尾<br>　　按「b」：光标回到上个字的开头<br>　　按「#l」：光标移到该行的第#个位置，如：5l,56l。 </p>
+<p>4）. 删除文字<br>　　「x」：每按一次，删除光标所在位置的”后面”一个字符。<br>　　「#x」：例如，「6x」表示删除光标所在位置的”后面”6个字符。<br>　　「X」：大写的X，每按一次，删除光标所在位置的”前面”一个字符。<br>　　「#X」：例如，「20X」表示删除光标所在位置的”前面”20个字符。<br>　　「dd」：删除光标所在行。<br>　　「#dd」：从光标所在行开始删除#行 </p>
+<p>5）. 复制<br>　　「yw」：将光标所在之处到字尾的字符复制到缓冲区中。<br>　　「#yw」：复制#个字到缓冲区<br>　　「yy」：复制光标所在行到缓冲区。<br>　　「#yy」：例如，「6yy」表示拷贝从光标所在的该行”往下数”6行文字。<br>　　「p」：将缓冲区内的字符贴到光标所在位置。注意：所有与”y”有关的复制命令都必须与”p”配合才能完成复制与粘贴功能。 </p>
+<p>6）. 替换<br>　　「r」：替换光标所在处的字符。<br>　　「R」：替换光标所到之处的字符，直到按下「ESC」键为止。 </p>
+<p>7）. 回复上一次操作<br>　　「u」：如果您误执行一个命令，可以马上按下「u」，回到上一个操作。按多次”u”可以执行多次回复。 </p>
+<p>8）. 更改<br>　　「cw」：更改光标所在处的字到字尾处<br>　　「c#w」：例如，「c3w」表示更改3个字 </p>
+<p>9）. 跳至指定的行<br>　　「ctrl」+「g」列出光标所在行的行号。<br>　　「#G」：例如，「15G」，表示移动光标至文章的第15行行首。 </p>
+<h2 id="4、Last-line-mode下命令简介"><a href="#4、Last-line-mode下命令简介" class="headerlink" title="4、Last line mode下命令简介"></a>4、Last line mode下命令简介</h2><p>　　在使用「last line mode」之前，请记住先按「ESC」键确定您已经处于「command mode」下后，再按「：」冒号即可进入「last line mode」。 </p>
+<p>A) 列出行号 </p>
+<p>　「set nu」：输入「set nu」后，会在文件中的每一行前面列出行号。 </p>
+<p>B) 跳到文件中的某一行 </p>
+<p>　「#」：「#」号表示一个数字，在冒号后输入一个数字，再按回车键就会跳到该行了，如输入数字15，再回车，就会跳到文章的第15行。 </p>
+<p>C) 查找字符 </p>
+<p>　「/关键字」：先按「/」键，再输入您想寻找的字符，如果第一次找的关键字不是您想要的，可以一直按「n」会往后寻找到您要的关键字为止。 </p>
+<p>　「?关键字」：先按「?」键，再输入您想寻找的字符，如果第一次找的关键字不是您想要的，可以一直按「n」会往前寻找到您要的关键字为止。 </p>
+<p>D) 保存文件 </p>
+<p>　「w」：在冒号输入字母「w」就可以将文件保存起来。 </p>
+<p>E) 离开vi </p>
+<p>　「q」：按「q」就是退出，如果无法离开vi，可以在「q」后跟一个「!」强制离开vi。 </p>
+<p>　「qw」：一般建议离开时，搭配「w」一起使用，这样在退出的时候还可以保存文件。 </p>
+<h2 id="5、vi命令列表"><a href="#5、vi命令列表" class="headerlink" title="5、vi命令列表"></a>5、vi命令列表</h2><p>1、下表列出命令模式下的一些键的功能： </p>
+<p>h<br>左移光标一个字符 </p>
+<p>l<br>右移光标一个字符 </p>
+<p>k<br>光标上移一行 </p>
+<p>j<br>光标下移一行 </p>
+<p>^<br>光标移动至行首 </p>
+<p>0<br>数字”0”，光标移至文章的开头 </p>
+<p>G<br>光标移至文章的最后 </p>
+<p>$<br>光标移动至行尾 </p>
+<p>Ctrl+f<br>向前翻屏 </p>
+<p>Ctrl+b<br>向后翻屏 </p>
+<p>Ctrl+d<br>向前翻半屏 </p>
+<p>Ctrl+u<br>向后翻半屏 </p>
+<p>i<br>在光标位置前插入字符 </p>
+<p>a<br>在光标所在位置的后一个字符开始增加 </p>
+<p>o<br>插入新的一行，从行首开始输入 </p>
+<p>ESC<br>从输入状态退至命令状态 </p>
+<p>x<br>删除光标后面的字符 </p>
+<p>#x<br>删除光标后的＃个字符 </p>
+<p>X<br>(大写X)，删除光标前面的字符 </p>
+<p>#X<br>删除光标前面的#个字符 </p>
+<p>dd<br>删除光标所在的行 </p>
+<p>#dd<br>删除从光标所在行数的#行 </p>
+<p>yw<br>复制光标所在位置的一个字 </p>
+<p>#yw<br>复制光标所在位置的#个字 </p>
+<p>yy<br>复制光标所在位置的一行 </p>
+<p>#yy<br>复制从光标所在行数的#行 </p>
+<p>p<br>粘贴 </p>
+<p>u<br>取消操作 </p>
+<p>cw<br>更改光标所在位置的一个字 </p>
+<p>#cw<br>更改光标所在位置的#个字 </p>
+<p>2、下表列出行命令模式下的一些指令<br>w filename<br>储存正在编辑的文件为filename </p>
+<p>wq filename<br>储存正在编辑的文件为filename，并退出vi </p>
+<p>q!<br>放弃所有修改，退出vi </p>
+<p>set nu<br>显示行号 </p>
+<p>/或?<br>查找，在/后输入要查找的内容 </p>
+<p>n<br>与/或?一起使用，如果查找的内容不是想要找的关键字，按n或向后（与/联用）或向前（与?联用）继续查找，直到找到为止。 </p>
+<p>对于第一次用vi，有几点注意要提醒一下：<br>1、用vi打开文件后，是处于「命令行模式（command mode）」，您要切换到「插入模式（Insert mode）」才能够输入文字。切换方法：在「命令行模式（command mode）」下按一下字母「i」就可以进入「插入模式（Insert mode）」，这时候你就可以开始输入文字了。<br>2、编辑好后，需从插入模式切换为命令行模式才能对文件进行保存，切换方法：按「ESC」键。<br>3、保存并退出文件：在命令模式下输入:wq即可！（别忘了wq前面的）</p>
+<h2 id="vi使用"><a href="#vi使用" class="headerlink" title="vi使用"></a>vi使用</h2><p>VI是unix上最常用的文本编辑工具，作为unix软件测试人员，有必要熟练掌握它。</p>
+<p>进入vi的命令<br>vi filename :打开或新建文件，并将光标置于第一行首<br>vi +n filename ：打开文件，并将光标置于第n行首<br>vi + filename ：打开文件，并将光标置于最后一行首<br>vi +/pattern filename：打开文件，并将光标置于第一个与pattern匹配的串处<br>vi -r filename ：在上次正用vi编辑时发生系统崩溃，恢复filename<br>vi filename….filename ：打开多个文件，依次编辑</p>
+<h2 id="移动光标类命令"><a href="#移动光标类命令" class="headerlink" title="移动光标类命令"></a>移动光标类命令</h2><p>h ：光标左移一个字符<br>l ：光标右移一个字符<br>space：光标右移一个字符<br>Backspace：光标左移一个字符<br>k或Ctrl+p：光标上移一行<br>j或Ctrl+n ：光标下移一行<br>Enter ：光标下移一行<br>w或W ：光标右移一个字至字首<br>b或B ：光标左移一个字至字首<br>e或E ：光标右移一个字j至字尾<br>) ：光标移至句尾<br>( ：光标移至句首<br>}：光标移至段落开头<br>{：光标移至段落结尾<br>nG：光标移至第n行首<br>n+：光标下移n行<br>n-：光标上移n行<br>n$：光标移至第n行尾<br>H ：光标移至屏幕顶行<br>M ：光标移至屏幕中间行<br>L ：光标移至屏幕最后行<br>0：（注意是数字零）光标移至当前行首<br>$：光标移至当前行尾</p>
+<h2 id="屏幕翻滚类命令"><a href="#屏幕翻滚类命令" class="headerlink" title="屏幕翻滚类命令"></a>屏幕翻滚类命令</h2><p>Ctrl+u：向文件首翻半屏<br>Ctrl+d：向文件尾翻半屏<br>Ctrl+f：向文件尾翻一屏<br>Ctrl＋b；向文件首翻一屏<br>nz：将第n行滚至屏幕顶部，不指定n时将当前行滚至屏幕顶部。</p>
+<h2 id="插入文本类命令"><a href="#插入文本类命令" class="headerlink" title="插入文本类命令"></a>插入文本类命令</h2><p>i ：在光标前<br>I ：在当前行首<br>a：光标后<br>A：在当前行尾<br>o：在当前行之下新开一行<br>O：在当前行之上新开一行<br>r：替换当前字符<br>R：替换当前字符及其后的字符，直至按ESC键<br>s：从当前光标位置处开始，以输入的文本替代指定数目的字符<br>S：删除指定数目的行，并以所输入文本代替之<br>ncw或nCW：修改指定数目的字<br>nCC：修改指定数目的行</p>
+<h2 id="删除命令-1"><a href="#删除命令-1" class="headerlink" title="删除命令"></a>删除命令</h2><p>ndw或ndW：删除光标处开始及其后的n-1个字<br>do：删至行首<br>d$：删至行尾<br>ndd：删除当前行及其后n-1行<br>x或X：删除一个字符，x删除光标后的，而X删除光标前的<br>Ctrl+u：删除输入方式下所输入的文本</p>
+<h2 id="搜索及替换命令"><a href="#搜索及替换命令" class="headerlink" title="搜索及替换命令 :"></a>搜索及替换命令 :</h2><p>/pattern：从光标开始处向文件尾搜索pattern<br>?pattern：从光标开始处向文件首搜索pattern<br>n：在同一方向重复上一次搜索命令<br>N：在反方向上重复上一次搜索命令<br>：s/p1/p2/g：将当前行中所有p1均用p2替代<br>：n1,n2s/p1/p2/g：将第n1至n2行中所有p1均用p2替代<br>：g/p1/s//p2/g：将文件中所有p1均用p2替换</p>
+<h2 id="选项设置"><a href="#选项设置" class="headerlink" title="选项设置"></a>选项设置</h2><p>all：列出所有选项设置情况<br>term：设置终端类型<br>ignorance：在搜索中忽略大小写<br>list：显示制表位(Ctrl+I)和行尾标志（$)<br>number：显示行号<br>report：显示由面向行的命令修改过的数目<br>terse：显示简短的警告信息<br>warn：在转到别的文件时若没保存当前文件则显示NO write信息<br>nomagic：允许在搜索模式中，使用前面不带“\”的特殊字符<br>nowrapscan：禁止vi在搜索到达文件两端时，又从另一端开始<br>mesg：允许vi显示其他用户用write写到自己终端上的信息</p>
+<h2 id="最后行方式命令"><a href="#最后行方式命令" class="headerlink" title="最后行方式命令"></a>最后行方式命令</h2><p>：n1,n2 co n3：将n1行到n2行之间的内容拷贝到第n3行下<br>：n1,n2 m n3：将n1行到n2行之间的内容移至到第n3行下<br>：n1,n2 d ：将n1行到n2行之间的内容删除<br>：w ：保存当前文件<br>：e filename：打开文件filename进行编辑<br>：x：保存当前文件并退出<br>：q：退出vi<br>：q!：不保存文件并退出vi<br>：!command：执行shell命令command<br>：n1,n2 w!command：将文件中n1行至n2行的内容作为command的输入并执行之，若不指<br>定n1，n2，则表示将整个文件内容作为command的输入<br>：r!command：将命令command的输出结果放到当前行 。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Java/">Java</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Linux/">Linux</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2019/05/01/rbtree%E7%AC%94%E8%AE%B0/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">红黑树笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2017/10/03/Linux%E4%B8%8BTop%E5%91%BD%E4%BB%A4/">
+                        <span class="hidden-mobile">Linux下Top命令</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"fc36e17008bd1e3e898d","clientSecret":"d9d3bc7feb2b8abbb2d05b43b2d16a1d19c9bba2","repo":"cylinclinv.github.io","owner":"cylinclinv","admin":["cylinclinv"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":true,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'c18826976448cd05125fa2b77ecd43dc'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>clyde</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

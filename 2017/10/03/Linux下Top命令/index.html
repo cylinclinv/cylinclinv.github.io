@@ -1,0 +1,716 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/logo.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="clyde">
+  <meta name="keywords" content="">
+  
+  <title>Linux下Top命令 - Clyde</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Clyde</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/cover/06.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Linux下Top命令">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2017-10-03 21:53" pubdate>
+        2017年10月3日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      18
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Linux下Top命令</h1>
+            
+            <div class="markdown-body">
+              <h1 id="Top命令"><a href="#Top命令" class="headerlink" title="Top命令"></a>Top命令</h1><p>TOP命令是Linux下常用的性能分析工具，能够实时显示系统中各个进程的资源占用状况。</p>
+<p>TOP是一个动态显示过程,即可以通过用户按键来不断刷新当前状态.如果在前台执行该命令,它将独占前台,直到用户终止该程序为止.比较准确的说,top命令提供了实时的对系统处理器的状态监视.它将显示系统中CPU最“敏感”的任务列表.该命令可以按CPU使用.内存使用和执行时间对任务进行排序；而且该命令的很多特性都可以通过交互式命令或者在个人定制文件中进行设定.</p>
+<p><img src="/img/cphoto/linux06.jpg" srcset="/img/loading.gif" lazyload></p>
+<h1 id="一-统计信息区"><a href="#一-统计信息区" class="headerlink" title="一. 统计信息区"></a>一. 统计信息区</h1><p>统计信息区前五行是系统整体的统计信息。</p>
+<p><img src="/img/cphoto/linux07.jpg" srcset="/img/loading.gif" lazyload></p>
+<h2 id="1-第一行是任务队列信息"><a href="#1-第一行是任务队列信息" class="headerlink" title="1. 第一行是任务队列信息"></a>1. 第一行是任务队列信息</h2><p>同 uptime 命令的执行结果:</p>
+<p>[root@localhost ~]# uptime</p>
+<p> 13:22:30 up 8 min, 4 users, load average: 0.14, 0.38, 0.25</p>
+<p>其内容如下：</p>
+<table>
+<thead>
+<tr>
+<th>12:38:33</th>
+<th>当前时间</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>up 50days</td>
+<td>系统运行时间，格式为时:分</td>
+</tr>
+<tr>
+<td>1 user</td>
+<td>当前登录用户数</td>
+</tr>
+<tr>
+<td>load average: 0.06, 0.60, 0.48</td>
+<td>系统负载，即任务队列的平均长度。 三个数值分别为 1分钟、5分钟、15分钟前到现在的平均值。</td>
+</tr>
+</tbody></table>
+<h2 id="2-第二、三行为进程和CPU的信息"><a href="#2-第二、三行为进程和CPU的信息" class="headerlink" title="2. 第二、三行为进程和CPU的信息"></a>2. 第二、三行为进程和CPU的信息</h2><p>当有多个CPU时，这些内容可能会超过两行。内容如下：</p>
+<table>
+<thead>
+<tr>
+<th>Tasks: 29 total</th>
+<th>进程总数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1 running</td>
+<td>正在运行的进程数</td>
+</tr>
+<tr>
+<td>28 sleeping</td>
+<td>睡眠的进程数</td>
+</tr>
+<tr>
+<td>0 stopped</td>
+<td>停止的进程数</td>
+</tr>
+<tr>
+<td>0 zombie</td>
+<td>僵尸进程数</td>
+</tr>
+<tr>
+<td>Cpu(s): 0.3% us</td>
+<td>用户空间占用CPU百分比</td>
+</tr>
+<tr>
+<td>1.0% sy</td>
+<td>内核空间占用CPU百分比</td>
+</tr>
+<tr>
+<td>0.0% ni</td>
+<td>用户进程空间内改变过优先级的进程占用CPU百分比</td>
+</tr>
+<tr>
+<td>98.7% id</td>
+<td>空闲CPU百分比</td>
+</tr>
+<tr>
+<td>0.0% wa</td>
+<td>等待输入输出的CPU时间百分比</td>
+</tr>
+<tr>
+<td>0.0% hi</td>
+<td></td>
+</tr>
+<tr>
+<td>0.0% si</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="3-第四五行为内存信息。"><a href="#3-第四五行为内存信息。" class="headerlink" title="3. 第四五行为内存信息。"></a>3. 第四五行为内存信息。</h2><p>内容如下：</p>
+<table>
+<thead>
+<tr>
+<th>Mem: 191272k total</th>
+<th>物理内存总量</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>173656k used</td>
+<td>使用的物理内存总量</td>
+</tr>
+<tr>
+<td>17616k free</td>
+<td>空闲内存总量</td>
+</tr>
+<tr>
+<td>22052k buffers</td>
+<td>用作内核缓存的内存量</td>
+</tr>
+<tr>
+<td>Swap: 192772k total</td>
+<td>交换区总量</td>
+</tr>
+<tr>
+<td>0k used</td>
+<td>使用的交换区总量</td>
+</tr>
+<tr>
+<td>192772k free</td>
+<td>空闲交换区总量</td>
+</tr>
+<tr>
+<td>123988k cached</td>
+<td>缓冲的交换区总量。 内存中的内容被换出到交换区，而后又被换入到内存，但使用过的交换区尚未被覆盖， 该数值即为这些<strong>内容已存在于内存中</strong>的交换区的大小。相应的内存再次被换出时可不必再对交换区写入。</td>
+</tr>
+</tbody></table>
+<h1 id="二-进程信息区"><a href="#二-进程信息区" class="headerlink" title="二. 进程信息区"></a>二. 进程信息区</h1><p>统计信息区域的下方显示了各个进程的详细信息。我们来认识一下各列的含义：</p>
+<p><img src="/img/cphoto/linux08.jpg" srcset="/img/loading.gif" lazyload></p>
+<h2 id="1-列信息"><a href="#1-列信息" class="headerlink" title="1.列信息"></a>1.列信息</h2><table>
+<thead>
+<tr>
+<th>列名</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PID</td>
+<td>进程id</td>
+</tr>
+<tr>
+<td>PPID</td>
+<td>父进程id</td>
+</tr>
+<tr>
+<td>RUSER</td>
+<td>Real user name</td>
+</tr>
+<tr>
+<td>UID</td>
+<td>进程所有者的用户id</td>
+</tr>
+<tr>
+<td>USER</td>
+<td>进程所有者的用户名</td>
+</tr>
+<tr>
+<td>GROUP</td>
+<td>进程所有者的组名</td>
+</tr>
+<tr>
+<td>TTY</td>
+<td>启动进程的终端名。不是从终端启动的进程则显示为 ?</td>
+</tr>
+<tr>
+<td>PR</td>
+<td>优先级</td>
+</tr>
+<tr>
+<td>NI</td>
+<td>nice值。负值表示高优先级，正值表示低优先级</td>
+</tr>
+<tr>
+<td>P</td>
+<td>最后使用的CPU，仅在多CPU环境下有意义</td>
+</tr>
+<tr>
+<td>%CPU</td>
+<td>上次更新到现在的CPU时间占用百分比</td>
+</tr>
+<tr>
+<td>TIME</td>
+<td>进程使用的CPU时间总计，单位秒</td>
+</tr>
+<tr>
+<td>TIME+</td>
+<td>进程使用的CPU时间总计，单位1/100秒</td>
+</tr>
+<tr>
+<td>%MEM</td>
+<td>进程使用的物理内存百分比</td>
+</tr>
+<tr>
+<td>VIRT</td>
+<td>进程使用的虚拟内存总量，单位kb。VIRT=SWAP+RES</td>
+</tr>
+<tr>
+<td>SWAP</td>
+<td>进程使用的虚拟内存中，被换出的大小，单位kb。</td>
+</tr>
+<tr>
+<td>RES</td>
+<td>进程使用的、未被换出的物理内存大小，单位kb。RES=CODE+DATA</td>
+</tr>
+<tr>
+<td>CODE</td>
+<td>可执行代码占用的物理内存大小，单位kb</td>
+</tr>
+<tr>
+<td>DATA</td>
+<td>可执行代码以外的部分(数据段+栈)占用的物理内存大小，单位kb</td>
+</tr>
+<tr>
+<td>SHR</td>
+<td>共享内存大小，单位kb</td>
+</tr>
+<tr>
+<td>nFLT</td>
+<td>页面错误次数</td>
+</tr>
+<tr>
+<td>nDRT</td>
+<td>最后一次写入到现在，被修改过的页面数。</td>
+</tr>
+<tr>
+<td>S</td>
+<td>进程状态。           D=不可中断的睡眠状态           R=运行           S=睡眠           T=跟踪/停止           Z=僵尸进程</td>
+</tr>
+<tr>
+<td>COMMAND</td>
+<td>命令名/命令行</td>
+</tr>
+<tr>
+<td>WCHAN</td>
+<td>若该进程在睡眠，则显示睡眠中的系统函数名</td>
+</tr>
+<tr>
+<td>Flags</td>
+<td>任务标志，参考 sched.h</td>
+</tr>
+</tbody></table>
+<h2 id="2-用快捷键更改显示内容"><a href="#2-用快捷键更改显示内容" class="headerlink" title="2.用快捷键更改显示内容"></a>2.用快捷键更改显示内容</h2><p>h或者? : 显示帮助画面，给出一些简短的命令总结说明。</p>
+<p>k ：终止一个进程。系统将提示用户输入需要终止的进程PID，以及需要发送给该进程什么样的信号。一般的终止进程可以使用15信号；如果不能正常结束那就使用信号9强制结束该进程。默认值是信号15。在安全模式中此命令被屏蔽。</p>
+<p>i：忽略闲置和僵死进程。这是一个开关式命令。</p>
+<p>q： 退出程序。</p>
+<p>r： 重新安排一个进程的优先级别。系统提示用户输入需要改变的进程PID以及需要设置的进程优先级值。输入一个正值将使优先级降低，反之则可以使该进程拥有更高的优先权。默认值是10。</p>
+<p>S：切换到累计模式。</p>
+<p>s : 改变两次刷新之间的延迟时间。系统将提示用户输入新的时间，单位为s。如果有小数，就换算成ms。输入0值则系统将不断刷新，默认值是5 s。需要注意的是如果设置太小的时间，很可能会引起不断刷新，从而根本来不及看清显示的情况，而且系统负载也会大大增加。</p>
+<p>f或者F :从当前显示中添加或者删除项目。</p>
+<p>o或者O :改变显示项目的顺序。</p>
+<p>l: 切换显示平均负载和启动时间信息。即显示影藏第一行</p>
+<p>m： 切换显示内存信息。即显示影藏内存行</p>
+<p>t ： 切换显示进程和CPU状态信息。即显示影藏CPU行</p>
+<p>c： 切换显示命令名称和完整命令行。 显示完整的命令。 这个功能很有用。</p>
+<p>M ： 根据驻留内存大小进行排序。</p>
+<p>P：根据CPU使用百分比大小进行排序。</p>
+<p>T： 根据时间/累计时间进行排序。</p>
+<p>W： 将当前设置写入~/.toprc文件中。这是写top配置文件的推荐方法。</p>
+<p>z：改变显示的颜色</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Java/">Java</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Linux/">Linux</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2017/10/04/Vim%E5%91%BD%E4%BB%A4/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Vim命令</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2017/10/03/rpm%E6%89%A7%E8%A1%8C%E5%AE%89%E8%A3%85%E5%8C%85/">
+                        <span class="hidden-mobile">rpm执行安装包</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"fc36e17008bd1e3e898d","clientSecret":"d9d3bc7feb2b8abbb2d05b43b2d16a1d19c9bba2","repo":"cylinclinv.github.io","owner":"cylinclinv","admin":["cylinclinv"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":true,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '6c7cd62a51f2ca497dc4eca2979d5901'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>clyde</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

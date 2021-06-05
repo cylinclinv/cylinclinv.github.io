@@ -18,7 +18,7 @@
   <meta name="author" content="clyde">
   <meta name="keywords" content="">
   
-  <title>xml - Clyde</title>
+  <title>XML&amp;AJAX&amp;JSON - Clyde</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="xml">
+            <span class="h2" id="subtitle" title="XML&AJAX&JSON">
               
             </span>
 
@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.9k 字
+      3.3k 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      24
+      44
        分钟
     </span>
   
@@ -225,222 +225,440 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">xml</h1>
+            <h1 style="display: none">XML&amp;AJAX&amp;JSON</h1>
             
             <div class="markdown-body">
-              <h1 id="XML："><a href="#XML：" class="headerlink" title="XML："></a>XML：</h1><pre><code>1. 概念：Extensible Markup Language 可扩展标记语言
-    * 可扩展：标签都是自定义的。 &lt;user&gt;  &lt;student&gt;
+              <h1 id="XML"><a href="#XML" class="headerlink" title="XML"></a>XML</h1><ol>
+<li>概念：Extensible Markup Language 可扩展标记语言<ul>
+<li>可扩展：标签都是自定义的。<br><code>&lt;user&gt;  &lt;student&gt;</code><ul>
+<li>功能<ul>
+<li>存储数据<ol>
+<li>配置文件</li>
+<li>在网络中传输</li>
+</ol>
+</li>
+<li>xml与html的区别<ol>
+<li>xml标签都是自定义的，html标签是预定义。</li>
+<li>xml的语法严格，html语法松散</li>
+<li>xml是存储数据的，html是展示数据</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>w3c:万维网联盟</li>
+</ul>
+</li>
+</ul>
+ 语法：<ol start="2">
+<li><ul>
+<li>基本语法：<ol>
+<li>xml文档的后缀名 .xml</li>
+<li>xml第一行必须定义为文档声明</li>
+<li>xml文档中有且仅有一个根标签</li>
+<li>属性值必须使用引号(单双都可)引起来</li>
+<li>标签必须正确关闭</li>
+<li>xml标签名称区分大小写</li>
+</ol>
+</li>
+<li>快速入门：  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&#x27;1.0&#x27; ?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">users</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">user</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&#x27;1&#x27;</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>zhangsan<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">age</span>&gt;</span>23<span class="hljs-tag">&lt;/<span class="hljs-name">age</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">gender</span>&gt;</span>male<span class="hljs-tag">&lt;/<span class="hljs-name">gender</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">br</span>/&gt;</span><br>	<span class="hljs-tag">&lt;/<span class="hljs-name">user</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">user</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&#x27;2&#x27;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>lisi<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">age</span>&gt;</span>24<span class="hljs-tag">&lt;/<span class="hljs-name">age</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">gender</span>&gt;</span>female<span class="hljs-tag">&lt;/<span class="hljs-name">gender</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">user</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">users</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>组成部分：<ol>
+<li><p>文档声明</p>
+<ol>
+<li>格式：<?xml 属性列表 ?></li>
+<li>属性列表：<ul>
+<li>version：版本号，必须的属性</li>
+<li>encoding：编码方式。告知解析引擎当前文档使用的字符集，默认值：ISO-8859-1</li>
+<li>standalone：是否独立<ul>
+<li>取值：<ul>
+<li>yes：不依赖其他文件</li>
+<li>no：依赖其他文件</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>指令(了解)：结合css的</p>
+ <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml-stylesheet type=&quot;text/css&quot; href=&quot;a.css&quot; ?&gt;</span><br></code></pre></td></tr></table></figure></li>
+<li><p>标签：标签名称自定义的</p>
+<ul>
+<li>规则：</li>
+<li>名称可以包含字母、数字以及其他的字符 <ul>
+<li>名称不能以数字或者标点符号开始 </li>
+<li>名称不能以字母 xml（或者 XML、Xml 等等）开始 </li>
+<li>名称不能包含空格 </li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>属性：<br> id属性值唯一</p>
+</li>
+<li><p>文本：</p>
+<ul>
+<li>CDATA区：在该区域中的数据会被原样展示<ul>
+<li>格式：  <!--[CDATA[ 数据 ]]--></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li><p>约束：规定xml文档的书写规则</p>
+<ul>
+<li><p>作为框架的使用者(程序员)：</p>
+<ol>
+<li>能够在xml中引入约束文档</li>
+<li>能够简单的读懂约束文档</li>
+</ol>
+</li>
+<li><p>分类：</p>
+<ol>
+<li>DTD:一种简单的约束技术</li>
+<li>Schema:一种复杂的约束技术</li>
+</ol>
+</li>
+<li><p>DTD：</p>
+<ul>
+<li>引入dtd文档到xml文档中<ul>
+<li>内部dtd：将约束规则定义在xml文档中</li>
+<li>外部dtd：将约束的规则定义在外部的dtd文件中<ul>
+<li>本地：<!DOCTYPE 根标签名 SYSTEM "dtd文件的位置"></li>
+<li>网络：<!DOCTYPE 根标签名 PUBLIC "dtd文件名字" "dtd文件的位置URL"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Schema:</p>
+<ul>
+<li>引入：<br>  1.填写xml文档的根元素<br>  2.引入xsi前缀.  xmlns:xsi=”<a target="_blank" rel="noopener" href="http://www.w3.org/2001/XMLSchema-instance&quot;">http://www.w3.org/2001/XMLSchema-instance&quot;</a><br>  3.引入xsd文件命名空间.  xsi:schemaLocation=”<a target="_blank" rel="noopener" href="http://www.itcast.cn/xml">http://www.itcast.cn/xml</a>  student.xsd”<br>  4.为每一个xsd约束声明一个前缀,作为标识  xmlns=”<a target="_blank" rel="noopener" href="http://www.itcast.cn/xml&quot;">http://www.itcast.cn/xml&quot;</a> </li>
+</ul>
+</li>
+</ul>
+  <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;students   xmlns:<span class="hljs-attribute">xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span><br>		<span class="hljs-attribute">xmlns</span>=<span class="hljs-string">&quot;http://www.itcast.cn/xml&quot;</span><br>		xsi:<span class="hljs-attribute">schemaLocation</span>=<span class="hljs-string">&quot;http://www.itcast.cn/xml  student.xsd&quot;</span>&gt;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<ol start="3">
+<li><p>解析：操作xml文档，将文档中的数据读取到内存中</p>
+<ul>
+<li><p>操作xml文档</p>
+<ol>
+<li>解析(读取)：将文档中的数据读取到内存中</li>
+<li>写入：将内存中的数据保存到xml文档中。持久化的存储</li>
+</ol>
+</li>
+<li><p>解析xml的方式：</p>
+<ol>
+<li>DOM：将标记语言文档一次性加载进内存，在内存中形成一颗dom树<ul>
+<li>优点：操作方便，可以对文档进行CRUD的所有操作</li>
+<li>缺点：占内存</li>
+</ul>
+</li>
+<li>SAX：逐行读取，基于事件驱动的。<ul>
+<li>优点：不占内存。</li>
+<li>缺点：只能读取，不能增删改</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>xml常见的解析器：</p>
+<ol>
+<li>JAXP：sun公司提供的解析器，支持dom和sax两种思想</li>
+<li>DOM4J：一款非常优秀的解析器</li>
+<li>Jsoup：jsoup 是一款Java 的HTML解析器，可直接解析某个URL地址、HTML文本内容。它提供了一套非常省力的API，可通过DOM，CSS以及类似于jQuery的操作方法来取出和操作数据。</li>
+</ol>
+</li>
+</ul>
+<ol start="4">
+<li>PULL：Android操作系统内置的解析器，sax方式的。<h1 id="Jsoup"><a href="#Jsoup" class="headerlink" title="Jsoup"></a>Jsoup</h1></li>
+</ol>
+<ul>
+<li>jsoup 是一款Java 的HTML解析器，可直接解析某个URL地址、HTML文本内容。它提供了一套非常省力的API，可通过DOM，CSS以及类似于jQuery的操作方法来取出和操作数据。<ul>
+<li>快速入门：<ul>
+<li>步骤：</li>
+</ul>
+<ol>
+<li>导入jar包<ol start="2">
+<li>获取Document对象</li>
+<li>获取对应的标签Element对象</li>
+</ol>
+</li>
+<li>获取数据</li>
+</ol>
+</li>
+<li>代码：</li>
+</ul>
+   <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">   //<span class="hljs-number">2.1</span>获取student.xml的<span class="hljs-type">path</span><br>String <span class="hljs-type">path</span> = JsoupDemo1.<span class="hljs-keyword">class</span>.getClassLoader().getResource(&quot;student.xml&quot;).getPath();<br>   <br>   //<span class="hljs-number">2.2</span>解析<span class="hljs-type">xml</span>文档，加载文档进内存，获取dom树<span class="hljs-comment">---&gt;Document</span><br>     Document document = Jsoup.parse(<span class="hljs-built_in">new</span> File(<span class="hljs-type">path</span>), &quot;utf-8&quot;);<br>   <br>   //<span class="hljs-number">3.</span>获取元素对象 Element<br>   //<span class="hljs-number">3.1</span>获取第一个<span class="hljs-type">name</span>的Element对象<br>  Element element = elements.<span class="hljs-keyword">get</span>(<span class="hljs-number">0</span>);<br><br>//<span class="hljs-number">3.2</span>获取数据<br>String <span class="hljs-type">name</span> = element.text();<br><span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(<span class="hljs-type">name</span>);<br>Elements elements = document.getElementsByTag(&quot;name&quot;);<br><span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(elements.size());<br>Elements elements = document.getElementsByTag(&quot;name&quot;);<br><br>//<span class="hljs-number">3.1</span>获取第一个<span class="hljs-type">name</span>的Element对象<br>//<span class="hljs-number">3.2</span>获取数据<br>String <span class="hljs-type">name</span> = element.text();<br><span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(<span class="hljs-type">name</span>);<br>Element element = elements.<span class="hljs-keyword">get</span>(<span class="hljs-number">0</span>);<br><br>//<span class="hljs-number">3.2</span>获取数据<br>String <span class="hljs-type">name</span> = element.text();<br><span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(<span class="hljs-type">name</span>);<br><br>//<span class="hljs-number">3.1</span>获取第一个<span class="hljs-type">name</span>的Element对象<br>Element element = elements.<span class="hljs-keyword">get</span>(<span class="hljs-number">0</span>);<br><br>//<span class="hljs-number">3.2</span>获取数据<br>String <span class="hljs-type">name</span> = element.text();<br><span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(<span class="hljs-type">name</span>);<br>Elements elements = document.getElementsByTag(&quot;name&quot;);<br><span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(elements.size());<br>Elements elements = document.getElementsByTag(&quot;name&quot;);<br><br>//<span class="hljs-number">3.2</span>获取数据<br>String <span class="hljs-type">name</span> = element.text();<br><span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(<span class="hljs-type">name</span>);<br></code></pre></td></tr></table></figure>
+</li>
+<li>对象的使用：<ol>
+<li><p>Jsoup：工具类，可以解析html或xml文档，返回Document</p>
+<ul>
+<li>parse：解析html或xml文档，返回Document<ul>
+<li>parse​(File in, String charsetName)：解析xml或html文件的。</li>
+<li>parse​(String html)：解析xml或html字符串</li>
+<li>parse​(URL url, int timeoutMillis)：通过网络路径获取指定的html或xml的文档对象</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Document：文档对象。代表内存中的dom树</p>
+<ul>
+<li>获取Element对象<ul>
+<li>getElementById​(String id)：根据id属性值获取唯一的element对象</li>
+<li>getElementsByTag​(String tagName)：根据标签名称获取元素对象集合</li>
+<li>getElementsByAttribute​(String key)：根据属性名称获取元素对象集合</li>
+<li>getElementsByAttributeValue​(String key, String value)：根据对应的属性名和属性值获取元素对象集合</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Elements：元素Element对象的集合。可以当做 ArrayList<Element>来使用</Element></p>
+</li>
+<li><p>Element：元素对象</p>
+<ol>
+<li>获取子元素对象<ul>
+<li>getElementById​(String id)：根据id属性值获取唯一的element对象</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>getElementsByTag​(String tagName)：根据标签名称获取元素对象集合<ul>
+<li>getElementsByAttribute​(String key)：根据属性名称获取元素对象集合</li>
+<li>getElementsByAttributeValue​(String key, String value)：根据对应的属性名和属性值获取元素对象集合</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>获取属性值<ul>
+<li>String attr(String key)：根据属性名称获取属性值</li>
+</ul>
+</li>
+<li>获取文本内容<ul>
+<li>String text():获取文本内容</li>
+<li>String html():获取标签体的所有内容(包括字标签的字符串内容)</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><p>Node：节点对象</p>
+<ul>
+<li>是Document和Element的父类</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ol>
+<p>​            </p>
+<ul>
+<li>快捷查询方式：<ol>
+<li>selector:选择器<ul>
+<li>使用的方法：Elements    select​(String cssQuery)<ul>
+<li>语法：参考Selector类中定义的语法</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>XPath：XPath即为XML路径语言，它是一种用来确定XML（标准通用标记语言的子集）文档中某部分位置的语言<ul>
+<li>使用Jsoup的Xpath需要额外导入jar包。</li>
+<li>查询w3cshool参考手册，使用xpath的语法完成查询</li>
+<li>代码：<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-comment">//1.获取student.xml的path</span><br>    String path = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">JsoupDemo6</span>.</span></span><span class="hljs-keyword">class</span>.get<span class="hljs-constructor">ClassLoader()</span>.get<span class="hljs-constructor">Resource(<span class="hljs-string">&quot;student.xml&quot;</span>)</span>.get<span class="hljs-constructor">Path()</span>;<br>  <span class="hljs-comment">//2.获取Document对象</span><br> Document document = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Jsoup</span>.</span></span>parse(<span class="hljs-keyword">new</span> <span class="hljs-constructor">File(<span class="hljs-params">path</span>)</span>, <span class="hljs-string">&quot;utf-8&quot;</span>);<br> <br>  <span class="hljs-comment">//3.根据document对象，创建JXDocument对象</span><br>    JXDocument jxDocument = <span class="hljs-keyword">new</span> <span class="hljs-constructor">JXDocument(<span class="hljs-params">document</span>)</span>;<br> <br>    <span class="hljs-comment">//4.结合xpath语法查询</span><br>    <span class="hljs-comment">//4.1查询所有student标签</span><br> List&lt;JXNode&gt; jxNodes = jxDocument.sel<span class="hljs-constructor">N(<span class="hljs-string">&quot;//student&quot;</span>)</span>;<br>    <span class="hljs-keyword">for</span> (JXNode jxNode : jxNodes) &#123;<br>   <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(jxNode);<br>    &#125;<br>	   <br>    <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(<span class="hljs-string">&quot;--------------------&quot;</span>);<br> <br>    <span class="hljs-comment">//4.2查询所有student标签下的name标签</span><br> List&lt;JXNode&gt; jxNodes2 = jxDocument.sel<span class="hljs-constructor">N(<span class="hljs-string">&quot;//student/name&quot;</span>)</span>;<br>    <span class="hljs-keyword">for</span> (JXNode jxNode : jxNodes2) &#123;<br>   <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(jxNode);<br>    &#125;<br>	   <br>    <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(<span class="hljs-string">&quot;--------------------&quot;</span>);<br> <br>    <span class="hljs-comment">//4.3查询student标签下带有id属性的name标签</span><br>    List&lt;JXNode&gt; jxNodes3 = jxDocument.sel<span class="hljs-constructor">N(<span class="hljs-string">&quot;//student/name[@id]&quot;</span>)</span>;<br>    <span class="hljs-keyword">for</span> (JXNode jxNode : jxNodes3) &#123;<br>     <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(jxNode);<br>    &#125;<br>  <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(<span class="hljs-string">&quot;--------------------&quot;</span>);<br>    <span class="hljs-comment">//4.4查询student标签下带有id属性的name标签 并且id属性值为itcast</span><br> <br>    List&lt;JXNode&gt; jxNodes4 = jxDocument.sel<span class="hljs-constructor">N(<span class="hljs-string">&quot;//student/name[@id=&#x27;itcast&#x27;]&quot;</span>)</span>;<br>    <span class="hljs-keyword">for</span> (JXNode jxNode : jxNodes4) &#123;<br>        <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(jxNode);<br>    &#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h1 id="AJAX："><a href="#AJAX：" class="headerlink" title="AJAX："></a>AJAX：</h1><pre><code>1. 概念： ASynchronous JavaScript And XML    异步的JavaScript 和 XML
+    1. 异步和同步：客户端和服务器端相互通信的基础上
+        * 客户端必须等待服务器端的响应。在等待的期间客户端不能做其他操作。
+        * 客户端不需要等待服务器端的响应。在服务器处理请求的过程中，客户端可以进行其他的操作。
 
-    * 功能
-        * 存储数据
-            1. 配置文件
-            2. 在网络中传输
-    * xml与html的区别
-        1. xml标签都是自定义的，html标签是预定义。
-        2. xml的语法严格，html语法松散
-        3. xml是存储数据的，html是展示数据
+        Ajax 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。 [1] 
+        通过在后台与服务器进行少量数据交换，Ajax 可以使网页实现异步更新。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。
+        传统的网页（不使用 Ajax）如果需要更新内容，必须重载整个网页页面。
 
-    * w3c:万维网联盟
+        提升用户的体验
+
+2. 实现方式：
+    1. 原生的JS实现方式（了解）
+                 //1.创建核心对象
+                var xmlhttp;
+                if (window.XMLHttpRequest)
+                &#123;// code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp=new XMLHttpRequest();
+                &#125;
+                else
+                &#123;// code for IE6, IE5
+                    xmlhttp=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);
+                &#125;
+    
+                //2. 建立连接
+                /*
+                    参数：
+                        1. 请求方式：GET、POST
+                            * get方式，请求参数在URL后边拼接。send方法为空参
+                            * post方式，请求参数在send方法中定义
+                        2. 请求的URL：
+                        3. 同步或异步请求：true（异步）或 false（同步）
+    
+                 */
+                xmlhttp.open(&quot;GET&quot;,&quot;ajaxServlet?username=tom&quot;,true);
+    
+                //3.发送请求
+                xmlhttp.send();
+    
+                //4.接受并处理来自服务器的响应结果
+                //获取方式 ：xmlhttp.responseText
+                //什么时候获取？当服务器响应成功后再获取
+    
+                //当xmlhttp对象的就绪状态改变时，触发事件onreadystatechange。
+                xmlhttp.onreadystatechange=function()
+                &#123;
+                    //判断readyState就绪状态是否为4，判断status响应状态码是否为200
+                    if (xmlhttp.readyState==4 &amp;&amp; xmlhttp.status==200)
+                    &#123;
+                       //获取服务器的响应结果
+                        var responseText = xmlhttp.responseText;
+                        alert(responseText);
+                    &#125;
+                &#125;
+    2. JQeury实现方式
+        1. $.ajax()
+            * 语法：$.ajax(&#123;键值对&#125;);
+             //使用$.ajax()发送异步请求
+                $.ajax(&#123;
+                    url:&quot;ajaxServlet1111&quot; , // 请求路径
+                    type:&quot;POST&quot; , //请求方式
+                    //data: &quot;username=jack&amp;age=23&quot;,//请求参数
+                    data:&#123;&quot;username&quot;:&quot;jack&quot;,&quot;age&quot;:23&#125;,
+                    success:function (data) &#123;
+                        alert(data);
+                    &#125;,//响应成功后的回调函数
+                    error:function () &#123;
+                        alert(&quot;出错啦...&quot;)
+                    &#125;,//表示如果请求响应出现错误，会执行的回调函数
+    
+                    dataType:&quot;text&quot;//设置接受到的响应数据的格式
+                &#125;);
+        2. $.get()：发送get请求
+            * 语法：$.get(url, [data], [callback], [type])
+                * 参数：
+                    * url：请求路径
+                    * data：请求参数
+                    * callback：回调函数
+                    * type：响应结果的类型
+
+        3. $.post()：发送post请求
+            * 语法：$.post(url, [data], [callback], [type])
+                * 参数：
+                    * url：请求路径
+                    * data：请求参数
+                    * callback：回调函数
+                    * type：响应结果的类型
+</code></pre>
+<h1 id="JSON："><a href="#JSON：" class="headerlink" title="JSON："></a>JSON：</h1><pre><code>1. 概念： JavaScript Object Notation        JavaScript对象表示法
+    Person p = new Person();
+    p.setName(&quot;张三&quot;);
+    p.setAge(23);
+    p.setGender(&quot;男&quot;);
+
+    var p = &#123;&quot;name&quot;:&quot;张三&quot;,&quot;age&quot;:23,&quot;gender&quot;:&quot;男&quot;&#125;;
+
+    * json现在多用于存储和交换文本信息的语法
+    * 进行数据的传输
+    * JSON 比 XML 更小、更快，更易解析。
 
 2. 语法：
-    * 基本语法：
-        1. xml文档的后缀名 .xml
-        2. xml第一行必须定义为文档声明
-        3. xml文档中有且仅有一个根标签
-        4. 属性值必须使用引号(单双都可)引起来
-        5. 标签必须正确关闭
-        6. xml标签名称区分大小写
-    * 快速入门：
-        &lt;?xml version=&#39;1.0&#39; ?&gt;
-        &lt;users&gt;
-            &lt;user id=&#39;1&#39;&gt;
-                &lt;name&gt;zhangsan&lt;/name&gt;
-                &lt;age&gt;23&lt;/age&gt;
-                &lt;gender&gt;male&lt;/gender&gt;
-                &lt;br/&gt;
-            &lt;/user&gt;
-            
-            &lt;user id=&#39;2&#39;&gt;
-                &lt;name&gt;lisi&lt;/name&gt;
-                &lt;age&gt;24&lt;/age&gt;
-                &lt;gender&gt;female&lt;/gender&gt;
-            &lt;/user&gt;
-        &lt;/users&gt;
+    1. 基本规则
+        * 数据在名称/值对中：json数据是由键值对构成的
+            * 键用引号(单双都行)引起来，也可以不使用引号
+            * 值得取值类型：
+                1. 数字（整数或浮点数）
+                2. 字符串（在双引号中）
+                3. 逻辑值（true 或 false）
+                4. 数组（在方括号中）    &#123;&quot;persons&quot;:[&#123;&#125;,&#123;&#125;]&#125;
+                5. 对象（在花括号中） &#123;&quot;address&quot;:&#123;&quot;province&quot;：&quot;陕西&quot;....&#125;&#125;
+                6. null
+        * 数据由逗号分隔：多个键值对由逗号分隔
+        * 花括号保存对象：使用&#123;&#125;定义json 格式
+        * 方括号保存数组：[]
+    2. 获取数据:
+        1. json对象.键名
+        2. json对象[&quot;键名&quot;]
+        3. 数组对象[索引]
+        4. 遍历
+                 //1.定义基本格式
+                var person = &#123;&quot;name&quot;: &quot;张三&quot;, age: 23, &#39;gender&#39;: true&#125;;
         
-    * 组成部分：
-        1. 文档声明
-            1. 格式：&lt;?xml 属性列表 ?&gt;
-            2. 属性列表：
-                * version：版本号，必须的属性
-                * encoding：编码方式。告知解析引擎当前文档使用的字符集，默认值：ISO-8859-1
-                * standalone：是否独立
-                    * 取值：
-                        * yes：不依赖其他文件
-                        * no：依赖其他文件
-        2. 指令(了解)：结合css的
-            * &lt;?xml-stylesheet type=&quot;text/css&quot; href=&quot;a.css&quot; ?&gt;
-        3. 标签：标签名称自定义的
-            * 规则：
-                * 名称可以包含字母、数字以及其他的字符 
-                * 名称不能以数字或者标点符号开始 
-                * 名称不能以字母 xml（或者 XML、Xml 等等）开始 
-                * 名称不能包含空格 
-
-        4. 属性：
-            id属性值唯一
-        5. 文本：
-            * CDATA区：在该区域中的数据会被原样展示
-                * 格式：  &lt;![CDATA[ 数据 ]]&gt;
+                var ps = [&#123;&quot;name&quot;: &quot;张三&quot;, &quot;age&quot;: 23, &quot;gender&quot;: true&#125;,
+                    &#123;&quot;name&quot;: &quot;李四&quot;, &quot;age&quot;: 24, &quot;gender&quot;: true&#125;,
+                    &#123;&quot;name&quot;: &quot;王五&quot;, &quot;age&quot;: 25, &quot;gender&quot;: false&#125;];
 </code></pre>
-<p>​    </p>
-<pre><code>    * 约束：规定xml文档的书写规则
-        * 作为框架的使用者(程序员)：
-            1. 能够在xml中引入约束文档
-            2. 能够简单的读懂约束文档
+<p>​<br>​<br>​            </p>
+<pre><code>                //获取person对象中所有的键和值
+                //for in 循环
+               /* for(var key in person)&#123;
+                    //这样的方式获取不行。因为相当于  person.&quot;name&quot;
+                    //alert(key + &quot;:&quot; + person.key);
+                    alert(key+&quot;:&quot;+person[key]);
+                &#125;*/
         
-        * 分类：
-            1. DTD:一种简单的约束技术
-            2. Schema:一种复杂的约束技术
+               //获取ps中的所有值
+                for (var i = 0; i &lt; ps.length; i++) &#123;
+                    var p = ps[i];
+                    for(var key in p)&#123;
+                        alert(key+&quot;:&quot;+p[key]);
+                    &#125;
+                &#125;
 
 
-        * DTD：
-            * 引入dtd文档到xml文档中
-                * 内部dtd：将约束规则定义在xml文档中
-                * 外部dtd：将约束的规则定义在外部的dtd文件中
-                    * 本地：&lt;!DOCTYPE 根标签名 SYSTEM &quot;dtd文件的位置&quot;&gt;
-                    * 网络：&lt;!DOCTYPE 根标签名 PUBLIC &quot;dtd文件名字&quot; &quot;dtd文件的位置URL&quot;&gt;
+3. JSON数据和Java对象的相互转换
 
-
-        * Schema:
-            * 引入：
-                1.填写xml文档的根元素
-                2.引入xsi前缀.  xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-                3.引入xsd文件命名空间.  xsi:schemaLocation=&quot;http://www.itcast.cn/xml  student.xsd&quot;
-                4.为每一个xsd约束声明一个前缀,作为标识  xmlns=&quot;http://www.itcast.cn/xml&quot; 
-
-            &lt;students   xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
-                xmlns=&quot;http://www.itcast.cn/xml&quot;
-                xsi:schemaLocation=&quot;http://www.itcast.cn/xml  student.xsd&quot;&gt;
-</code></pre>
-<p>​    </p>
-<pre><code>3. 解析：操作xml文档，将文档中的数据读取到内存中
-    * 操作xml文档
-        1. 解析(读取)：将文档中的数据读取到内存中
-        2. 写入：将内存中的数据保存到xml文档中。持久化的存储
-
-    * 解析xml的方式：
-        1. DOM：将标记语言文档一次性加载进内存，在内存中形成一颗dom树
-            * 优点：操作方便，可以对文档进行CRUD的所有操作
-            * 缺点：占内存
-        2. SAX：逐行读取，基于事件驱动的。
-            * 优点：不占内存。
-            * 缺点：只能读取，不能增删改
-</code></pre>
-<p>​        </p>
-<pre><code>    * xml常见的解析器：
-        1. JAXP：sun公司提供的解析器，支持dom和sax两种思想
-        2. DOM4J：一款非常优秀的解析器
-        3. Jsoup：jsoup 是一款Java 的HTML解析器，可直接解析某个URL地址、HTML文本内容。它提供了一套非常省力的API，可通过DOM，CSS以及类似于jQuery的操作方法来取出和操作数据。
-        4. PULL：Android操作系统内置的解析器，sax方式的。
-
-
-    * Jsoup：jsoup 是一款Java 的HTML解析器，可直接解析某个URL地址、HTML文本内容。它提供了一套非常省力的API，可通过DOM，CSS以及类似于jQuery的操作方法来取出和操作数据。
-        * 快速入门：
-            * 步骤：
-                1. 导入jar包
-                2. 获取Document对象
-                3. 获取对应的标签Element对象
-                4. 获取数据
-
-        * 代码：
-             //2.1获取student.xml的path
-            String path = JsoupDemo1.class.getClassLoader().getResource(&quot;student.xml&quot;).getPath();
-            //2.2解析xml文档，加载文档进内存，获取dom树---&gt;Document
-            Document document = Jsoup.parse(new File(path), &quot;utf-8&quot;);
-            //3.获取元素对象 Element
-            Elements elements = document.getElementsByTag(&quot;name&quot;);
+    * JSON解析器：
+        * 常见的解析器：Jsonlib，Gson，fastjson，jackson
     
-            System.out.println(elements.size());
-            //3.1获取第一个name的Element对象
-            Element element = elements.get(0);
-            //3.2获取数据
-            String name = element.text();
-            System.out.println(name);
+    1. JSON转为Java对象
+        1. 导入jackson的相关jar包
+        2. 创建Jackson核心对象 ObjectMapper
+        3. 调用ObjectMapper的相关方法进行转换
+            1. readValue(json字符串数据,Class)
+    2. Java对象转换JSON
+        1. 使用步骤：
+            1. 导入jackson的相关jar包
+            2. 创建Jackson核心对象 ObjectMapper
+            3. 调用ObjectMapper的相关方法进行转换
+                1. 转换方法：
+                    * writeValue(参数1，obj):
+                        参数1：
+                            File：将obj对象转换为JSON字符串，并保存到指定的文件中
+                            Writer：将obj对象转换为JSON字符串，并将json数据填充到字符输出流中
+                            OutputStream：将obj对象转换为JSON字符串，并将json数据填充到字节输出流中
+                    * writeValueAsString(obj):将对象转为json字符串
 
-    * 对象的使用：
-        1. Jsoup：工具类，可以解析html或xml文档，返回Document
-            * parse：解析html或xml文档，返回Document
-                * parse​(File in, String charsetName)：解析xml或html文件的。
-                * parse​(String html)：解析xml或html字符串
-                * parse​(URL url, int timeoutMillis)：通过网络路径获取指定的html或xml的文档对象
-        2. Document：文档对象。代表内存中的dom树
-            * 获取Element对象
-                * getElementById​(String id)：根据id属性值获取唯一的element对象
-                * getElementsByTag​(String tagName)：根据标签名称获取元素对象集合
-                * getElementsByAttribute​(String key)：根据属性名称获取元素对象集合
-                * getElementsByAttributeValue​(String key, String value)：根据对应的属性名和属性值获取元素对象集合
-        3. Elements：元素Element对象的集合。可以当做 ArrayList&lt;Element&gt;来使用
-        4. Element：元素对象
-            1. 获取子元素对象
-                * getElementById​(String id)：根据id属性值获取唯一的element对象
-                * getElementsByTag​(String tagName)：根据标签名称获取元素对象集合
-                * getElementsByAttribute​(String key)：根据属性名称获取元素对象集合
-                * getElementsByAttributeValue​(String key, String value)：根据对应的属性名和属性值获取元素对象集合
+                2. 注解：
+                    1. @JsonIgnore：排除属性。
+                    2. @JsonFormat：属性值得格式化
+                        * @JsonFormat(pattern = &quot;yyyy-MM-dd&quot;)
 
-            2. 获取属性值
-                * String attr(String key)：根据属性名称获取属性值
-            3. 获取文本内容
-                * String text():获取文本内容
-                * String html():获取标签体的所有内容(包括字标签的字符串内容)
-        5. Node：节点对象
-            * 是Document和Element的父类
+                3. 复杂java对象转换
+                    1. List：数组
+                    2. Map：对象格式一致
 </code></pre>
-<p>​            </p>
-<pre><code>    * 快捷查询方式：
-        1. selector:选择器
-            * 使用的方法：Elements    select​(String cssQuery)
-                * 语法：参考Selector类中定义的语法
-        2. XPath：XPath即为XML路径语言，它是一种用来确定XML（标准通用标记语言的子集）文档中某部分位置的语言
-            * 使用Jsoup的Xpath需要额外导入jar包。
-            * 查询w3cshool参考手册，使用xpath的语法完成查询
-            * 代码：
-                //1.获取student.xml的path
-                String path = JsoupDemo6.class.getClassLoader().getResource(&quot;student.xml&quot;).getPath();
-                //2.获取Document对象
-                Document document = Jsoup.parse(new File(path), &quot;utf-8&quot;);
-        
-                //3.根据document对象，创建JXDocument对象
-                JXDocument jxDocument = new JXDocument(document);
-        
-                //4.结合xpath语法查询
-                //4.1查询所有student标签
-                List&lt;JXNode&gt; jxNodes = jxDocument.selN(&quot;//student&quot;);
-                for (JXNode jxNode : jxNodes) &#123;
-                    System.out.println(jxNode);
-                &#125;
-        
-                System.out.println(&quot;--------------------&quot;);
-        
-                //4.2查询所有student标签下的name标签
-                List&lt;JXNode&gt; jxNodes2 = jxDocument.selN(&quot;//student/name&quot;);
-                for (JXNode jxNode : jxNodes2) &#123;
-                    System.out.println(jxNode);
-                &#125;
-        
-                System.out.println(&quot;--------------------&quot;);
-        
-                //4.3查询student标签下带有id属性的name标签
-                List&lt;JXNode&gt; jxNodes3 = jxDocument.selN(&quot;//student/name[@id]&quot;);
-                for (JXNode jxNode : jxNodes3) &#123;
-                    System.out.println(jxNode);
-                &#125;
-                System.out.println(&quot;--------------------&quot;);
-                //4.4查询student标签下带有id属性的name标签 并且id属性值为itcast
-        
-                List&lt;JXNode&gt; jxNodes4 = jxDocument.selN(&quot;//student/name[@id=&#39;itcast&#39;]&quot;);
-                for (JXNode jxNode : jxNodes4) &#123;
-                    System.out.println(jxNode);
-                &#125;
+<h1 id="案例："><a href="#案例：" class="headerlink" title="案例："></a>案例：</h1><pre><code>* 校验用户名是否存在
+    1. 服务器响应的数据，在客户端使用时，要想当做json数据格式使用。有两种解决方案：
+        1. $.get(type):将最后一个参数type指定为&quot;json&quot;
+        2. 在服务器端设置MIME类型
+            response.setContentType(&quot;application/json;charset=utf-8&quot;);
 </code></pre>
 
             </div>
@@ -451,7 +669,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/java/">java</a>
+                      <a class="hover-with-bg" href="/categories/Java/">Java</a>
                     
                   </div>
                 
@@ -459,7 +677,7 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/xml/">xml</a>
+                      <a class="hover-with-bg" href="/tags/Xml/">Xml</a>
                     
                   </div>
                 
@@ -476,9 +694,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2019/05/01/rbtree%E7%AC%94%E8%AE%B0/">
+                      <a href="/2017/09/26/Tomcat&amp;Servlet/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">红黑树笔记</span>
+                        <span class="hidden-mobile">Tomcat&Servlet</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     

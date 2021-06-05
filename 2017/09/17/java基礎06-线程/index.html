@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      133
+      132
        分钟
     </span>
   
@@ -228,7 +228,7 @@
             <h1 style="display: none">java基礎06-线程</h1>
             
             <div class="markdown-body">
-              <h1 id="第一章-线程"><a href="#第一章-线程" class="headerlink" title="第一章 线程"></a>第一章 线程</h1><h2 id="1-1-多线程原理"><a href="#1-1-多线程原理" class="headerlink" title="1.1 多线程原理"></a>1.1 多线程原理</h2><p>昨天的时候我们已经写过一版多线程的代码，很多同学对原理不是很清楚，那么我们今天先画个多线程执行时序图<br>来体现一下多线程程序的执行流程。<br>代码如下：<br>自定义线程类：</p>
+              <h1 id="第一章-线程"><a href="#第一章-线程" class="headerlink" title="第一章 线程"></a>第一章 线程</h1><h2 id="1-1-多线程原理"><a href="#1-1-多线程原理" class="headerlink" title="1.1 多线程原理"></a>1.1 多线程原理</h2><p>多线程程序的执行流程。<br>代码如下：<br>自定义线程类：</p>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-built_in">public</span> <span class="hljs-keyword">class</span> MyThread extends Thread&#123;<br>    <span class="hljs-comment">/*</span><br><span class="hljs-comment">    * 利用继承中的特点</span><br><span class="hljs-comment">    * 将线程名称传递 进行设置</span><br><span class="hljs-comment">    */</span><br>    <span class="hljs-built_in">public</span> MyThread(String <span class="hljs-type">name</span>)&#123;<br>        super(<span class="hljs-type">name</span>);<br>    &#125;<br>    <span class="hljs-comment">/*</span><br><span class="hljs-comment">    * 重写run方法</span><br><span class="hljs-comment">    * 定义线程要执行的代码</span><br><span class="hljs-comment">    */</span><br>    <span class="hljs-built_in">public</span> <span class="hljs-type">void</span> run()&#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">20</span>; i++) &#123;<br>            //getName()方法 来自父亲<br>            <span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(getName()+i);<br>        &#125;<br>    &#125;<br>&#125;<br>=======================================<br><span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(&quot;这里是main线程&quot;);<br>MyThread mt = <span class="hljs-built_in">new</span> MyThread(&quot;小强&quot;);<br>mt.<span class="hljs-keyword">start</span>();//开启了一个新的线程<br><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">20</span>; i++) &#123;<br>	<span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(&quot;旺财:&quot;+i);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p><img src="/img/cphoto/threads01.jpg" srcset="/img/loading.gif" lazyload></p>
@@ -654,7 +654,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/java/">java</a>
+                      <a class="hover-with-bg" href="/categories/Java/">Java</a>
                     
                   </div>
                 
