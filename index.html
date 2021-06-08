@@ -180,67 +180,6 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/20120/12/25/Git%E6%8F%90%E4%BA%A4%E4%B8%8D%E5%8C%BA%E5%88%86%E5%A4%A7%E5%B0%8F%E5%86%99&Hexo%E5%8D%9A%E5%AE%A2%E9%87%8D%E6%96%B0%E9%83%A8%E7%BD%B2/" target="_self">
-          <img src="/img/cover/117.jpg" srcset="/img/loading.gif" lazyload alt="Git提交不区分大小写&amp;Hexo博客重新部署">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/20120/12/25/Git%E6%8F%90%E4%BA%A4%E4%B8%8D%E5%8C%BA%E5%88%86%E5%A4%A7%E5%B0%8F%E5%86%99&Hexo%E5%8D%9A%E5%AE%A2%E9%87%8D%E6%96%B0%E9%83%A8%E7%BD%B2/" target="_self">
-          Git提交不区分大小写&amp;Hexo博客重新部署
-        </a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/20120/12/25/Git%E6%8F%90%E4%BA%A4%E4%B8%8D%E5%8C%BA%E5%88%86%E5%A4%A7%E5%B0%8F%E5%86%99&Hexo%E5%8D%9A%E5%AE%A2%E9%87%8D%E6%96%B0%E9%83%A8%E7%BD%B2/" target="_self">
-          
-          
-            
-          
-          部署完成后发现分类功能本地4000端口正常但部署github上的发生page not found在网上找了一下,原因是git提交的时候不区分大小写导致,所以需要在这个目录下blog\.deploy_git\.git\config进行修改
-1ignorecase = false
-
-修改完成后,如果直接提交,会导致有有大写小写文件共存情况,所以需要清空github仓库重新部署,因为之前有过gitee直
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="20120-12-25 22:13" pubdate>
-              20120-12-25
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-category"></i>
-            
-              <a href="/categories/Web/">Web</a>
-            
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/Git/">Git</a>
-            
-              <a href="/tags/Hexo/">Hexo</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2021/06/08/coding%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E6%B5%81%E7%A8%8B/" target="_self">
           <img src="/img/cover/44.jpg" srcset="/img/loading.gif" lazyload alt="coding部署博客流程">
         </a>
@@ -286,6 +225,67 @@
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Hexo/">Hexo</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/12/25/Git%E6%8F%90%E4%BA%A4%E4%B8%8D%E5%8C%BA%E5%88%86%E5%A4%A7%E5%B0%8F%E5%86%99&Hexo%E5%8D%9A%E5%AE%A2%E9%87%8D%E6%96%B0%E9%83%A8%E7%BD%B2/" target="_self">
+          <img src="/img/cover/117.jpg" srcset="/img/loading.gif" lazyload alt="Git提交不区分大小写&amp;Hexo博客重新部署">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2020/12/25/Git%E6%8F%90%E4%BA%A4%E4%B8%8D%E5%8C%BA%E5%88%86%E5%A4%A7%E5%B0%8F%E5%86%99&Hexo%E5%8D%9A%E5%AE%A2%E9%87%8D%E6%96%B0%E9%83%A8%E7%BD%B2/" target="_self">
+          Git提交不区分大小写&amp;Hexo博客重新部署
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2020/12/25/Git%E6%8F%90%E4%BA%A4%E4%B8%8D%E5%8C%BA%E5%88%86%E5%A4%A7%E5%B0%8F%E5%86%99&Hexo%E5%8D%9A%E5%AE%A2%E9%87%8D%E6%96%B0%E9%83%A8%E7%BD%B2/" target="_self">
+          
+          
+            
+          
+          部署完成后发现分类功能本地4000端口正常但部署github上的发生page not found1.本地项目配置区分大小写在网上找了一下,原因是git提交的时候不区分大小写导致,所以需要在这个目录下blog\.deploy_git\.git\config进行修改
+1ignorecase = false
+
+2.全局开启1git config --global core.ignorecase fals
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2020-12-25 22:13" pubdate>
+              2020-12-25
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Web/">Web</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Git/">Git</a>
             
               <a href="/tags/Hexo/">Hexo</a>
             
