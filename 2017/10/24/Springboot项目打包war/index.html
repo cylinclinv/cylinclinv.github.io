@@ -256,7 +256,6 @@
 
 <h2 id="五、打包部署"><a href="#五、打包部署" class="headerlink" title="五、打包部署"></a>五、打包部署</h2><blockquote>
 <p>在项目根目录下（即包含pom.xml的目录），在命令行里输入：<br><code>mvn clean package -Dmaven.test.skip=true</code>即可， 等待打包完成，出现<code>[INFO] BUILD SUCCESS</code>即为打包成功。</p>
-<p><img src="https://images2017.cnblogs.com/blog/1136277/201802/1136277-20180202153743984-1478873879.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <p>然后把target目录下的war包放到tomcat的webapps目录下，启动tomcat，即可自动解压部署。<br>最后在浏览器中输入</p>
 <blockquote>
 <figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc"><span class="hljs-link">http://localhost:</span>[<span class="hljs-string">端口号</span>]/[打包项目名]/<br></code></pre></td></tr></table></figure>
