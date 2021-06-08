@@ -1,0 +1,644 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/logo.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="clyde">
+  <meta name="keywords" content="">
+  
+  <title>Maven - Clyde</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Clyde</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/cover/35.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Maven">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2017-10-01 11:53" pubdate>
+        2017年10月1日 中午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      56
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Maven</h1>
+            
+            <div class="markdown-body">
+              <h1 id="Maven"><a href="#Maven" class="headerlink" title="Maven"></a>Maven</h1><p>一个对Maven比较正式的定义是这么说的：Maven是一个项目管理工具，它包含了一个项目对象模型 (POM：Project Object Model)，一组标准集合，一个项目生命周期(Project Lifecycle)，一个依赖管理系统(Dependency Management System)，和用来运行定义在生命周期阶段(phase)中插件(plugin)目标(goal)的逻辑。</p>
+<h2 id="Maven是干什么的？"><a href="#Maven是干什么的？" class="headerlink" title="Maven是干什么的？"></a>Maven是干什么的？</h2><p>即使不使用Maven 我们仍然可以进行B/S 结构项目的开发。从表述层、业务逻辑层到持久化层再到数据库都有成熟的解决方案。</p>
+<p>其实Maven 并不是直接用来辅助编码的，它战斗的岗位并不是以上各层。所以我们有必要通过企业开发中的实际需求来看一看哪些方面是我们现有技术的不足。</p>
+<p>Maven所解决的问题<br>1、我们需要引用各种jar包，尤其是比较大的工程，引用的jar包往往有几十个乃至上百个， 每用到一种jar包，都需要手动引入工程目录，而且经常遇到各种让人抓狂的jar包冲突，版本冲突。</p>
+<p>2、我们辛辛苦苦写好了Java文件，可是只懂0和1的白痴电脑却完全读不懂，需要将它编译成二进制字节码。好歹现在这项工作可以由各种集成开发工具帮我们完成，Eclipse、IDEA等都可以将代码即时编译。当然，如果你嫌生命漫长，何不铺张，也可以用记事本来敲代码，然后用javac命令一个个地去编译，逗电脑玩。</p>
+<p>3、世界上没有不存在bug的代码，计算机喜欢bug就和人们总是喜欢美女帅哥一样。为了追求美为了减少bug，因此写完了代码，我们还要写一些单元测试，然后一个个的运行来检验代码质量。</p>
+<p>4、再优雅的代码也是要出来卖的。我们后面还需要把代码与各种配置文件、资源整合到一起，定型打包，如果是web项目，还需要将之发布到服务器，供人蹂躏。</p>
+<p>Maven就可以帮你构建工程，管理jar包，编译代码，还能帮你自动运行单元测试，打包，生成报表，甚至能帮你部署项目，生成Web站点。</p>
+<h2 id="Maven的优势举例"><a href="#Maven的优势举例" class="headerlink" title="Maven的优势举例"></a>Maven的优势举例</h2><p>Web项目，要能够将项目运行起来，就必须将该项目所依赖的一些jar包添加到工程中，否则项目就不能运行。 试想如果具有相同架构的项目有十个，那么我们就需要将这一份jar包复制到十个不同的工程中。我们一起来看一个CRM项目的工程大小。</p>
+<p>使用传统Web项目构建的CRM项目如下：</p>
+<p>原因主要是因为上面的WEB程序要运行，我们必须将项目运行所需的Jar包复制到工程目录中，从而导致了工程很大。<br>同样的项目，如果我们使用Maven工程来构建，会发现总体上工程的大小会少很多。如下图:</p>
+<h2 id="Maven的两个比较重要的作用"><a href="#Maven的两个比较重要的作用" class="headerlink" title="Maven的两个比较重要的作用"></a>Maven的两个比较重要的作用</h2><p>1.Maven的依赖管理<br>Maven的一个核心特性就是依赖管理。当我们涉及到多模块的项目（包含成百个模块或者子项目），管理依赖就变成一项困难的任务。Maven展示出了它对处理这种情形的高度控制。</p>
+<p>传统的WEB项目中，我们必须将工程所依赖的jar包复制到工程中，导致了工程的变得很大。</p>
+<p>那么maven工程是如何使得工程变得很少呢？<br><img src="/img/cphoto/maven01.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>通过分析发现： maven工程中不直接将jar包导入到工程中， 而是通过在pom.xml文件中添加所需jar包的坐标，这样就很好的避免了jar直接引入进来，在需要用到jar包的时候，只要查找pom.xml文件，再通过pom.xml文件中的坐标，到一个专门用于”存放jar包的仓库”(maven仓库) 中根据坐标从而找到这些jar包，再把这些jar包拿去运行。</p>
+<p>问题：通过读取pom.xml 文件中的坐标，再到仓库中找到jar包，会不会很慢？从而导致这种方式不可行！</p>
+<p>答案： 通过pom.xml文件配置要引入的jar包的坐标，再读取坐标并到仓库中加载jar包，这样我们就可以直接使用jar包了，为了解决这个过程中速度慢的问题，maven中也有索引的概念，通过建立索引，可以大大提高加载jar包的速度，使得我们认为jar包基本跟放在本地的工程文件中再读取出来的速度是一样的。这个过程就好比我们查阅字典时，为了能够加快查找到内容，书前面的目录就好比是索引，有了这个目录我们就可以方便找到内容了，一样的在maven仓库中有了索引我们就可以认为可以快速找到jar包。</p>
+<p>2.项目的一键构建<br>我们的项目，往往都要经历编译、测试、运行、打包、安装 ，部署等一系列过程。</p>
+<p>什么是构建？<br>指的是项目从编译、测试、运行、打包、安装 ，部署整个过程都交给maven进行管理，这个过程称为构建。</p>
+<p>①清理 ： 删除以前的编译结果，为重新编译做好准备。<br>②编译 ： 将 Java 源程序编译为字节码文件。<br>③测试 ： 针对项目中的关键点进行测试，确保项目在迭代开发过程中关键点的正确性。<br>④报告 ： 在每一次测试后以标准的格式记录和展示测试结果。<br>⑤打包 ： 将一个包含诸多文件的工程封装为一个压缩文件用于安装或部署。 Java 工程对应 jar 包， Web工程对应 war 包。<br>⑥安装 ： 在 Mav en 环境下特指将打包的结果 jar 包或 war 包安装到本地仓库中。<br>⑦部署 ： 将打包的结果部署到远程仓库或将 war 包部署到服务器上运行。</p>
+<p>一键构建<br>指的是整个构建过程，使用maven一个命令可以轻松完成整个工作。</p>
+<p>Maven规范化构建流程如下：</p>
+<p><img src="/img/cphoto/maven04.jpg" srcset="/img/loading.gif" lazyload></p>
+<h2 id="Maven核心概念"><a href="#Maven核心概念" class="headerlink" title="Maven核心概念"></a>Maven核心概念</h2><p>Maven能够 实现自动化构建 是 和它的内部原理 分不开 的， 这里 我们 从 Maven 的九个核心概念入手</p>
+<p>Maven 自动化构建:<br>①POM<br>②约定的目录结构<br>③坐标<br>④依赖管理<br>⑤仓库管理<br>⑥生命周期<br>⑦插件和目标<br>⑧继承<br>⑨聚合</p>
+<h2 id="Maven构建模型"><a href="#Maven构建模型" class="headerlink" title="Maven构建模型"></a>Maven构建模型</h2><p>Maven包含了一个项目对象模型 (Project Object Model)，一组标准集合，一个项目生命周期(Project Lifecycle)，一个依赖管理系统(Dependency Management System)，和用来运行定义在生命周期阶段(phase)中插件(plugin)目标(goal)的逻辑。</p>
+<p>项目对象模型 (Project Object Model)<br>一个maven工程都有一个pom.xml文件，通过pom.xml文件定义项目的坐标、项目依赖、项目信息、插件目标等。</p>
+<p>依赖管理系统(Dependency Management System)</p>
+<p>一个项目生命周期(Project Lifecycle)</p>
+<p>使用maven完成项目的构建，项目构建包括：清理、编译、测试、部署等过程，maven将这些过程规范为一个生命周期，如下所示是生命周期的各各阶段：</p>
+<p>maven通过执行一些简单命令即可实现上边生命周期的各各过程，比如执行mvn compile执行编译、执行mvn clean执行清理。</p>
+<p>一组标准集合</p>
+<p>maven将整个项目管理过程定义一组标准，比如：通过maven构建工程有标准的目录结构，有标准的生命周期阶段、依赖管理有标准的坐标定义等。</p>
+<p>插件(plugin)目标(goal)<br>maven 管理项目生命周期过程都是基于插件完成的。</p>
+<h2 id="Maven指令生命周期"><a href="#Maven指令生命周期" class="headerlink" title="Maven指令生命周期"></a>Maven指令生命周期</h2><p>maven对项目构建过程分为三套相互独立的生命周期，请注意这里说的是“三套”，而且“相互独立”， 这三套生命周期分别是：</p>
+<p>Clean Lifecycle 在进行真正的构建之前进行一些清理工作。<br>Default Lifecycle 构建的核心部分，编译，测试，打包，部署等等。<br>Site Lifecycle 生成项目报告，站点，发布站点。</p>
+<p>插件和目标<br>生命周期的各个阶段仅仅定义了要执行的任务是什么<br>各个阶段和插件的目标是对应的<br>相似的目标特定的插件来完成<br>可以将目标看作“调用插件功能的命令”</p>
+<h2 id="Maven仓库"><a href="#Maven仓库" class="headerlink" title="Maven仓库"></a>Maven仓库</h2><p>maven的工作需要从仓库下载一些jar包，如下图所示，本地的项目A、项目B等都会通过maven软件从远程仓库（可以理解为互联网上的仓库）下载jar包并存在本地仓库，本地仓库 就是本地文件夹，当第二次需要此jar包时则不再从远程仓库下载，因为本地仓库已经存在了，可以将本地仓库理解为缓存，有了本地仓库就不用每次从远程仓库下载了。</p>
+<p><img src="/img/cphoto/maven05.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>本地仓库 ： 用来存储从远程仓库或中央仓库下载的插件和jar包，项目使用一些插件或jar包，优先从本地仓库查找<br>默认本地仓库位置在 u s e r . d i r / . m 2 / r e p o s i t o r y ， {user.dir}/.m2/repository，user.dir/.m2/repository，{user.dir}表示windows用户目录。</p>
+<p>远程仓库(俗称私服）： 如果本地需要插件或者jar包，本地仓库没有，默认去远程仓库下载。<br>远程仓库可以在互联网内也可以在局域网内。</p>
+<p>中央仓库 ： 在maven软件中内置一个远程仓库地址<a target="_blank" rel="noopener" href="http://repo1.maven.org/maven2">http://repo1.maven.org/maven2</a> ，它是中央仓库，服务于整个互联网，它是由Maven团队自己维护，里面存储了非常全的jar包，它包含了世界上大部分流行的开源项目构件。</p>
+<p>仓库中保存的内容： Maven工程</p>
+<p>1.maven自身所需要的插件</p>
+<p>2.第三方的框架或工具的jar包</p>
+<p>3.我们自己开发的maven工程</p>
+<p>常见问题：</p>
+<p>运行Maven工程时如果本地仓库配置错误会报下边的错误：</p>
+<p>分析：<br>maven工程运行先从本地仓库找jar包，本地仓库没有再从中央仓库找，上边提示downloading…<br>表示 从中央仓库下载jar，由于本地没有联网，报错。<br>解决：<br>在maven安装目录的conf/setting.xml文件中配置本地仓库地址</p>
+<p>Maven安装与配置<br>百度官网打开下载：<a target="_blank" rel="noopener" href="https://maven.apache.org/download.cgi">https://maven.apache.org/download.cgi</a><br>下载完后将Maven解压到自己规定的文件夹（不要用中文名）</p>
+<p>Maven目录结构</p>
+<p>bin:存放了maven的命令，比如我们前面用到的mvn tomcat:run<br>boot:存放了一些maven本身的引导程序，如类加载器等<br>conf:存放了maven的一些配置文件，如setting.xml文件<br>lib:存放了maven本身运行所需的一些jar包<br>至此我们的maven软件就可以使用了，前提是你的电脑上之前已经安装并配置好了JDK,运行Maven需要有JDK的支持</p>
+<p>Maven配置<br>电脑上需安装java环境，安装JDK1.7 + 版本 （将JAVA_HOME/bin 配置环境变量path ），我们使用的是JDK8相关版本</p>
+<p>配置 MAVEN_HOME ，变量值就是你的maven安装 的路径（bin目录之前一级目录）</p>
+<p>再次检查JDK的安装目录，如下图：</p>
+<p>配置好测试<br>cmd输入：mvn -v出现以下内容说明已经成功</p>
+<p>配置本地仓库<br>在MAVE_HOME/conf/settings.xml文件中配置本地仓库位置（maven的安装目录下）</p>
+<p>打开settings.xml文件，配置如下：</p>
+<p> <localRepository>你的本地仓库路径</localRepository><br>这是我的本地仓库路径，以及存放的jar包</p>
+<p>全局setting与用户setting<br>maven仓库地址、私服等配置信息需要在setting.xml文件中配置，分为全局配置和用户配置。<br>在maven安装目录下的有 conf/setting.xml文件，此setting.xml文件用于maven的所有project项目，它作为maven的全局配置。<br>如需要个性配置则需要在用户配置中设置，用户配置的setting.xml文件默认的位置在：u s e r . d i r / . m 2 / s e t t i n g s . x m l 目 录 中 , {user.dir} /.m2/settings.xml目录中,user.dir/.m2/settings.xml目录中,{user.dir} 指windows 中的用户目录。<br>maven会先找用户配置，如果找到则以用户配置文件为准，否则使用全局配置文件。</p>
+<h2 id="Maven工程的认识"><a href="#Maven工程的认识" class="headerlink" title="Maven工程的认识"></a>Maven工程的认识</h2><p>Maven工程的目录结构</p>
+<p>我以IDEA普通Maven工程为例：</p>
+<p>IDEA中Web工程为例</p>
+<p>src/main/java—— 存放项目的.java文件<br>src/main/resources —— 存放项目资源文件，如spring, hibernate配置文件<br>src/test/java —— 存放所有单元测试.java文件，如JUnit测试类<br>src/test/resources —— 测试资源文件<br>target —— 项目输出位置，编译后的class文件会输出到此目录<br>pom.xml——maven项目核心配置文件<br>注意：如果是普通的java项目，那么就没有webapp目录。</p>
+<h2 id="Maven的常用命令介绍"><a href="#Maven的常用命令介绍" class="headerlink" title="Maven的常用命令介绍"></a>Maven的常用命令介绍</h2><p>我在cmd中通过一系列的maven命令来对我的maven工程进行编译、测试、运行、打包、安装、部署。</p>
+<p>compile<br>compile是maven工程的编译命令，作用是将src/main/java下的文件编译为class文件输出到target目录下。</p>
+<p>cmd进入命令状态，执行mvn compile，如下图提示成功：</p>
+<p>发现在我的项目目录里多出了这个文件：</p>
+<p>test<br>test是maven工程的测试命令 mvn test，会执行src/test/java下的单元测试类。</p>
+<p>cmd执行mvn test执行src/test/java下单元测试类，下图为测试结果，运行1个测试用例，全部成功：</p>
+<p>clean<br>clean是maven工程的清理命令，执行 clean会删除target目录及内容。</p>
+<p>package<br>package是maven工程的打包命令，对于java工程执行package打成jar包，对于web工程打成war包。</p>
+<p>install<br>install是maven工程的安装命令，执行install将maven打成jar包或war包发布到本地仓库。</p>
+<h2 id="Maven坐标依赖"><a href="#Maven坐标依赖" class="headerlink" title="Maven坐标依赖"></a>Maven坐标依赖</h2><p>坐标使用如下三个向量在Maven 的仓库中唯一的确定一个 Maven 工程。</p>
+<p>groupid：公司或组织的域名倒序 当前项目名称<br>artifactId：当前项目的模块名称<br>version：当前模块的版本</p>
+<!--项目名称，定义为组织名+项目名，类似包名-->
+<p><groupId>cn.itcast.maven</groupId></p>
+<!-- 模块名称 -->
+<p><artifactId>maven-first</artifactId></p>
+<!-- 当前项目版本号，snapshot为快照版本即非正式版本，release为正式发布版本 -->
+<p><version>0.0.1-SNAPSHOT</version><br><packaging>打包类型</packaging><br>jar：执行package会打成jar包<br>war：执行package会打成war包<br>pom ：用于maven工程的继承，通常父工程设置为pom</p>
+<p>依赖小demo：</p>
+<p>比如：项目依赖junit4.9，通过在pom.xml中定义junit4.9的依赖即使用junit4.9</p>
+<p>如下所示是junit4.9的依赖定义：</p>
+<!-- 依赖关系 -->
+<dependencies>
+        <!-- 此项目运行使用junit，所以此项目依赖junit -->
+        <dependency>
+            <!-- junit的项目名称 -->
+            <groupId>junit</groupId>
+            <!-- junit的模块名称 -->
+            <artifactId>junit</artifactId>
+            <!-- junit版本 -->
+            <version>4.9</version>
+            <!-- 依赖范围：单元测试时使用junit -->
+            <scope>test</scope>
+        </dependency>
+</dependencies>
+
+<h2 id="依赖范围"><a href="#依赖范围" class="headerlink" title="依赖范围"></a>依赖范围</h2><p>A依赖B，需要在A的pom.xml文件中添加B的坐标，添加坐标时需要指定依赖范围，依赖范围包括：</p>
+<p>compile：编译范围，指A在编译时依赖B，此范围为默认依赖范围。编译范围的依赖会用在编译、测试、运行，由于运行时需要所以编译范围的依赖会被打z包。<br>provided：provided依赖只有在当JDK或者一个容器已提供该依赖之后才使用， provided依赖在编译和测试时需要，在运行时不需要，比如：servlet api被tomcat容器提供。<br>runtime：runtime依赖在运行和测试系统的时候需要，但在编译的时候不需要。比如：jdbc的驱动包。由于运行时需要所以runtime范围的依赖会被打包。<br>test：test范围依赖 在编译和运行时都不需要，它们只有在测试编译和测试运行阶段可用，比如：junit。由于运行时不需要所以test范围依赖不会被打包。<br>system：system范围依赖与provided类似，但是你必须显式的提供一个对于本地系统中JAR文件的路径，需要指定systemPath磁盘路径，system依赖不推荐使用。</p>
+<p>在maven-web工程中测试各各scop。<br>测试总结：</p>
+<p>默认引入 的jar包 ——- compile 【默认范围 可以不写】（编译、测试、运行 都有效 ）<br>servlet-api 、jsp-api ——- provided （编译、测试 有效， 运行时无效 防止和tomcat下jar冲突）<br>jdbc驱动jar包 —- runtime （测试、运行 有效 ）<br>junit —– test （测试有效）<br>依赖范围由强到弱的顺序是：compile&gt;provided&gt;runtime&gt;test<br>pom.xml基本配置<br>pom.xml是Maven项目的核心配置文件，位于每个工程的根目录，基本配置如下：</p>
+<p>文件的根节点<br><project><br>    <artifactId> 模块名称，子项目名或模块名称就是Idea中的Module</artifactId><br>    <!--pom.xml使用的对象模型版本--><br>    <modelVersion>4.0.0</modelVersion><br>     <!--项目依赖构件配置，配置项目依赖构件的坐标--><br>    <dependencies><br>        <dependency><br>            <groupId>项目名称，一般写项目的域名</groupId><br>        <artifactId>模块名称，子项目名或模块名称</artifactId><br>            <version>产品的版本号</version><br>            <scope>依赖范围</scope><br>        </dependency><br>    </dependencies><br>    <build> 项目构建配置，配置编译、运行插件等。</build><br>    <name> 项目的显示名，常用于 Maven 生成的文档。</name><br>    <description>项目描述，常用于 Maven 生成的文档</description><br></project></p>
+<p>依赖的传递性<br>假如：在你的Maven项目里定义了3个Maven工程</p>
+<p>HelloFriend工程与工程2，和工程3</p>
+<p>依赖关系：HelloFriend→工程2→工程3</p>
+<p>我在HelloFriend这个最底层的工程添加了Spring-core依赖，那么在工程2和工程3中都有Spring-core的依赖，这个就是依赖的传递性</p>
+<p>但是： 非compile范围的依赖不能传递，所以在各个工程的模块中，如果由需要，就得重复声明依赖。</p>
+<p>依赖的排除</p>
+<p>排除依赖的方式：</p>
+<exclusions>
+        <exclusion>
+            <groupId>commos-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+        </exclusion>
+    </exclusions>
+
+<p>依赖的原则：</p>
+<p>统一管理依赖的版本</p>
+<p>继承<br>问题出现：</p>
+<p>工程1依赖的Junit：4.0<br>工程2依赖的Junit：4.0<br>工程3依赖的Junit：4.9<br>由于依赖范围中的test不能传递，所以在各个模块的工程中，容易造成版本不一致</p>
+<p>那么如何解决问题：让各个版本统一。</p>
+<p>答案：将junit依赖统一到“父”工程中，在子工程中声明junit依赖时不指定版本</p>
+<p>聚合<br>将多个工程拆分为模块后， 需要 手动逐个 安装 到仓库后 依赖 才能够生效。 修改 源码后 也 需要 逐个 手动进行 clean 操作。 而 使用了聚合之后就可以批量进行 Maven 工程的安装、清理工作。</p>
+<p>在总的聚合工程中 使用 modules /module 标签 组合， 指定 模块工程的 相对 路径即 可</p>
+<modules>
+<module>../Hello</module>
+<module>../HelloFriend</module>
+<module>../MakeFriends</module>
+</modules>
+
+
+
+
+
+<h1 id="Maven高级"><a href="#Maven高级" class="headerlink" title="Maven高级"></a>Maven高级</h1><h2 id="第一章：Maven基础回顾"><a href="#第一章：Maven基础回顾" class="headerlink" title="第一章：Maven基础回顾"></a>第一章：Maven基础回顾</h2><h3 id="1-1-Maven介绍"><a href="#1-1-Maven介绍" class="headerlink" title="1.1-Maven介绍"></a>1.1-Maven介绍</h3><ol>
+<li>Maven是一个项目管理工具，主要作用是在项目开发阶段对Java项目进行依赖管理和项目构建。</li>
+<li>依赖管理：就是对象jar包的管理。通过导入maven坐标，就相当于将仓库中的jar包导入了当前项目中。</li>
+<li>项目构建：通过Maven的一个命令就可完成项目从清理、编译、测试、报告、打包，部署整个过程。</li>
+</ol>
+<h3 id="1-2-Maven仓库类型"><a href="#1-2-Maven仓库类型" class="headerlink" title="1.2-Maven仓库类型"></a>1.2-Maven仓库类型</h3><ol>
+<li>本地仓库</li>
+<li>远程仓库<ul>
+<li>Maven中央仓库（地址：<a target="_blank" rel="noopener" href="http://repo2.maven.org/maven2/%EF%BC%89">http://repo2.maven.org/maven2/）</a></li>
+<li>maven私服（公司局域网内的仓库，需要自己搭建）</li>
+<li>其他公共远程仓库（例如apache提供的远程仓库，地址：<a target="_blank" rel="noopener" href="http://repo.maven.apache.org/maven2%EF%BC%89">http://repo.maven.apache.org/maven2）</a></li>
+</ul>
+</li>
+</ol>
+<h3 id="1-3-Maven常用命令"><a href="#1-3-Maven常用命令" class="headerlink" title="1.3-Maven常用命令"></a>1.3-Maven常用命令</h3><p><img src="/img/cphoto/maven06.jpg" srcset="/img/loading.gif" lazyload></p>
+<h3 id="1-4-Maven坐标书写规范"><a href="#1-4-Maven坐标书写规范" class="headerlink" title="1.4-Maven坐标书写规范"></a>1.4-Maven坐标书写规范</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>项目名<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>模块名<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>版本<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="1-5-Maven的依赖范围"><a href="#1-5-Maven的依赖范围" class="headerlink" title="1.5-Maven的依赖范围"></a>1.5-Maven的依赖范围</h3><p><img src="/img/cphoto/maven08.jpg" srcset="/img/loading.gif" lazyload></p>
+<h2 id="第二章：Maven的依赖传递"><a href="#第二章：Maven的依赖传递" class="headerlink" title="第二章：Maven的依赖传递"></a>第二章：Maven的依赖传递</h2><h3 id="2-1-什么是Maven的依赖传递"><a href="#2-1-什么是Maven的依赖传递" class="headerlink" title="2.1-什么是Maven的依赖传递"></a>2.1-什么是Maven的依赖传递</h3><p><img src="/img/cphoto/maven09.jpg" srcset="/img/loading.gif" lazyload></p>
+<h3 id="2-2-什么是依赖冲突"><a href="#2-2-什么是依赖冲突" class="headerlink" title="2.2-什么是依赖冲突"></a>2.2-什么是依赖冲突</h3><p><img src="/img/cphoto/maven10.jpg" srcset="/img/loading.gif" lazyload></p>
+<h3 id="2-3-如何解决依赖冲突"><a href="#2-3-如何解决依赖冲突" class="headerlink" title="2.3-如何解决依赖冲突"></a>2.3-如何解决依赖冲突</h3><p>1,使用maven提供的依赖调节原则</p>
+<ul>
+<li>第一声明者优先原则</li>
+<li>路径近者优先原则</li>
+</ul>
+<p>2,排除依赖<br>3,锁定版本</p>
+<h3 id="2-4-依赖调节原则"><a href="#2-4-依赖调节原则" class="headerlink" title="2.4-依赖调节原则"></a>2.4-依赖调节原则</h3><blockquote>
+<p>第一声明优先原则</p>
+</blockquote>
+<p><img src="/img/cphoto/maven11.jpg" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>路径近者优先原则</p>
+</blockquote>
+<p><img src="/img/cphoto/maven12.jpg" srcset="/img/loading.gif" lazyload></p>
+<h3 id="2-5-排除依赖"><a href="#2-5-排除依赖" class="headerlink" title="2.5-排除依赖"></a>2.5-排除依赖</h3><p><img src="/img/cphoto/maven13.jpg" srcset="/img/loading.gif" lazyload></p>
+<h3 id="2-6-版本锁定"><a href="#2-6-版本锁定" class="headerlink" title="2.6-版本锁定"></a>2.6-版本锁定</h3><p><img src="/img/cphoto/maven14.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/img/cphoto/maven15.jpg" srcset="/img/loading.gif" lazyload></p>
+<h2 id="第三章：分模块构建Maven工程"><a href="#第三章：分模块构建Maven工程" class="headerlink" title="第三章：分模块构建Maven工程"></a>第三章：分模块构建Maven工程</h2><h3 id="3-1-分析"><a href="#3-1-分析" class="headerlink" title="3.1-分析"></a>3.1-分析</h3><blockquote>
+<p>开发中</p>
+</blockquote>
+<p><img src="/img/cphoto/maven16.jpg" srcset="/img/loading.gif" lazyload></p>
+<h3 id="3-2-Maven工程的继承"><a href="#3-2-Maven工程的继承" class="headerlink" title="3.2-Maven工程的继承"></a>3.2-Maven工程的继承</h3><p><img src="/img/cphoto/maven17.jpg" srcset="/img/loading.gif" lazyload></p>
+<h3 id="3-3-Maven工程的聚合"><a href="#3-3-Maven工程的聚合" class="headerlink" title="3.3-Maven工程的聚合"></a>3.3-Maven工程的聚合</h3><p><img src="/img/cphoto/maven18.jpg" srcset="/img/loading.gif" lazyload></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Java/">Java</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Maven/">Maven</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2017/10/03/Linux%E7%9B%AE%E5%BD%95%E4%BB%8B%E7%BB%8D/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Linux目录介绍</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2017/09/30/Redis/">
+                        <span class="hidden-mobile">Redis</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"fc36e17008bd1e3e898d","clientSecret":"d9d3bc7feb2b8abbb2d05b43b2d16a1d19c9bba2","repo":"cylinclinv.github.io","owner":"cylinclinv","admin":["cylinclinv"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":true,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '4093673a35a7492f14bc576094276ee3'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>clyde</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
