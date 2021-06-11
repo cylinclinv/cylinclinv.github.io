@@ -1,0 +1,822 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/logo.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="clyde">
+  <meta name="keywords" content="">
+  
+  <title>前端学习14-微信小程序 - Clyde</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Clyde</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/cover/129.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="前端学习14-微信小程序">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2018-01-08 22:13" pubdate>
+        2018年1月8日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      2.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      29
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">前端学习14-微信小程序</h1>
+            
+            <div class="markdown-body">
+              <h1 id="微信小程序账号与工具"><a href="#微信小程序账号与工具" class="headerlink" title="微信小程序账号与工具"></a>微信小程序账号与工具</h1><p>在线文档：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/">https://mp.weixin.qq.com/debug/wxadoc/dev/</a></p>
+<h2 id="小程序开发者账号注册"><a href="#小程序开发者账号注册" class="headerlink" title="小程序开发者账号注册"></a>小程序开发者账号注册</h2><p>微信公众平台：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/">https://mp.weixin.qq.com/</a></p>
+<p>小程序开发者账号注册：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/wxopen/waregister?action=step1">https://mp.weixin.qq.com/wxopen/waregister?action=step1</a></p>
+<h2 id="微信开发者工具"><a href="#微信开发者工具" class="headerlink" title="微信开发者工具"></a>微信开发者工具</h2><p>微信开发者工具：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html">https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html</a></p>
+<h2 id="小程序在线Demo"><a href="#小程序在线Demo" class="headerlink" title="小程序在线Demo"></a>小程序在线Demo</h2><p>  <img src="/img/webimg/wechat01/weChatAppdemo.jpg" srcset="/img/loading.gif" lazyload></p>
+<h1 id="微信小程序文件结构"><a href="#微信小程序文件结构" class="headerlink" title="微信小程序文件结构"></a>微信小程序文件结构</h1><h2 id="主体文件结构"><a href="#主体文件结构" class="headerlink" title="主体文件结构"></a>主体文件结构</h2><p>主体部分由三个文件组成，必须放在项目的根目录，如下：</p>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>必填</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/app-service/app.html">app.js</a></td>
+<td>是</td>
+<td>小程序逻辑</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/config.html">app.json</a></td>
+<td>是</td>
+<td>小程序公共设置</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxss.html">app.wxss</a></td>
+<td>否</td>
+<td>小程序公共样式表</td>
+</tr>
+</tbody></table>
+<h2 id="页面文件结构"><a href="#页面文件结构" class="headerlink" title="页面文件结构"></a>页面文件结构</h2><p>页面由四个文件组成，分别是：</p>
+<table>
+<thead>
+<tr>
+<th>文件类型</th>
+<th>必填</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/app-service/page.html">js</a></td>
+<td>是</td>
+<td>页面逻辑 ( 微信小程序没有window和document对象 )</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxml/">wxml</a></td>
+<td>是</td>
+<td>页面结构  ( XML语法，不是HTML语法 )</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxss.html">wxss</a></td>
+<td>否</td>
+<td>页面样式表 ( <strong>拓展了rpx尺寸单位，微信专属响应式像素</strong> )</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/config.html#pagejson">json</a></td>
+<td>否</td>
+<td>页面配置  ( 不能写注释，否则编译报错 )</td>
+</tr>
+</tbody></table>
+<p>  <img src="/img/webimg/wechat01/fileTree.jpg" srcset="/img/loading.gif" lazyload></p>
+<h1 id="微信小程序配置"><a href="#微信小程序配置" class="headerlink" title="微信小程序配置"></a>微信小程序配置</h1><h2 id="app-json-配置项列表"><a href="#app-json-配置项列表" class="headerlink" title="app.json 配置项列表"></a>app.json 配置项列表</h2><blockquote>
+<p><code>app.json</code>文件用来对微信小程序进行全局配置，决定页面文件的路径、窗口表现、设置网络超时时间、设置多 tab 等。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>必填</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/config.html#pages">pages</a></td>
+<td>String Array</td>
+<td>是</td>
+<td>设置页面路径</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/config.html#window">window</a></td>
+<td>Object</td>
+<td>否</td>
+<td>设置默认页面的窗口表现</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/config.html#tabbar">tabBar</a></td>
+<td>Object</td>
+<td>否</td>
+<td>设置底部 tab 的表现</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/config.html#debug">debug</a></td>
+<td>Boolean</td>
+<td>否</td>
+<td>设置是否开启 debug 模式</td>
+</tr>
+</tbody></table>
+<h3 id="window配置"><a href="#window配置" class="headerlink" title="window配置"></a>window配置</h3><blockquote>
+<p>用于设置小程序的状态栏、导航条、标题、窗口背景色。</p>
+<p>注意：页面的<code>.json</code>只能设置 <code>window</code> 相关的配置项，以决定本页面的窗口表现，所以无需写 <code>window</code> 这个键。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>navigationBarBackgroundColor</td>
+<td>HexColor</td>
+<td>#000000</td>
+<td>导航栏背景颜色，如”#000000”</td>
+</tr>
+<tr>
+<td>navigationBarTextStyle</td>
+<td>String</td>
+<td>white</td>
+<td>导航栏标题颜色，仅支持 black/white</td>
+</tr>
+<tr>
+<td>navigationBarTitleText</td>
+<td>String</td>
+<td></td>
+<td>导航栏标题文字内容</td>
+</tr>
+<tr>
+<td>backgroundColor</td>
+<td>HexColor</td>
+<td>#ffffff</td>
+<td>窗口的背景色</td>
+</tr>
+<tr>
+<td>backgroundTextStyle</td>
+<td>String</td>
+<td>dark</td>
+<td>下拉背景字体、loading 图的样式，仅支持 dark/light</td>
+</tr>
+<tr>
+<td>enablePullDownRefresh</td>
+<td>Boolean</td>
+<td>false</td>
+<td>是否开启下拉刷新，详见<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/app-service/page.html#%E9%A1%B5%E9%9D%A2%E7%9B%B8%E5%85%B3%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0">页面相关事件处理函数</a>。</td>
+</tr>
+<tr>
+<td>onReachBottomDistance</td>
+<td>Number</td>
+<td>50</td>
+<td>页面上拉触底事件触发时距页面底部距离，单位为px</td>
+</tr>
+</tbody></table>
+<p>  <img src="/img/webimg/wechat01/config.jpg" srcset="/img/loading.gif" lazyload></p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/config.html#tabbar">tabBar</a></p>
+<p>如果小程序是一个多 tab 应用（客户端窗口的底部或顶部有 tab 栏可以切换页面），可以通过 tabBar 配置项指定 tab 栏的表现，以及 tab 切换时显示的对应页面。</p>
+<ol>
+<li>当设置 position 为 top 时，将不会显示 icon。</li>
+<li>tabBar 中的 list 是一个数组，<strong>只能配置最少2个、最多5个 tab</strong>，tab 按数组的顺序排序。</li>
+</ol>
+<p><strong>属性说明：</strong></p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>必填</th>
+<th>默认值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>color</td>
+<td>HexColor</td>
+<td>是</td>
+<td></td>
+<td>tab 上的文字默认颜色</td>
+</tr>
+<tr>
+<td>selectedColor</td>
+<td>HexColor</td>
+<td>是</td>
+<td></td>
+<td>tab 上的文字选中时的颜色</td>
+</tr>
+<tr>
+<td>backgroundColor</td>
+<td>HexColor</td>
+<td>是</td>
+<td></td>
+<td>tab 的背景色</td>
+</tr>
+<tr>
+<td>borderStyle</td>
+<td>String</td>
+<td>否</td>
+<td>black</td>
+<td>tabbar上边框的颜色， 仅支持 black/white</td>
+</tr>
+<tr>
+<td>list</td>
+<td>Array</td>
+<td>是</td>
+<td></td>
+<td>tab 的列表，详见 list 属性说明，最少2个、最多5个 tab</td>
+</tr>
+<tr>
+<td>position</td>
+<td>String</td>
+<td>否</td>
+<td>bottom</td>
+<td>可选值 bottom、top，设置成top是无图标</td>
+</tr>
+</tbody></table>
+<p>其中 list 接受一个数组，数组中的每个项都是一个对象，其属性值如下：</p>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>必填</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>pagePath</td>
+<td>String</td>
+<td>是</td>
+<td>页面路径，必须在 pages 中先定义</td>
+</tr>
+<tr>
+<td>text</td>
+<td>String</td>
+<td>是</td>
+<td>tab 上按钮文字</td>
+</tr>
+<tr>
+<td>iconPath</td>
+<td>String</td>
+<td>否</td>
+<td>图片路径，icon 大小限制为40kb，建议尺寸为 81px * 81px，当 postion 为 top 时，此参数无效</td>
+</tr>
+<tr>
+<td>selectedIconPath</td>
+<td>String</td>
+<td>否</td>
+<td>选中时的图片路径，icon 大小限制为40kb，建议尺寸为 81px * 81px ，当 postion 为 top 时，此参数无效</td>
+</tr>
+</tbody></table>
+<p>图示：</p>
+<p>  <img src="/img/webimg/wechat01/tabBar.jpg" srcset="/img/loading.gif" lazyload></p>
+<h1 id="微信小程序组件-标签"><a href="#微信小程序组件-标签" class="headerlink" title="微信小程序组件(标签)"></a>微信小程序组件(标签)</h1><p>组件文档：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/component/">https://mp.weixin.qq.com/debug/wxadoc/dev/component/</a></p>
+<h2 id="常用布局标签"><a href="#常用布局标签" class="headerlink" title="常用布局标签"></a>常用布局标签</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">view</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>				相当于    <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">text</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">text</span>&gt;</span>				相当于    <span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">image</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">image</span>&gt;</span>				相当于    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> /&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">navigator</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">navigator</span>&gt;</span>		相当于    <span class="hljs-tag">&lt;<span class="hljs-name">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">block</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">block</span>&gt;</span>				区块标签，不会渲染到页面<br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>注意：image组件默认宽度300px、高度225px，很多时候我们都不需要这个默认宽高，记得手动设置宽高</strong></p>
+<h2 id="常用表单标签"><a href="#常用表单标签" class="headerlink" title="常用表单标签"></a>常用表单标签</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> /&gt;</span>				<br><span class="hljs-tag">&lt;<span class="hljs-name">checkbox</span> /&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">radio</span>/&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="轮播图组件"><a href="#轮播图组件" class="headerlink" title="轮播图组件"></a>轮播图组件</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">swiper</span> <span class="hljs-attr">indicator-dots</span>=<span class="hljs-string">&quot;是否显示面板指示点&quot;</span> <span class="hljs-attr">autoplay</span>=<span class="hljs-string">&quot;是否自动切换&quot;</span> <span class="hljs-attr">interval</span>=<span class="hljs-string">&quot;自动切换时间间隔&quot;</span> <span class="hljs-attr">duration</span>=<span class="hljs-string">&quot;滑动动画时长&quot;</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">swiper-item</span>&gt;</span><br>      	<span class="hljs-tag">&lt;<span class="hljs-name">image</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;图片路径1&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;375&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;150&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">swiper-item</span>&gt;</span><br>	<span class="hljs-tag">&lt;<span class="hljs-name">swiper-item</span>&gt;</span><br>      	<span class="hljs-tag">&lt;<span class="hljs-name">image</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;图片路径2&quot;</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;375&quot;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&quot;150&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">swiper-item</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">swiper</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="微信小程序页面函数"><a href="#微信小程序页面函数" class="headerlink" title="微信小程序页面函数"></a>微信小程序页面函数</h1><h2 id="生命周期函数"><a href="#生命周期函数" class="headerlink" title="生命周期函数"></a>生命周期函数</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs awk">Page(&#123;<br>  <span class="hljs-regexp">/** 页面的初始数据 */</span><br>  data: &#123;<br>  &#125;,<br>  <span class="hljs-regexp">/** 生命周期函数--监听页面加载 */</span><br>  onLoad: <span class="hljs-keyword">function</span> (options) &#123;<br>  &#125;,<br>  <span class="hljs-regexp">/** 生命周期函数--监听页面初次渲染完成 */</span><br>  onReady: <span class="hljs-keyword">function</span> () &#123;<br>  &#125;,<br>  <span class="hljs-regexp">/** 生命周期函数--监听页面显示 */</span><br>  onShow: <span class="hljs-keyword">function</span> () &#123;<br>  &#125;,<br>  <span class="hljs-regexp">/** 生命周期函数--监听页面隐藏 */</span><br>  onHide: <span class="hljs-keyword">function</span> () &#123;<br>  &#125;,<br>  <span class="hljs-regexp">/** 生命周期函数--监听页面卸载 */</span><br>  onUnload: <span class="hljs-keyword">function</span> () &#123;<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h2 id="页面相关事件处理函数"><a href="#页面相关事件处理函数" class="headerlink" title="页面相关事件处理函数"></a>页面相关事件处理函数</h2><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-comment">/** 页面相关事件处理函数--监听用户下拉动作 */</span><br> onPullDownRefresh: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>&#123;<br> &#125;,<br> <span class="hljs-comment">/** 页面上拉触底事件的处理函数 */</span><br> onReachBottom: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>&#123;<br> &#125;,<br> <span class="hljs-comment">/** 用户点击右上角分享 */</span><br> onShareAppMessage: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>&#123;<br> &#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="WXML-布局"><a href="#WXML-布局" class="headerlink" title="WXML  布局"></a>WXML  布局</h1><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxml/data.html">数据绑定</a>  <code>&#123;&#123; &#125;&#125;</code></p>
+<figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs handlebars"><span class="xml"><span class="hljs-comment">&lt;!--wxml--&gt;</span></span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">view</span>&gt;</span> </span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">message</span>&#125;&#125;</span><span class="xml"> <span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs haskell">// page.js<br><span class="hljs-type">Page</span>(&#123;<br>  <span class="hljs-class"><span class="hljs-keyword">data</span>: &#123;</span><br><span class="hljs-class">    <span class="hljs-title">message</span>: &#x27;<span class="hljs-type">Hello</span> <span class="hljs-type">MINA</span>!&#x27;</span><br><span class="hljs-class">  &#125;</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h3 id="特别注意"><a href="#特别注意" class="headerlink" title="特别注意"></a>特别注意</h3><ol>
+<li><strong>花括号和引号之间不能有空格</strong></li>
+<li><strong>不要直接写 <code>checked=&quot;false&quot;</code>，其计算结果是一个字符串，转成 boolean 类型后代表真值。</strong></li>
+</ol>
+<figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs handlebars"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">checkbox</span> <span class="hljs-attr">checked</span>=<span class="hljs-string">&quot;false&quot;</span>&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-name">checkbox</span>&gt;</span>					其计算结果是一个字符串，转成 boolean 类型后变成了 true</span><br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">checkbox</span> <span class="hljs-attr">checked</span>=<span class="hljs-string">&quot;</span></span></span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">false</span>&#125;&#125;</span><span class="xml"><span class="hljs-tag"><span class="hljs-string">&quot;</span>&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-name">checkbox</span>&gt;</span>				正确写法</span><br></code></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxml/list.html">列表渲染</a> wx:for</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--wxml--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">wx:for</span>=<span class="hljs-string">&quot;&#123;&#123;array&#125;&#125;&quot;</span>&gt;</span> &#123;&#123;item&#125;&#125; <span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// page.js</span><br>Page(&#123;<br>  <span class="hljs-attr">data</span>: &#123;<br>    <span class="hljs-attr">array</span>: [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h3 id="wx-key-提高列表渲染时排序的效率"><a href="#wx-key-提高列表渲染时排序的效率" class="headerlink" title="wx:key   提高列表渲染时排序的效率"></a><code>wx:key </code>  提高列表渲染时排序的效率</h3><p><code>wx:key</code> 的值以两种形式提供</p>
+<ol>
+<li>字符串，代表在 for 循环的 array 中 item 的某个 property，该 property 的值需要是列表中唯一的字符串或数字，且不能动态改变。</li>
+<li>保留关键字 <code>*this</code> 代表在 for 循环中的 item 本身，这种表示需要 item 本身是一个唯一的字符串或者数字。</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxml/conditional.html">条件渲染</a> <code>wx:if   wx:else   wx:elif</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--wxml--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">wx:if</span>=<span class="hljs-string">&quot;&#123;&#123;length &gt;= 80&#125;&#125;&quot;</span>&gt;</span> 优秀 <span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">wx:elif</span>=<span class="hljs-string">&quot;&#123;&#123;length &gt;= 60&#125;&#125;&quot;</span>&gt;</span> 良好 <span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">wx:else</span>&gt;</span> 加油 <span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// page.js</span><br>Page(&#123;<br>  <span class="hljs-attr">data</span>: &#123;<br>    <span class="hljs-attr">length</span>: <span class="hljs-string">&#x27;95&#x27;</span><br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h3 id="wx-if-与-hidden-区别"><a href="#wx-if-与-hidden-区别" class="headerlink" title="wx:if 与 hidden 区别"></a><code>wx:if</code> 与 <code>hidden</code> 区别</h3><p> <code>wx:if</code>  是否渲染， <code>hidden</code>  是否隐藏。</p>
+<p>一般来说，<code>wx:if</code> 有更高的切换消耗而 <code>hidden</code> 有更高的初始渲染消耗。</p>
+<p>因此，如果需要频繁切换的情景下，用 <code>hidden</code> 更好。</p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/framework/view/wxml/event.html">事件</a>  </p>
+<ul>
+<li>事件对象可以获取额外信息，如<code>  id, dataset(自定义属性集合), touches(触摸点坐标)</code>。</li>
+</ul>
+<h3 id="事件绑定和冒泡"><a href="#事件绑定和冒泡" class="headerlink" title="事件绑定和冒泡"></a>事件绑定和冒泡</h3><ol>
+<li>冒泡事件    bind事件类型        如     <code>bindtap</code>   <code>bindlongpress</code></li>
+<li>非冒泡事件    catch事件类型    如  <code>catchtap</code>   <code> catchlongpress</code></li>
+</ol>
+<h3 id="常用事件类型"><a href="#常用事件类型" class="headerlink" title="常用事件类型"></a>常用事件类型</h3><table>
+<thead>
+<tr>
+<th>类型</th>
+<th>触发条件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>tap</td>
+<td>手指触摸后马上离开</td>
+</tr>
+<tr>
+<td>longpress</td>
+<td>手指触摸后，超过350ms再离开，如果指定了事件回调函数并触发了这个事件，tap事件将不被触发</td>
+</tr>
+</tbody></table>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--wxml--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">data-index</span>=<span class="hljs-string">&quot;自定义属性&quot;</span> <span class="hljs-attr">bindtap</span>=<span class="hljs-string">&quot;tapHandle&quot;</span>&gt;</span> 点我触发事件 <span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// page.js</span><br>Page(&#123;<br>  <span class="hljs-attr">tapHandle</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(event)<br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h3 id="事件传参注意"><a href="#事件传参注意" class="headerlink" title="事件传参注意"></a>事件传参注意</h3><p>小程序绑定事件只能写函数名称，不能通过括号方式传参。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--wxml--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">bindtap</span>=<span class="hljs-string">&quot;tapHandle(520)&quot;</span>&gt;</span> 点我触发事件 <span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>								错误，事件不能触发<br><span class="hljs-tag">&lt;<span class="hljs-name">view</span> <span class="hljs-attr">data-index</span>=<span class="hljs-string">&quot;520&quot;</span> <span class="hljs-attr">bindtap</span>=<span class="hljs-string">&quot;tapHandle&quot;</span>&gt;</span> 点我触发事件 <span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span>	<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// page.js</span><br>Page(&#123;<br>  <span class="hljs-attr">tapHandle</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>) </span>&#123;<br>     <span class="hljs-built_in">console</span>.log( event.target.dataset.index );  <span class="hljs-comment">// 输出标签自定义属性上的index值</span><br>  &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h2 id="WXS-脚本"><a href="#WXS-脚本" class="headerlink" title="WXS  脚本"></a>WXS  脚本</h2><p>WXS（WeiXin Script）是小程序的一套脚本语言，功能类似<code>&lt;script&gt;</code>标签，用于在视图层定义函数(比较少用)。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--wxml--&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">wxs</span> <span class="hljs-attr">module</span>=<span class="hljs-string">&quot;foo&quot;</span>&gt;</span><br>var sum = function(a,b)&#123;<br>  return a+b;<br>&#125;;<br>// 这里可以导出一个对象，这个对象可以直接在界面上使用 <br>module.exports.sum = sum;<br><span class="hljs-tag">&lt;/<span class="hljs-name">wxs</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">view</span>&gt;</span> &#123;&#123;foo.sum&#125;&#125; <span class="hljs-tag">&lt;/<span class="hljs-name">view</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h1 id="WXSS-样式"><a href="#WXSS-样式" class="headerlink" title="WXSS 样式"></a>WXSS 样式</h1><p><code>WXSS(WeiXin Style Sheets)</code>是一套样式语言。</p>
+<p>与 CSS 相比，WXSS 扩展以下2个特性：</p>
+<ul>
+<li>尺寸单位      <code>rpx ( responsive pixel 响应式像素)</code></li>
+<li>样式导入     <code> @import  &quot;样式表路径&quot;;</code></li>
+</ul>
+<h1 id="常用快捷键"><a href="#常用快捷键" class="headerlink" title="常用快捷键"></a>常用快捷键</h1><table>
+<thead>
+<tr>
+<th>快捷键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>shift + alt + F</td>
+<td>格式化代码</td>
+</tr>
+<tr>
+<td>ctrl + P</td>
+<td>跳到文件</td>
+</tr>
+<tr>
+<td>ctrl + E</td>
+<td>跳到最近文件</td>
+</tr>
+</tbody></table>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Web/">Web</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/WeChat/">WeChat</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2018/01/08/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A015-React/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">前端学习15-React</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2018/01/03/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A012-Ajax/">
+                        <span class="hidden-mobile">前端学习12-Ajax</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"fc36e17008bd1e3e898d","clientSecret":"d9d3bc7feb2b8abbb2d05b43b2d16a1d19c9bba2","repo":"cylinclinv.github.io","owner":"cylinclinv","admin":["cylinclinv"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":true,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'd552611022f6e32762d30fe3022f07c9'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>clyde</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

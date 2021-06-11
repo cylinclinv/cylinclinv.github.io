@@ -1,0 +1,1148 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/logo.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="clyde">
+  <meta name="keywords" content="">
+  
+  <title>前端学习15-React - Clyde</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Clyde</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/cover/130.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="前端学习15-React">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2018-01-08 22:13" pubdate>
+        2018年1月8日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      11.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      134
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">前端学习15-React</h1>
+            
+            <div class="markdown-body">
+              <h1 id="移动App第1天"><a href="#移动App第1天" class="headerlink" title="移动App第1天"></a>移动App第1天</h1><h2 id="什么是混合移动App开发【重点】"><a href="#什么是混合移动App开发【重点】" class="headerlink" title="什么是混合移动App开发【重点】"></a>什么是混合移动App开发【重点】</h2><ol>
+<li>苹果上的软件是如何开发出来的：使用的是 OC、或者使用Swift这门语言</li>
+<li>安卓平台上的软件又是如何开发出来的：使用安卓相关的语言开发的，Java，安卓的控件进行开发</li>
+<li>苹果和安卓平台上共有的软件是如何开发出来的：腾讯招两套开发人员【开发组】，手机京东</li>
+<li>前端移动 App（Application）开发技术，去开发手机端的应用程序；</li>
+<li>前端的混合移动App开发技术，并没有使用 苹果 或 安卓 官方推荐的 开发平台和开发方式，而是抛弃了 官方提供的方式，使用 前端的独有的技术进行移动App开发体验；</li>
+</ol>
+<blockquote>
+<p>什么是移动App开发：通俗的理解，就是把开发Web网站的技术（HTML+CSS+JS），通过某种方式，移植到移动App开发上进行使用，这种利用Web开发技术进行移动端开发体验的方式，叫做混合移动App开发！</p>
+</blockquote>
+<h3 id="关于移动App开发，需要知道的几个概念："><a href="#关于移动App开发，需要知道的几个概念：" class="headerlink" title="关于移动App开发，需要知道的几个概念："></a>关于移动App开发，需要知道的几个概念：</h3><ul>
+<li><p>原生开发：它的英文单词是（NativeApp）,指的就是使用 IOS、Android 官方提供的工具、开发平台、配套语言进行 手机App开发的方式；</p>
+</li>
+<li><p>混合开发：（HybirdApp）就是使用前端已有的技术，HTML + CSS + JS ，然后再搭配一些相关的打包编译技术，就能够开发出一个手机App，安装到手机中进行使用；</p>
+</li>
+<li><p>什么是App：App是（Application的缩写），意思是：可安装的应用程序；</p>
+</li>
+<li><p>App的分类：</p>
+<ul>
+<li>按照平台来划分：<ul>
+<li>PC端：浏览器、代码编辑器、PC端的游戏、听歌的、看视频的、聊天的</li>
+<li>移动端：手机QQ、手机微信、手机爱奇艺、亡者农药</li>
+</ul>
+</li>
+<li>按照功能来划分：<ul>
+<li>游戏：愤怒的小鸡仔、植物大战僵尸、亡者农药…..LOL</li>
+<li>应用：非游戏类的软件，支付宝、陌陌、美团外卖、</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>App和Web的区别：</p>
+<ul>
+<li>APP概念：App是（Application的缩写），意思是：可安装的应用程序；</li>
+</ul>
+<ul>
+<li>优点：流畅、稳定、基本上一些App都可以脱网运行，用户体验好；</li>
+<li>缺点：不能跨平台</li>
+</ul>
+<ul>
+<li>Web概念：特指那些基于浏览器的web网站（本质：就是网页）</li>
+</ul>
+<ul>
+<li>优点：可以跨平台（浏览器天生就是跨平台的）</li>
+<li>缺点：没有App流畅、不稳定，受限于网速和网络</li>
+</ul>
+</li>
+</ul>
+<h2 id="为什么要学混合App开发"><a href="#为什么要学混合App开发" class="headerlink" title="为什么要学混合App开发"></a>为什么要学混合App开发</h2><h3 id="从程序员的角度分析："><a href="#从程序员的角度分析：" class="headerlink" title="从程序员的角度分析："></a>从程序员的角度分析：</h3><ol>
+<li>挣钱多（别人不会的你会，别人会的，你精通）</li>
+<li>对于找工作来说：（React Native）市场需求量大，好找工作，提高我们的行业竞争力</li>
+<li>能接触到前端流行的技术和框架（各大公司基本都再用React），注意：再React中我们全部都使用ES6语法（class）</li>
+</ol>
+<ul>
+<li>前端是一个永恒的行业???（只要世界上还有浏览器的存在，必然需要前端，只不过，随着时间的推移，技术更新换代，可能我们对新技术的要求会越来高）</li>
+<li>屌丝的崛起之路：<code>只能做页面</code> -&gt; <code>Ajax前后台数据交互</code> -&gt; <code>Jquery、Bootstrap</code> -&gt; webApp -&gt; <code>三大框架</code> -&gt; <code>可以做手机混合App/桌面应用</code> -&gt; <code>可以做手机原生App</code> -&gt; <code>将来或许可以发射火箭发射卫星发射导弹</code> -&gt; <code>终极目标：统一全宇宙</code></li>
+</ul>
+<ol start="4">
+<li>（搞前端App开发）能购置一批牛逼的设备【苹果笔记本、IOS测试机、安卓手机（三星的、华为、小米）】</li>
+</ol>
+<h3 id="从企业的角度分析-选择合适自身的移动App开发方式-【重点】"><a href="#从企业的角度分析-选择合适自身的移动App开发方式-【重点】" class="headerlink" title="从企业的角度分析:(选择合适自身的移动App开发方式)【重点】"></a>从企业的角度分析:(选择合适自身的移动App开发方式)【重点】</h3><ul>
+<li>节省开发成本</li>
+</ul>
+<ul>
+<li>从工资上：尽最大的可能，压榨员工的剩余劳动力</li>
+<li>从时间上：因为 原生的安卓和IOS开发，它们的开发效率并不是很高，因为原生的代码复杂度比较高，因此原生的开发周期比较慢；如果采用移动App开发，那么，我们的开发周期会很短；因为 HTML + CSS + JS 足够简单；（对于前端开发APP来说，有两种方式，其中，比较早的一种，也是比较简单的一种，就是 先开发出一个网站， 然后再把网站运行一行打包的命令，就能得到一个 APP了）</li>
+</ul>
+<ol>
+<li>市面上常见的App开发方式</li>
+</ol>
+<ul>
+<li><p>WebApp：基于浏览器实现的，有特定功能的网站，称作WebApp</p>
+<ul>
+<li>例如：百度脑图、<a target="_blank" rel="noopener" href="https://m.jd.com/%E3%80%81https://m.taobao.com/#index">https://m.jd.com/、https://m.taobao.com/#index</a></li>
+<li>优点：跨平台</li>
+<li>缺点：依赖网络，有白屏效果，相对来说，用户体验差；不能调用硬件底层得设备，比如摄像头；</li>
+</ul>
+</li>
+<li><p>NativeApp：用android和Object-C等原生语言开发的应用</p>
+<ul>
+<li>优点：体验好；用户使用起来很流畅；非常适合做游戏【性能高】；可以直接调用硬件底层的API；</li>
+<li>缺点：不能跨平台</li>
+</ul>
+</li>
+<li><p>HybirdApp：利用前端所学的知识去开发移动端App，兼具2者的优势</p>
+<ul>
+<li>优点：能够跨平台；体验会好一些；也能够调用硬件底层的API</li>
+<li>缺点：相对于原生体验稍微弱一丢丢；不适合做游戏；适合做非游戏类型的手机App；</li>
+<li>应用场景：</li>
+</ul>
+</li>
+<li><p>注意： 使用 Java 或者 IOS 写出来的代码和程序，在最终运行的时候，普通的文本代码，都会被编译为 原生的机器码去运行，并不像 JS 这样，解析执行，Java代码是 编译执行的；</p>
+</li>
+</ul>
+<ol start="2">
+<li>三种开发方式的原理和对比<br><img src="/img/webimg/react01/%E4%B8%89%E7%A7%8D%E5%BC%80%E5%8F%91%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8E%9F%E7%90%86.png" srcset="/img/loading.gif" lazyload><br><img src="/img/webimg/react01/%E4%B8%89%E7%A7%8D%E5%BC%80%E5%8F%91%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%AF%B9%E6%AF%94.png" srcset="/img/loading.gif" lazyload></li>
+<li><a target="_blank" rel="noopener" href="https://facebook.github.io/react-native/showcase.html">谁在使用React Native？？？</a></li>
+</ol>
+<h2 id="企业如何选择合适自己的App开发方式"><a href="#企业如何选择合适自己的App开发方式" class="headerlink" title="企业如何选择合适自己的App开发方式"></a>企业如何选择合适自己的App开发方式</h2><ol>
+<li>如果这个企业中，曾经使用原生技术开发过一些APP，那么在维护的时候，必然需要使用原生技术来维护</li>
+<li>如果企业中，需要做一些游戏级别的应用，那么推荐使用原生，因为原生运行效率高，对耗电量处理的很好；</li>
+<li>如果企业做一些应用级别的非游戏软件，比如 淘宝、京东、美团，就可以使用 混合APP了；</li>
+<li>在企业中，最主要的是好的点子，如果有了一个好的项目立案，那么最好要立即把这个项目做出来；这时候，使用混合App非常合适，因为开发周期很短，能快速上线，抢先占领市场；【裤衩开发】</li>
+</ol>
+<h2 id="企业中项目开发流程"><a href="#企业中项目开发流程" class="headerlink" title="企业中项目开发流程"></a>企业中项目开发流程</h2><ul>
+<li>需求调研：产品定位、受众群体、市场需求、开发价值；【产出物：需求文档】</li>
+<li>产品设计：功能模块、流程逻辑；【产出物：设计文档，交互稿】，确定项目的基本功能；</li>
+<li>项目开发：项目架构、美工、前端、后台、测试【产品的把控】<strong>要理解前后端分离的概念</strong></li>
+<li>运营维护：上线试运行、调Bug、微调功能模块、产品迭代</li>
+</ul>
+<blockquote>
+<p>根据需求搞设计，根据设计做开发</p>
+</blockquote>
+<h2 id="企业技术选型-几大主流技术之间的关系"><a href="#企业技术选型-几大主流技术之间的关系" class="headerlink" title="企业技术选型 - 几大主流技术之间的关系"></a>企业技术选型 - 几大主流技术之间的关系</h2><ol>
+<li>Angular.js 和 Ionic</li>
+</ol>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://angularjs.org/">Angular1官网</a></li>
+<li><a target="_blank" rel="noopener" href="https://angular.io/">Angular2官网</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.ionic.wang/">Ionic 中文网</a></li>
+<li><a target="_blank" rel="noopener" href="http://ionicframework.com/getting-started/">Ionic 英文官网</a></li>
+</ul>
+<ol start="2">
+<li>Vue.js 和 Weex</li>
+</ol>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://cn.vuejs.org/">Vue.js官网</a></li>
+<li><a target="_blank" rel="noopener" href="http://weex.apache.org/cn/references/index.html">Weex文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/apache/incubator-weex">Weex - github地址 - 新</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/alibaba/weex">Weex - github地址 - 旧</a></li>
+</ul>
+<ol start="3">
+<li>React.js 和 React-Native</li>
+</ol>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://facebook.github.io/react/">React.js英文官网</a></li>
+<li><a target="_blank" rel="noopener" href="http://reactnative.cn/">ReactNative中文网</a></li>
+<li><a target="_blank" rel="noopener" href="http://facebook.github.io/react-native/">ReactNative英文网</a></li>
+</ul>
+<blockquote>
+<p>Angular, Vue, React 这三个都是前端框架，我们在进行混合App开发的时候，只是用到了这三个框架的【基础语法】而已；<br>Ionic， Weex， ReactNatvie 这三个都是打包工具（提供了相关的命令行，只要运行指定的命令，就能够把项目打包成一个手机App出来），能够把我们开发出来的应用，最终打包成一个可安装的手机端程序安装包；同时，这三个东西，也提供了好用的一些小组件，方便我们去构建移动App的用户界面；</p>
+</blockquote>
+<h2 id="前端混合App开发框架"><a href="#前端混合App开发框架" class="headerlink" title="前端混合App开发框架"></a>前端混合App开发框架</h2><ol>
+<li>Html5+、ReactNative、Weex、Ionic</li>
+<li><a target="_blank" rel="noopener" href="http://www.html5plus.org/#home">认识HTML5+</a></li>
+</ol>
+<ul>
+<li>h5+是一个产业联盟，它有一些互联网成员，专门在中国推广H5</li>
+</ul>
+<ol start="3">
+<li><a target="_blank" rel="noopener" href="http://www.dcloud.io/">HBuilder官网</a></li>
+</ol>
+<h2 id="开发框架之间的区别"><a href="#开发框架之间的区别" class="headerlink" title="开发框架之间的区别"></a>开发框架之间的区别</h2><ol>
+<li>Html5+ 和 Ionic</li>
+<li>ReactNative 和 Weex</li>
+</ol>
+<h2 id="使用HBuilder生成安卓应用（在线）"><a href="#使用HBuilder生成安卓应用（在线）" class="headerlink" title="使用HBuilder生成安卓应用（在线）"></a>使用HBuilder生成安卓应用（在线）</h2><p><a target="_blank" rel="noopener" href="http://www.html5plus.org/doc/zh_cn/webview.html">API地址</a><br>Hbuilder这个工具，是一个在线打包工具，使用很方便，不需要在本地配置开发环境；直接将做好的网站，通过一些简单的操作，就能在线打包为一个App出来；</p>
+<ul>
+<li>在项目上右键 -&gt; 发行 -&gt; 发行为原生安装包</li>
+</ul>
+<p>好处：本地不用配置开发环境；操作方便，对于程序员来说不关心打包的过程，打包过程对于我们来说是透明的；<br>缺点：程序员很少能干预打包的过程；源代码被提交到了云端的服务器，存在项目核心代码被泄露的风险；</p>
+<h2 id="环境变量的使用"><a href="#环境变量的使用" class="headerlink" title="环境变量的使用"></a>环境变量的使用</h2><p>作用：将需要全局使用的工具或者应用程序，配置到Path环境变量中，可以很方便的通过命令行的形式，在任何想要运行这些应用程序的地方，运行它们；</p>
+<h2 id="移动App开发环境配置【重点】"><a href="#移动App开发环境配置【重点】" class="headerlink" title="移动App开发环境配置【重点】"></a>移动App开发环境配置【重点】</h2><h3 id="安装最新版本的java-jdk"><a href="#安装最新版本的java-jdk" class="headerlink" title="安装最新版本的java jdk"></a>安装最新版本的java jdk</h3><ol>
+<li>修改环境变量，新增<code>JAVA_HOME</code>的系统环境变量，值为<code>C:\Program Files (x86)\Java\jdk1.8.0_112</code>，也就是安装JDK的根目录</li>
+<li>修改系统环境变量<code>Path</code>，在<code>Path</code>之后新增<code>%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;</code></li>
+<li>新建<strong>系统环境变量</strong><code>CLASSPATH</code>，值为<code>.;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;</code></li>
+<li>保存所有的系统环境变量，同时退出系统环境变量配置窗口，然后运行cmd命令行工具，输入<code>javac</code>，如果能出现javac的命令选项，就表示配置成功！</li>
+</ol>
+<h3 id="安装Node-js环境"><a href="#安装Node-js环境" class="headerlink" title="安装Node.js环境"></a>安装Node.js环境</h3><p>注意：需要安装最新的长期稳定版本，不要实验版本；安装完毕之后的node.js会自动配置到全局系统环境变量中<br>安装完毕后，可以输入<code>node -v</code>查看node版本号；</p>
+<h3 id="安装C-环境"><a href="#安装C-环境" class="headerlink" title="安装C++环境"></a>安装C++环境</h3><p>大多数情况下操作系统自带C++环境，不需要手动安装C++环境；<br>如果运行报错，则需要手动安装visual studio中的C++环境；</p>
+<h3 id="安装Git环境"><a href="#安装Git环境" class="headerlink" title="安装Git环境"></a>安装Git环境</h3><p>Git安装完毕后，会自动配置到系统环境变量中；<br>可以通过运行<code>git --version</code>来检查是否正确安装和配置了Git的环境变量；</p>
+<h3 id="安装Python环境"><a href="#安装Python环境" class="headerlink" title="安装Python环境"></a>安装Python环境</h3><ol>
+<li>注意：安装Python时候，只能<strong>安装2.×的版本</strong>，注意勾选安装界面上的<code>Add Python to path</code>，这样才能自动将Python安装到系统环境变量中；</li>
+<li>安装完毕之后，可以在命令行中运行<code>python</code>，检查是否成功安装了python。</li>
+</ol>
+<h3 id="配置安卓环境"><a href="#配置安卓环境" class="headerlink" title="配置安卓环境"></a>配置安卓环境</h3><ol>
+<li>安装<code>installer_r24.3.4-windows.exe</code>，最好手动选择安装到C盘下的android目录</li>
+<li>打开安装的目录，将<code>android-25</code>、<code>android-23</code>(react-native必须依赖这个)解压后，放到<code>platforms</code>文件夹下</li>
+<li>解压<code>platform-tools</code>，放到<code>platform-tools</code>文件夹下</li>
+<li>【这一步直接忽略即可！】<strong>tools文件夹不解压覆盖也行；</strong><del>解压<code>tools</code>，放到安装根目录中</del></li>
+<li>解压<code>build-tools_r23.0.1-windows.zip(react-native必须依赖这个)</code>、<code>build-tools_r23.0.2-windows.zip(weex必须依赖这个)</code>和<code>build-tools_r23.0.3-windows.zip</code>，并将解压出来的文件夹，分别改名为版本号<code>23.0.1</code>、<code>23.0.2</code>和<code>23.0.3</code>；在安装目录中新建文件夹<code>build-tools</code>，并将改名为版本号之后的文件夹，放到新创建出来的<code>build-tools</code>文件夹下</li>
+<li>在安装目录中，新建<code>extras</code>文件夹，在<code>extras</code>文件夹下新建<code>android</code>文件夹；解压<code>m2responsitory</code>文件夹和<code>support</code>文件夹，放到新建的<code>extras -&gt; android</code>文件夹下</li>
+<li>配置安装环境变量：在系统环境变量中新建<code>ANDROID_HOME</code>，值为android SDK Manager的安装路径<code>C:\Users\liulongbin\AppData\Local\Android\android-sdk</code>，紧接着，在Path中新增<code>;%ANDROID_HOME%\tools;%ANDROID_HOME%\platform-tools;</code></li>
+</ol>
+<h2 id="ReactNative快速打包"><a href="#ReactNative快速打包" class="headerlink" title="ReactNative快速打包"></a><a target="_blank" rel="noopener" href="http://reactnative.cn/docs/0.42/getting-started.html">ReactNative快速打包</a></h2><ol>
+<li>安装完node后建议<strong>设置npm镜像</strong>以加速后面的过程（或使用科学上网工具）。注意：<strong>不要使用cnpm！</strong>cnpm安装的模块路径比较奇怪，packager不能正常识别！</li>
+</ol>
+<blockquote>
+<p>npm config set registry <a target="_blank" rel="noopener" href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a> –global<br><br>npm config set disturl <a target="_blank" rel="noopener" href="https://npm.taobao.org/dist">https://npm.taobao.org/dist</a> –global</p>
+</blockquote>
+<ol start="2">
+<li>Yarn、React Native的命令行工具（react-native-cli）</li>
+</ol>
+<ul>
+<li><p>Yarn是Facebook提供的替代npm的工具，可以加速node模块的下载。React Native的命令行工具用于执行创建、初始化、更新项目、运行打包服务（packager）等任务。</p>
+<blockquote>
+<p>npm install -g yarn react-native-cli</p>
+</blockquote>
+</li>
+<li><p>安装完yarn后同理也要设置镜像源：</p>
+<blockquote>
+<p>yarn config set registry <a target="_blank" rel="noopener" href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a> –global<br><br>yarn config set disturl <a target="_blank" rel="noopener" href="https://npm.taobao.org/dist">https://npm.taobao.org/dist</a> –global</p>
+</blockquote>
+</li>
+</ul>
+<ol start="3">
+<li>运行<code>react-native init AwesomeProject</code>创建React-Native项目</li>
+<li>运行<code>cd AwesomeProject</code>切换到项目根目录中，运行<code>adb devices</code>来确保有设备连接到了电脑上</li>
+<li>运行<code>react-native run-android</code>打包编译安卓项目，并部署到模拟器或开发机中</li>
+<li>运行上一条命令之前，要确保有设备连接到了电脑上，可以运行<code>adb devices</code>查看当前接入的设备列表，打包好的文件，放到了<code>android\app\build\outputs\apk</code>目录下</li>
+<li><a target="_blank" rel="noopener" href="http://www.open-open.com/lib/view/open1477469117948.html">入坑指南</a></li>
+</ol>
+<blockquote>
+<p><strong>问题1：开启悬浮框权限；</strong><br><br><strong>问题2：Could not get BatchedBridge, make sure your bundle is packaged correctly</strong><br><br>解决方案：在终端中，进入到项目的根目录，执行下面这段命令行：<br><br><code>react-native bundle --platform android --dev false --entry-file index.android.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res/</code><br><br>运行之前，需要确保<code>android/app/src/main/</code>目录下有<code>assets</code>文件夹，如果没有，手动创建之~，再运行上面的命令；<br><br><strong>问题3：could not connect to development server</strong><br><br>解决方案：晃动手机，唤起设置属性窗口，点击“Dev settings”，再点击Debuug server host 出现设置ip地址窗口，填写Ip地址和端口号8081，例如<code>192.168.1.111:8081</code></p>
+</blockquote>
+<h2 id="Weex快速打包"><a href="#Weex快速打包" class="headerlink" title="Weex快速打包"></a><a target="_blank" rel="noopener" href="http://weex.apache.org/cn/guide/tools/toolkit.html">Weex快速打包</a></h2><ol>
+<li>安装依赖:Weex 官方提供了 weex-toolkit 的脚手架工具来辅助开发和调试。首先，你需要最新稳定版的 Node.js 和 Weex CLi。</li>
+<li>运行<code>npm install -g weex-toolkit</code>安装Weex 官方提供的 <code>weex-toolkit</code> 脚手架工具到全局环境中</li>
+<li>运行<code>weex create project-name</code>初始化Weex项目</li>
+<li>进入到项目的根目录中，打开cmd窗口，运行<code>weex platform add android</code>安装android模板，首次安装模板时，等待时间较长，建议fq安装模板</li>
+<li>打开<code>android studio</code>中的<code>安卓模拟器</code>，或者将<code>启用USB调试的真机</code>连接到电脑上，运行<code>weex run android</code>，打包部署weex项目</li>
+<li>部署完成，查看项目效果</li>
+</ol>
+<h2 id="总结重点"><a href="#总结重点" class="headerlink" title="总结重点"></a>总结重点</h2><ol>
+<li>什么是前端移动App开发</li>
+<li>市面上常见的App开发方式及优缺点</li>
+<li>使用Hbuilder在线生成安卓应用</li>
+<li>学会配置ReactNative开发环境</li>
+<li>掌握ReactNative打包流程</li>
+</ol>
+<h2 id="移动App第2天"><a href="#移动App第2天" class="headerlink" title="移动App第2天"></a>移动App第2天</h2><h2 id="webpack的发布策略"><a href="#webpack的发布策略" class="headerlink" title="webpack的发布策略"></a>webpack的发布策略</h2><ol>
+<li>在实际开发中，一般会有两套项目方案：</li>
+</ol>
+<ul>
+<li>一套是开发期间的项目，包含了测试文件、测试数据、开发工具、测试工具等相关配置，有利于项目的开发和测试，但是这些文件仅用于开发，发布项目时候需要剔除；</li>
+<li>另一套是部署期间的项目，剔除了那些客户用不到的测试数据测试工具和文件，比较纯净，减少了项目发布后的体积，有利于安装和部署！</li>
+</ul>
+<ol start="2">
+<li>为了满足我们的发布策略，需要新建一个配置文件，命名为<code>webpack.publish.config.js</code>，将<code>webpack.config.js</code>的配置拷贝过去，剔除一些开发配置项即可：</li>
+</ol>
+<ul>
+<li>将<code>devServer</code>节点删掉：</li>
+</ul>
+ <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">devServer:</span> &#123;<br>       <span class="hljs-attr">hot:</span> <span class="hljs-literal">true</span>,<br>       <span class="hljs-attr">open:</span> <span class="hljs-literal">true</span>,<br>       <span class="hljs-attr">port:</span> <span class="hljs-number">4321</span><br>   &#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>将<code>plugins</code>节点下的热更新插件删掉：</li>
+</ul>
+ <figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-keyword">new</span> <span class="hljs-type">webpack</span>.HotModuleReplacementPlugin()<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>修改<code>url-loader</code>，将图片放入统一的images文件夹之下：</li>
+</ol>
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs clojure">&#123; test: /\.(<span class="hljs-name">png</span>|jpg|gif)$/, use: &#x27;url-loader?limit=43959&amp;name=images/[name].[ext]&#x27; &#125;<br></code></pre></td></tr></table></figure>
+
+<p>或者使用<code>img-</code>前缀加上<code>7位的hash名称</code>：</p>
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs clojure">&#123; test: /\.(<span class="hljs-name">png</span>|jpg|gif)$/, use: &#x27;url-loader?limit=43959&amp;name=images/img-[hash:7].[ext]&#x27; &#125;<br></code></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>在<code>package.json</code>中的script节点下新增<code>dev</code>命令，通过<code>--config</code>指定webpack启动时要读取的配置文件：</li>
+</ol>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 1c"><span class="hljs-string">&quot;pub&quot;</span>: <span class="hljs-string">&quot;webpack --config webpack.publish.config.js&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="每次重新构建时候删除dist目录"><a href="#每次重新构建时候删除dist目录" class="headerlink" title="每次重新构建时候删除dist目录"></a>每次重新构建时候删除dist目录</h2><ol>
+<li>运行<code>cnpm i clean-webpack-plugin --save-dev</code></li>
+<li>在头部引入这个插件：</li>
+</ol>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">var cleanWebpackPlugin</span> = require(<span class="hljs-string">&#x27;clean-webpack-plugin&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>在<code>plugins</code>节点下使用这个插件：</li>
+</ol>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-keyword">new</span> <span class="hljs-type">cleanWebpackPlugin</span>([<span class="hljs-string">&#x27;dist&#x27;</span>])<br></code></pre></td></tr></table></figure>
+
+<h2 id="分离第三方包改造webpack-publish-config-js"><a href="#分离第三方包改造webpack-publish-config-js" class="headerlink" title="分离第三方包改造webpack.publish.config.js"></a>分离第三方包改造<code>webpack.publish.config.js</code></h2><ol>
+<li>改造entry节点如下：</li>
+</ol>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs awk">entry: &#123;<br>        app: path.resolve(__dirname, <span class="hljs-string">&#x27;src/js/main.js&#x27;</span>), <span class="hljs-regexp">//</span> 自己代码的入口<br>        vendors: [<span class="hljs-string">&#x27;jquery&#x27;</span>] <span class="hljs-regexp">//</span> 要分离的第三方包的入口<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>在plugins节点下新增插件：</li>
+</ol>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs awk">new webpack.optimize.CommonsChunkPlugin(&#123; <span class="hljs-regexp">//</span> 抽离第三方包的插件<br>        name:<span class="hljs-string">&#x27;vendors&#x27;</span>, <span class="hljs-regexp">//</span> 指定抽离第三方包的入口名称<br>        filename:<span class="hljs-string">&#x27;vendors.js&#x27;</span> <span class="hljs-regexp">//</span> 抽离出的公共模块的名称<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><code>html-webpack-plugin</code>在生成<code>index.html</code>文件的时候，会自动将抽离的第三方包引入进去！</li>
+</ol>
+<h2 id="优化压缩JS"><a href="#优化压缩JS" class="headerlink" title="优化压缩JS"></a><a target="_blank" rel="noopener" href="https://webpack.js.org/configuration/plugins/#plugins">优化压缩JS</a></h2><p>在plugins数组中添加：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">new</span> webpack.optimize.UglifyJsPlugin(&#123; <span class="hljs-comment">// 优化压缩JS</span><br>    compress:&#123;<br>        warnings:<span class="hljs-literal">false</span> <span class="hljs-comment">// 移除警告</span><br>    &#125;<br>&#125;),<br><span class="hljs-keyword">new</span> webpack.DefinePlugin(&#123; <span class="hljs-comment">// 设置为产品上线环境，进一步压缩JS代码</span><br>    <span class="hljs-string">&#x27;process.env.NODE_ENV&#x27;</span>: <span class="hljs-string">&#x27;&quot;production&quot;&#x27;</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<h2 id="优化压缩HTML文件"><a href="#优化压缩HTML文件" class="headerlink" title="优化压缩HTML文件"></a>优化压缩HTML文件</h2><p>在<code>plugins</code>节点下的<code>htmlWebpackPlugin</code>插件中，添加<code>minify</code>子节点：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs awk">minify:&#123;<span class="hljs-regexp">//</span> 压缩HTML代码<br>    collapseWhitespace:true, <span class="hljs-regexp">//</span> 合并空白字符<br>    removeComments:true, <span class="hljs-regexp">//</span> 移除注释<br>    removeAttributeQuotes:true <span class="hljs-regexp">//</span> 移除属性上的引号<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>其他优化项请参考：<a target="_blank" rel="noopener" href="https://github.com/kangax/html-minifier#options-quick-reference">html-minifier - github</a></p>
+<h2 id="抽取CSS文件"><a href="#抽取CSS文件" class="headerlink" title="抽取CSS文件"></a><a target="_blank" rel="noopener" href="https://github.com/webpack-contrib/extract-text-webpack-plugin">抽取CSS文件</a></h2><ol>
+<li>运行<code>npm install --save-dev extract-text-webpack-plugin</code>安装抽取CSS文件的插件。</li>
+<li>在配置文件中导入插件：</li>
+</ol>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">const ExtractTextPlugin</span> = require(<span class="hljs-string">&quot;extract-text-webpack-plugin&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>修改CSS和Sass的loader如下：</li>
+</ol>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs awk">&#123;<br>    test: <span class="hljs-regexp">/\.css$/</span>, use: ExtractTextPlugin.extract(&#123;<br>        fallback: <span class="hljs-string">&quot;style-loader&quot;</span>,<br>        use: [<span class="hljs-string">&quot;css-loader&quot;</span>],<br>        publicPath: <span class="hljs-string">&#x27;../&#x27;</span> <span class="hljs-regexp">//</span> 设置图片路径<br>    &#125;)<br>&#125;,<br>&#123;<br>    test: <span class="hljs-regexp">/\.scss$/</span>, use: ExtractTextPlugin.extract(&#123;<br>        fallback: <span class="hljs-string">&quot;style-loader&quot;</span>,<br>        use: [<span class="hljs-string">&#x27;css-loader&#x27;</span>, <span class="hljs-string">&#x27;sass-loader&#x27;</span>],<br>        publicPath: <span class="hljs-string">&#x27;../&#x27;</span> <span class="hljs-regexp">//</span> 设置图片路径<br>    &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>在plugins节点下新增插件：</li>
+</ol>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-keyword">new</span> <span class="hljs-type">ExtractTextPlugin</span>(<span class="hljs-string">&quot;css/styles.css&quot;</span>), <span class="hljs-comment">// 抽取CSS文件的插件</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="压缩抽取出来的CSS文件"><a href="#压缩抽取出来的CSS文件" class="headerlink" title="压缩抽取出来的CSS文件"></a><a target="_blank" rel="noopener" href="https://github.com/NMFR/optimize-css-assets-webpack-plugin">压缩抽取出来的CSS文件</a></h2><ol>
+<li>运行<code>cnpm i optimize-css-assets-webpack-plugin --save-dev</code>安装插件到开发依赖。</li>
+<li>在配置文件头部导入插件：</li>
+</ol>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">var OptimizeCssAssetsPlugin</span> = require(<span class="hljs-string">&#x27;optimize-css-assets-webpack-plugin&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>在plugins节点下新增插件：</li>
+</ol>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-keyword">new</span> <span class="hljs-type">OptimizeCssAssetsPlugin</span>() <span class="hljs-comment">// 压缩CSS文件的插件</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><ol>
+<li><a target="_blank" rel="noopener" href="http://www.sasschina.com/guide/">Sass 基础教程</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/webpack/webpack-dev-server/releases">webpack-dev-server</a></li>
+<li><a target="_blank" rel="noopener" href="http://majing.io/questions/804">You have not accepted the license agreements of the following </a></li>
+</ol>
+<h1 id="移动App第3天"><a href="#移动App第3天" class="headerlink" title="移动App第3天"></a>移动App第3天</h1><h2 id="ReactJS简介"><a href="#ReactJS简介" class="headerlink" title="ReactJS简介"></a>ReactJS简介</h2><ul>
+<li>React 起源于 Facebook 的内部项目，因为该公司对市场上所有 JavaScript MVC 框架，都不满意，就决定自己写一套，用来架设 Instagram 的网站。做出来以后，发现这套东西很好用，<strong>就在2013年5月开源了</strong>。</li>
+<li>由于 React 的设计思想极其独特，属于革命性创新，性能出众，代码逻辑却非常简单。所以，越来越多的人开始关注和使用，认为它可能是将来 Web 开发的主流工具。</li>
+<li>library</li>
+<li>Framework</li>
+</ul>
+<h2 id="前端三大主流框架"><a href="#前端三大主流框架" class="headerlink" title="前端三大主流框架"></a>前端三大主流框架</h2><ul>
+<li>Angular.js：出来最早的前端框架，学习曲线比较陡，NG1学起来比较麻烦，NG2开始，进行了一系列的改革，也开始启用组件化了；在NG中，也支持使用TS（TypeScript）进行编程；</li>
+<li>Vue.js：最火的一门前端框架，它是中国人开发的，对我我们来说，文档要友好一些；</li>
+<li>React.js：最流行的一门框架，因为它的设计很优秀；</li>
+<li>windowsPhone 7    7.5   8   10</li>
+</ul>
+<h2 id="React与vue-js的对比"><a href="#React与vue-js的对比" class="headerlink" title="React与vue.js的对比"></a>React与vue.js的对比</h2><h3 id="组件化方面"><a href="#组件化方面" class="headerlink" title="组件化方面"></a>组件化方面</h3><ol>
+<li>什么是模块化：从 <strong>代码</strong> 的角度，去分析问题，把我们编程时候的业务逻辑，分割到不同的模块中来进行开发，这样能够<strong>方便代码的重用</strong>；</li>
+<li>什么是组件化：从 <strong>UI</strong> 的角度，去分析问题，把一个页面，拆分为一些互不相干的小组件，随着我们项目的开发，我们手里的组件会越来越多，最后，我们如果要实现一个页面，可能直接把现有的组件拿过来进行拼接，就能快速得到一个完整的页面， 这样方<strong>便了UI元素的重用</strong>；<strong>组件是元素的集合体</strong>；</li>
+<li>组件化的好处：</li>
+<li>Vue是如何实现组件化的：.vue 组件模板文件，浏览器不识别这样的.vue文件，所以，在运行前，会把 .vue 预先编译成真正的组件；</li>
+</ol>
+<ul>
+<li>template： UI结构</li>
+<li>script： 业务逻辑和数据</li>
+<li>style： UI的样式</li>
+</ul>
+<ol start="5">
+<li>React如何实现组件化：在React中实现组件化的时候，根本没有 像 .vue 这样的模板文件，而是，直接使用JS代码的形式，去创建任何你想要的组件；</li>
+</ol>
+<ul>
+<li>React中的组件，都是直接在 js 文件中定义的；</li>
+<li>React的组件，并没有把一个组件 拆分为 三部分（结构、样式、业务逻辑），而是全部使用JS来实现一个组件的；（也就是说：结构、样式、业务逻辑是混合在JS里面一起编写出来的）</li>
+</ul>
+<h3 id="开发团队方面"><a href="#开发团队方面" class="headerlink" title="开发团队方面"></a>开发团队方面</h3><ul>
+<li>React是由FaceBook前端官方团队进行维护和更新的；因此，React的维护开发团队，技术实力比较雄厚；</li>
+<li>Vue：第一版，主要是有作者 尤雨溪 专门进行维护的，当 Vue更新到 2.x 版本后，也有了一个小团队进行相关的维护和开发；</li>
+</ul>
+<h3 id="社区方面"><a href="#社区方面" class="headerlink" title="社区方面"></a>社区方面</h3><ul>
+<li>在社区方面，React由于诞生的较早，所以社区比较强大，一些常见的问题、坑、最优解决方案，文档、博客在社区中都是可以很方便就能找到的；</li>
+<li>Vue是近两年才诞生开源出来的，所以，它的社区相对于React来说，要小巧一些，所以，可能有的一些坑，没人踩过；</li>
+</ul>
+<h3 id="移动APP开发体验方面"><a href="#移动APP开发体验方面" class="headerlink" title="移动APP开发体验方面"></a>移动APP开发体验方面</h3><ul>
+<li>Vue，结合 Weex 这门技术，提供了 迁移到 移动端App开发的体验（Weex，目前只是一个 小的玩具， 并没有很成功的 大案例；）</li>
+<li>React，结合 ReactNative，也提供了无缝迁移到 移动App的开发体验（RN用的最多，也是最火最流行的）；</li>
+</ul>
+<h2 id="为什么要学习React"><a href="#为什么要学习React" class="headerlink" title="为什么要学习React"></a>为什么要学习React</h2><ol>
+<li>设计很优秀，是基于组件化的，方便我们UI代码的重用；</li>
+<li>开发团队实力强悍，不必担心短更的情况；</li>
+<li>社区强大，很多问题都能找到对应的解决方案；</li>
+<li>提供了无缝转到 ReactNative 上的开发体验，让我们技术能力得到了拓展；增强了我们的核心竞争力</li>
+</ol>
+<h2 id="React中几个核心的概念"><a href="#React中几个核心的概念" class="headerlink" title="React中几个核心的概念"></a>React中几个核心的概念</h2><h3 id="虚拟DOM（Virtual-Document-Object-Model）"><a href="#虚拟DOM（Virtual-Document-Object-Model）" class="headerlink" title="虚拟DOM（Virtual Document Object Model）"></a>虚拟DOM（Virtual Document Object Model）</h3><ul>
+<li>DOM的本质是什么：就是用JS表示的UI元素</li>
+<li>DOM和虚拟DOM的区别：<ul>
+<li>DOM是由浏览器中的JS提供功能，所以我们只能人为的使用 浏览器提供的固定的API来操作DOM对象；</li>
+<li>虚拟DOM：并不是由浏览器提供的，而是我们程序员手动模拟实现的，类似于浏览器中的DOM，但是有着本质的区别；</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>为什么要实现虚拟DOM：</li>
+<li>什么是React中的虚拟DOM：</li>
+<li>虚拟DOM的目的：<br><img src="/img/webimg/react01/%E8%99%9A%E6%8B%9FDOM%E5%BC%95%E5%85%A5%E5%9B%BE%E7%89%87.png" srcset="/img/loading.gif" lazyload alt="虚拟DOM - 表格排序案例"></li>
+</ul>
+<h3 id="Diff算法"><a href="#Diff算法" class="headerlink" title="Diff算法"></a>Diff算法</h3><ul>
+<li>tree diff:新旧DOM树，逐层对比的方式，就叫做 tree diff,每当我们从前到后，把所有层的节点对比完后，必然能够找到那些 需要被更新的元素；</li>
+<li>component diff：在对比每一层的时候，组件之间的对比，叫做 component diff;当对比组件的时候，如果两个组件的类型相同，则暂时认为这个组件不需要被更新，如果组件的类型不同，则立即将旧组件移除，新建一个组件，替换到被移除的位置；</li>
+<li>element diff:在组件中，每个元素之间也要进行对比，那么，元素级别的对比，叫做 element diff；</li>
+<li>key：key这个属性，可以把 页面上的 DOM节点 和 虚拟DOM中的对象，做一层关联关系；<br><img src="/img/webimg/react01/Diff.png" srcset="/img/loading.gif" lazyload alt="Diff算法图"></li>
+</ul>
+<h2 id="React项目的创建"><a href="#React项目的创建" class="headerlink" title="React项目的创建"></a>React项目的创建</h2><ol>
+<li>运行 <code>cnpm i react react-dom -S</code> 安装包</li>
+<li>在项目中导入两个相关的包：</li>
+</ol>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs clean"><span class="hljs-comment">// 1. 在 React 学习中，需要安装 两个包 react  react-dom</span><br><span class="hljs-comment">// 1.1 react 这个包，是专门用来创建React组件、组件生命周期等这些东西的；</span><br><span class="hljs-comment">// 1.2 react-dom 里面主要封装了和 DOM 操作相关的包，比如，要把 组件渲染到页面上</span><br><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span><br><span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-dom&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>使用JS的创建虚拟DOM节点：</li>
+</ol>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-comment">// 2. 在 react 中，如要要创建 DOM 元素了，只能使用 React 提供的 JS API 来创建，不能【直接】像 Vue 中那样，手写 HTML 元素</span><br><span class="hljs-comment">// React.createElement() 方法，用于创建 虚拟DOM 对象，它接收 3个及以上的参数</span><br><span class="hljs-comment">// 参数1： 是个字符串类型的参数，表示要创建的元素类型</span><br><span class="hljs-comment">// 参数2： 是一个属性对象，表示 创建的这个元素上，有哪些属性</span><br><span class="hljs-comment">// 参数3： 从第三个参数的位置开始，后面可以放好多的虚拟DOM对象，这写参数，表示当前元素的子节点</span><br><span class="hljs-comment">// &lt;div title=&quot;this is a div&quot; id=&quot;mydiv&quot;&gt;这是一个div&lt;/div&gt;</span><br><br>var myH1 = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">React</span>.</span></span>create<span class="hljs-constructor">Element(&#x27;<span class="hljs-params">h1</span>&#x27;, <span class="hljs-params">null</span>, &#x27;这是一个大大的H1&#x27;)</span><br><br>var myDiv = <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">React</span>.</span></span>create<span class="hljs-constructor">Element(&#x27;<span class="hljs-params">div</span>&#x27;, &#123; <span class="hljs-params">title</span>: &#x27;<span class="hljs-params">this</span> <span class="hljs-params">is</span> <span class="hljs-params">a</span> <span class="hljs-params">div</span>&#x27;, <span class="hljs-params">id</span>: &#x27;<span class="hljs-params">mydiv</span>&#x27; &#125;, &#x27;这是一个<span class="hljs-params">div</span>&#x27;, <span class="hljs-params">myH1</span>)</span><br></code></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>使用 ReactDOM 把元素渲染到页面指定的容器中：</li>
+</ol>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span> ReactDOM.render(<span class="hljs-string">&#x27;要渲染的虚拟DOM元素&#x27;</span>, <span class="hljs-string">&#x27;要渲染到页面上的哪个位置中&#x27;</span>)<br><span class="hljs-regexp">//</span> 注意： ReactDOM.render() 方法的第二个参数，和vue不一样，不接受 <span class="hljs-string">&quot;#app&quot;</span> 这样的字符串，而是需要传递一个 原生的 DOM 对象<br>ReactDOM.render(myDiv, document.getElementById(<span class="hljs-string">&#x27;app&#x27;</span>))<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="JSX语法"><a href="#JSX语法" class="headerlink" title="JSX语法"></a>JSX语法</h2><ol>
+<li>如要要使用 JSX 语法，必须先运行 <code>cnpm i babel-preset-react -D</code>，然后再 <code>.babelrc</code> 中添加 语法配置；</li>
+<li>JSX语法的本质：还是以 React.createElement 的形式来实现的，并没有直接把 用户写的 HTML代码，渲染到页面上；</li>
+<li>如果要在 JSX 语法内部，书写 JS 代码了，那么，所有的JS代码，必须写到 {} 内部；</li>
+<li>当 编译引擎，在编译JSX代码的时候，如果遇到了<code>&lt;</code>那么就把它当作 HTML代码去编译，如果遇到了 <code>&#123;&#125;</code> 就把 花括号内部的代码当作 普通JS代码去编译；</li>
+<li>在{}内部，可以写任何符合JS规范的代码；</li>
+<li>在JSX中，如果要为元素添加<code>class</code>属性了，那么，必须写成<code>className</code>，因为 <code>class</code>在ES6中是一个关键字；和<code>class</code>类似，label标签的 <code>for</code> 属性需要替换为 <code>htmlFor</code>.</li>
+<li>在JSX创建DOM的时候，所有的节点，必须有唯一的根元素进行包裹；</li>
+<li>如果要写注释了，注释必须放到 {} 内部</li>
+</ol>
+<h2 id="React中：第一种创建组件的方式"><a href="#React中：第一种创建组件的方式" class="headerlink" title="React中：第一种创建组件的方式"></a>React中：第一种创建组件的方式</h2><h2 id="第一种基本组件的创建方式"><a href="#第一种基本组件的创建方式" class="headerlink" title="第一种基本组件的创建方式"></a>第一种基本组件的创建方式</h2><h3 id="父组件向子组件传递数据"><a href="#父组件向子组件传递数据" class="headerlink" title="父组件向子组件传递数据"></a>父组件向子组件传递数据</h3><h3 id="属性扩散"><a href="#属性扩散" class="headerlink" title="属性扩散"></a>属性扩散</h3><h3 id="将组件封装到单独的文件中"><a href="#将组件封装到单独的文件中" class="headerlink" title="将组件封装到单独的文件中"></a>将组件封装到单独的文件中</h3><h2 id="React中：第二种创建组件的方式"><a href="#React中：第二种创建组件的方式" class="headerlink" title="React中：第二种创建组件的方式"></a>React中：第二种创建组件的方式</h2><h3 id="了解ES6中class关键字的使用"><a href="#了解ES6中class关键字的使用" class="headerlink" title="了解ES6中class关键字的使用"></a>了解ES6中class关键字的使用</h3><h3 id="基于class关键字创建组件"><a href="#基于class关键字创建组件" class="headerlink" title="基于class关键字创建组件"></a>基于class关键字创建组件</h3><ul>
+<li>使用 class 关键字来创建组件</li>
+</ul>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs scala"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Person</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span></span>&#123;<br>    <span class="hljs-comment">// 通过报错提示得知：在class创建的组件中，必须定义一个render函数</span><br>    render()&#123;<br>        <span class="hljs-comment">// 在render函数中，必须返回一个null或者符合规范的虚拟DOM元素</span><br>        <span class="hljs-keyword">return</span> &lt;div&gt;<br>            &lt;h1&gt;这是用 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">关键字创建的组件！&lt;/h1&gt;</span></span><br>        &lt;/div&gt;;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="两种创建组件方式的对比"><a href="#两种创建组件方式的对比" class="headerlink" title="两种创建组件方式的对比"></a>两种创建组件方式的对比</h2><ol>
+<li>用构造函数创建出来的组件：专业的名字叫做“无状态组件”</li>
+<li>用class关键字创建出来的组件：专业的名字叫做“有状态组件”</li>
+</ol>
+<blockquote>
+<p>用构造函数创建出来的组件，和用class创建出来的组件，这两种不同的组件之间的<strong>本质区别就是</strong>：有无state属性！！！<br>有状态组件和无状态组件之间的本质区别就是：有无state属性！</p>
+</blockquote>
+<h2 id="一个小案例，巩固有状态组件和无状态组件的使用"><a href="#一个小案例，巩固有状态组件和无状态组件的使用" class="headerlink" title="一个小案例，巩固有状态组件和无状态组件的使用"></a>一个小案例，巩固有状态组件和无状态组件的使用</h2><h3 id="通过for循环生成多个组件"><a href="#通过for循环生成多个组件" class="headerlink" title="通过for循环生成多个组件"></a>通过for循环生成多个组件</h3><ol>
+<li>数据：</li>
+</ol>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile">CommentList = [<br>    &#123; <span class="hljs-keyword">user</span>: <span class="hljs-string">&#x27;张三&#x27;</span>, content: <span class="hljs-string">&#x27;哈哈，沙发&#x27;</span> &#125;,<br>    &#123; <span class="hljs-keyword">user</span>: <span class="hljs-string">&#x27;张三2&#x27;</span>, content: <span class="hljs-string">&#x27;哈哈，板凳&#x27;</span> &#125;,<br>    &#123; <span class="hljs-keyword">user</span>: <span class="hljs-string">&#x27;张三3&#x27;</span>, content: <span class="hljs-string">&#x27;哈哈，凉席&#x27;</span> &#125;,<br>    &#123; <span class="hljs-keyword">user</span>: <span class="hljs-string">&#x27;张三4&#x27;</span>, content: <span class="hljs-string">&#x27;哈哈，砖头&#x27;</span> &#125;,<br>    &#123; <span class="hljs-keyword">user</span>: <span class="hljs-string">&#x27;张三5&#x27;</span>, content: <span class="hljs-string">&#x27;哈哈，楼下山炮&#x27;</span> &#125;<br>]<br></code></pre></td></tr></table></figure>
+
+<h3 id="style样式"><a href="#style样式" class="headerlink" title="style样式"></a>style样式</h3><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>理解React中虚拟DOM的概念<br>理解React中三种Diff算法的概念<br>使用JS中createElement的方式创建虚拟DOM<br>使用ReactDOM.render方法<br>使用JSX语法并理解其本质<br>掌握创建组件的两种方式<br>理解有状态组件和无状态组件的本质区别<br>理解props和state的区别</p>
+<h2 id="相关文章-1"><a href="#相关文章-1" class="headerlink" title="相关文章"></a>相关文章</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://www.cnblogs.com/tim100/p/6050514.html">React数据流和组件间的沟通总结</a></li>
+<li><a target="_blank" rel="noopener" href="https://segmentfault.com/q/1010000005876655/a-1020000005876751">单向数据流和双向绑定各有什么优缺点？</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/29504639?sort=created">怎么更好的理解虚拟DOM?</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.css88.com/react/index.html">React中文文档 - 版本较低</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/yczz/article/details/49886061">React 源码剖析系列 － 不可思议的 react diff</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.infoq.com/cn/articles/react-dom-diff?from=timeline&isappinstalled=0">深入浅出React（四）：虚拟DOM Diff算法解析</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.cocoachina.com/webapp/20150721/12692.html">一看就懂的ReactJs入门教程（精华版）</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2016/06/css_modules.html">CSS Modules 用法教程</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/itzhongzi/article/details/66045880">将MarkDown转换为HTML页面</a></li>
+<li><a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/0320e2c1c9cf0e1b87507b26.html">win7命令行 端口占用 查询进程号 杀进程</a></li>
+</ul>
+<h1 id="移动App第4天"><a href="#移动App第4天" class="headerlink" title="移动App第4天"></a>移动App第4天</h1><h2 id="组件的生命周期"><a href="#组件的生命周期" class="headerlink" title="组件的生命周期"></a>组件的生命周期</h2><ul>
+<li><p>概念：在组件创建、到加载到页面上运行、以及组件被销毁的过程中，总是伴随着各种各样的事件，这些在组件特定时期，触发的事件，统称为 组件的生命周期；</p>
+</li>
+<li><p>组件生命周期分为三部分：</p>
+<ul>
+<li><strong>组件创建阶段</strong>：组件创建阶段的生命周期函数，有一个显著的特点：创建阶段的生命周期函数，在组件的一辈子中，只执行一次；</li>
+</ul>
+<blockquote>
+<p>componentWillMount: 组件将要被挂载，此时还没有开始渲染虚拟DOM<br>render：第一次开始渲染真正的虚拟DOM，当render执行完，内存中就有了完整的虚拟DOM了<br>componentDidMount: 组件完成了挂载，此时，组件已经显示到了页面上，当这个方法执行完，组件就进入都了 运行中 的状态</p>
+</blockquote>
+<ul>
+<li><strong>组件运行阶段</strong>：也有一个显著的特点，根据组件的state和props的改变，有选择性的触发0次或多次；</li>
+</ul>
+<blockquote>
+<p>componentWillReceiveProps: 组件将要接收新属性，此时，只要这个方法被触发，就证明父组件为当前子组件传递了新的属性值；<br>shouldComponentUpdate: 组件是否需要被更新，此时，组件尚未被更新，但是，state 和 props 肯定是最新的<br>componentWillUpdate: 组件将要被更新，此时，尚未开始更新，内存中的虚拟DOM树还是旧的<br>render: 此时，又要重新根据最新的 state 和 props 重新渲染一棵内存中的 虚拟DOM树，当 render 调用完毕，内存中的旧DOM树，已经被新DOM树替换了！此时页面还是旧的<br>componentDidUpdate: 此时，页面又被重新渲染了，state 和 虚拟DOM 和 页面已经完全保持同步</p>
+</blockquote>
+<ul>
+<li><strong>组件销毁阶段</strong>：也有一个显著的特点，一辈子只执行一次；</li>
+</ul>
+<blockquote>
+<p>componentWillUnmount: 组件将要被卸载，此时组件还可以正常使用；</p>
+</blockquote>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://cn.vuejs.org/v2/guide/instance.html#%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%9B%BE%E7%A4%BA">vue中的生命周期图</a><br><a target="_blank" rel="noopener" href="http://www.race604.com/react-native-component-lifecycle/">React Native 中组件的生命周期</a></p>
+<p><img src="/img/webimg/react01/React%E4%B8%AD%E7%BB%84%E4%BB%B6%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png" srcset="/img/loading.gif" lazyload alt="React中组件的生命周期"></p>
+<h3 id="defaultProps"><a href="#defaultProps" class="headerlink" title="defaultProps"></a>defaultProps</h3><blockquote>
+<p>在组件创建之前，会先初始化默认的props属性，这是全局调用一次，严格地来说，这不是组件的生命周期的一部分。在组件被创建并加载候，首先调用 constructor 构造器中的 this.state = {}，来初始化组件的状态。</p>
+</blockquote>
+<p>React生命周期的回调函数总结成表格如下：<br><img src="/img/webimg/react01/React%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E8%A1%A8%E6%A0%BC.png" srcset="/img/loading.gif" lazyload alt="React生命周期表格"><br>组件生命周期的执行顺序：</p>
+<ul>
+<li>Mounting：</li>
+</ul>
+<ul>
+<li>constructor()</li>
+<li>componentWillMount()</li>
+<li>render()</li>
+<li>componentDidMount()</li>
+</ul>
+<ul>
+<li>Updating：</li>
+</ul>
+<ul>
+<li>componentWillReceiveProps(nextProps)</li>
+<li>shouldComponentUpdate(nextProps, nextState)</li>
+<li>componentWillUpdate(nextProps, nextState)</li>
+<li>render()</li>
+<li>componentDidUpdate(prevProps, prevState)</li>
+</ul>
+<ul>
+<li>Unmounting：</li>
+</ul>
+<ul>
+<li>componentWillUnmount()</li>
+</ul>
+<h2 id="通过Counter计数器的小案例-了解生命周期函数"><a href="#通过Counter计数器的小案例-了解生命周期函数" class="headerlink" title="通过Counter计数器的小案例 - 了解生命周期函数"></a>通过Counter计数器的小案例 - 了解生命周期函数</h2><ol>
+<li>给组件设置默认属性：</li>
+<li>给属性进行类型校验，需要先运行<code>cnpm i prop-types --save</code></li>
+</ol>
+<h2 id="组件初始化时生命周期事件总结"><a href="#组件初始化时生命周期事件总结" class="headerlink" title="组件初始化时生命周期事件总结"></a>组件初始化时生命周期事件总结</h2><ol>
+<li>componentWillMount：</li>
+<li>render：</li>
+<li>componentDidMount：</li>
+<li>注意：在render函数中，不能调用<code>setState()</code>方法</li>
+</ol>
+<h2 id="通过原生的方式获取元素并绑定事件"><a href="#通过原生的方式获取元素并绑定事件" class="headerlink" title="通过原生的方式获取元素并绑定事件"></a>通过原生的方式获取元素并绑定事件</h2><h2 id="React中使用ref属性获取DOM元素引用"><a href="#React中使用ref属性获取DOM元素引用" class="headerlink" title="React中使用ref属性获取DOM元素引用"></a>React中使用ref属性获取DOM元素引用</h2><h2 id="使用React中的事件，绑定count自增"><a href="#使用React中的事件，绑定count自增" class="headerlink" title="使用React中的事件，绑定count自增"></a>使用React中的事件，绑定count自增</h2><h2 id="组件运行中事件的对比"><a href="#组件运行中事件的对比" class="headerlink" title="组件运行中事件的对比"></a>组件运行中事件的对比</h2><ol>
+<li>shouldComponentUpdate：</li>
+<li>componentWillUpdate：</li>
+<li>render：</li>
+<li>componentDidUpdate：</li>
+</ol>
+<h2 id="绑定this并传参的三种方式"><a href="#绑定this并传参的三种方式" class="headerlink" title="绑定this并传参的三种方式"></a>绑定this并传参的三种方式</h2><ol>
+<li>在事件中绑定this并传参：</li>
+</ol>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs kotlin">&lt;input type=<span class="hljs-string">&quot;button&quot;</span> value=<span class="hljs-string">&quot;在事件中绑定this并传参&quot;</span> onClick=&#123;<span class="hljs-keyword">this</span>.handleMsg1.bind(<span class="hljs-keyword">this</span>, <span class="hljs-string">&#x27;🍕&#x27;</span>, <span class="hljs-string">&#x27;🍟&#x27;</span>)&#125; /&gt;<br><br><span class="hljs-comment">// 在事件中绑定this并传参</span><br>handleMsg1(arg1, arg2) &#123;<br>    console.log(<span class="hljs-keyword">this</span>);<br>    <span class="hljs-comment">// 此时this是个null</span><br>    <span class="hljs-keyword">this</span>.setState(&#123;<br>        msg: <span class="hljs-string">&#x27;在事件中绑定this并传参：&#x27;</span> + arg1 + arg2<br>    &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>在构造函数中绑定this并传参:</li>
+</ol>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-comment">// 修改构造函数中的代码：</span><br><span class="hljs-keyword">this</span>.handleMsg2 = <span class="hljs-keyword">this</span>.handleMsg2.bind(<span class="hljs-keyword">this</span>, <span class="hljs-string">&#x27;🚗&#x27;</span>, <span class="hljs-string">&#x27;🚚&#x27;</span>);<br><br>&lt;input type=<span class="hljs-string">&quot;button&quot;</span> value=<span class="hljs-string">&quot;在构造函数中绑定this并传参&quot;</span> onClick=&#123;<span class="hljs-keyword">this</span>.handleMsg2&#125; /&gt;<br><br><span class="hljs-comment">// 在构造函数中绑定this并传参</span><br>handleMsg2(arg1, arg2) &#123;<br>    <span class="hljs-keyword">this</span>.setState(&#123;<br>        msg: <span class="hljs-string">&#x27;在构造函数中绑定this并传参：&#x27;</span> + arg1 + arg2<br>    &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>用箭头函数绑定this并传参：</li>
+</ol>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs typescript">&lt;input <span class="hljs-keyword">type</span>=<span class="hljs-string">&quot;button&quot;</span> value=<span class="hljs-string">&quot;用箭头函数绑定this并传参&quot;</span> onClick=&#123;<span class="hljs-function">() =&gt;</span> &#123; <span class="hljs-built_in">this</span>.handleMsg3(<span class="hljs-string">&#x27;👩&#x27;</span>, <span class="hljs-string">&#x27;👰&#x27;</span>) &#125;&#125; /&gt;<br><br><span class="hljs-comment">// 用箭头函数绑定this并传参</span><br>    <span class="hljs-function"><span class="hljs-title">handleMsg3</span>(<span class="hljs-params">arg1, arg2</span>)</span> &#123;<br>        <span class="hljs-built_in">this</span>.setState(&#123;<br>            <span class="hljs-attr">msg</span>: <span class="hljs-string">&#x27;用箭头函数绑定this并传参：&#x27;</span> + arg1 + arg2<br>        &#125;);<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="绑定文本框与state中的值"><a href="#绑定文本框与state中的值" class="headerlink" title="绑定文本框与state中的值"></a>绑定文本框与state中的值</h2><ol>
+<li>在Vue.js中，默认可以通过<code>v-model</code>指令，将表单控件和我们的<code>data</code>上面的属性进行双向数据绑定，数据变化和页面之间的变化是同步的！</li>
+<li>在React.js中，默认没有提供双向数据绑定这一功能，默认的，只能把<code>state</code>之上的数据同步到界面的控件上，但是不能默认实现把界面上数据的改变，同步到<code>state</code>之上，需要程序员手动调用相关的事件，来进行逆向的数据传输！</li>
+<li>绑定文本框和state的值：</li>
+</ol>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs kotlin">&#123;<span class="hljs-comment">/*只要将value属性，和state上的状态进行绑定，那么，这个表单元素就变成了受控表单元素，这时候，如果没有调用相关的事件，是无法手动修改表单元素中的值的*/</span>&#125;<br>&lt;input style=&#123;&#123; width: <span class="hljs-string">&#x27;100%&#x27;</span> &#125;&#125; ref=<span class="hljs-string">&quot;txt&quot;</span> type=<span class="hljs-string">&quot;text&quot;</span> value=&#123;<span class="hljs-keyword">this</span>.state.msg&#125; onChange=&#123;<span class="hljs-keyword">this</span>.handleTextChange&#125; /&gt;<br><br><span class="hljs-comment">// 这是文本框内容改变时候的处理函数</span><br>handleTextChange = () =&gt; &#123;<br>    <span class="hljs-keyword">this</span>.setState(&#123;<br>        msg: <span class="hljs-keyword">this</span>.refs.txt.value<br>    &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>注意<code>setState的一个问题</code>：</li>
+</ol>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs pf">// 保存最新的<span class="hljs-keyword">state</span>状态值，在保存的时候，是异步地进行保存的，所以，如果想要获取最新的，刚刚保存的那个状态，需要通过回掉函数的形式去获取最新<span class="hljs-keyword">state</span><br>this.<span class="hljs-built_in">set</span>State(&#123;<br>    msg: this.refs.txt.value<br>    // msg: e.target.value<br>&#125;, function () &#123;<br>    // 获取最新的<span class="hljs-keyword">state</span>状态值<br>    console.<span class="hljs-keyword">log</span>(this.<span class="hljs-keyword">state</span>.msg);<br>&#125;);<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="发表评论案例"><a href="#发表评论案例" class="headerlink" title="发表评论案例"></a>发表评论案例</h2><h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><h3 id="context特性"><a href="#context特性" class="headerlink" title="context特性"></a>context特性</h3><p>记住一串单词组合<code>getChildContextTypes</code><br>前3个、后3个、后两个<br>一个方法、两个静态属性</p>
+<h2 id="相关文章-2"><a href="#相关文章-2" class="headerlink" title="相关文章"></a>相关文章</h2><p><a target="_blank" rel="noopener" href="https://facebook.github.io/react/docs/typechecking-with-proptypes.html">类型校验</a><br><a target="_blank" rel="noopener" href="https://reactjs.org/docs/animation.html#high-level-api-reactcsstransitiongroup">Animation Add-Ons</a></p>
+<h1 id="移动App第5天"><a href="#移动App第5天" class="headerlink" title="移动App第5天"></a>移动App第5天</h1><h2 id="RN学习说明"><a href="#RN学习说明" class="headerlink" title="RN学习说明"></a>RN学习说明</h2><ol>
+<li>ReactNative是基于React这门框架的语法来进行开发的；</li>
+<li>RN中，提供了 移动端 专用的一些组件，这时候，我们在网页中使用的一些 元素，div, p, img 都不能用了，只能使用RN固有的组件；</li>
+<li>最终，开发出来的项目，是要运行到手机上的，那么，如何把一个 RN 的项目，完整的发布到手机上去运行呢，这里，需要结合 安卓的 签名打包步骤，并使用 RN 提供的打包命令，进行完整 apk 文件的发布；最终发布出来的就是 Release 版本的项目，可以上传到应用商店；</li>
+</ol>
+<h2 id="配置ReactNative基本开发环境"><a href="#配置ReactNative基本开发环境" class="headerlink" title="配置ReactNative基本开发环境"></a>配置ReactNative基本开发环境</h2><p><a target="_blank" rel="noopener" href="http://facebook.github.io/react-native/docs/getting-started.html">搭建基本的开发环境 - 英文官网</a><br><br><a target="_blank" rel="noopener" href="http://reactnative.cn/docs/0.42/getting-started.html#content">搭建基本的开发环境 - 中文</a><br>这两篇文档对比着进行参考，进行相关的安装；</p>
+<h2 id="手机的相关配置"><a href="#手机的相关配置" class="headerlink" title="手机的相关配置"></a>手机的相关配置</h2><ol>
+<li>使用数据线，把手机链接到电脑上；</li>
+<li>运行 <code>adb devices</code> 的命令，这个命令，是安卓开发环境提供的；</li>
+<li>需要先开启手机的<code>开发者模式</code></li>
+<li>如果开启开发者模式之后，还是看不到设备，则尝试安装 <code>豌豆荚</code> 这样的工具，让这些工具帮助你在电脑上安装手机的驱动；</li>
+</ol>
+<h2 id="搭建RN的项目"><a href="#搭建RN的项目" class="headerlink" title="搭建RN的项目"></a>搭建RN的项目</h2><ol>
+<li>运行<code>react-native init 项目名称</code>来初始化一个react native项目；<br><img src="/img/webimg/react01/01.%E9%A1%B9%E7%9B%AE%E5%88%9D%E5%A7%8B%E5%8C%96%E5%AE%8C%E6%AF%95%E4%B9%8B%E5%90%8E%E6%88%AA%E5%9B%BE%E5%B9%B6%E8%AF%B4%E6%98%8E.png" srcset="/img/loading.gif" lazyload alt="01.项目初始化完毕之后截图并说明"></li>
+<li>打包运行项目，把打包好的项目部署到手机中！</li>
+</ol>
+<ul>
+<li>确保手机已经正确的链接到了当前电脑上，同时手机开启了<code>开发者调试模式</code>；可以使用<code>adb devices</code>来查看当前链接到电脑上的手机设备列表！</li>
+<li>当确认手机正确链接到电脑上之后，可以运行<code>react-native run-android</code>来打包当前项目，并把打包好的项目以调试的模式安装到手机中！</li>
+<li>打包完成之后的截图<br><img src="/img/webimg/react01/02.%E6%89%93%E5%8C%85%E5%AE%8C%E6%88%90%E4%B9%8B%E5%90%8E%E7%9A%84%E6%88%AA%E5%9B%BE.png" srcset="/img/loading.gif" lazyload alt="02.打包完成之后的截图"></li>
+<li>React Package窗口的作用<br>![03.React Package窗口的作用](/img/webimg/react01/03.React Package窗口的作用.png)</li>
+<li>04.React  Packager打包编译代码截图<br>![04.React  Packager打包编译代码截图](/img/webimg/react01/04.React  Packager打包编译代码截图.png)</li>
+<li>当第一打包编译项目部署到手机上之后 - 如何设置开发服务器的地址<br>![05.当第一打包编译项目部署到手机上之后 - 如何设置开发服务器的地址.png](/img/webimg/react01/05.当第一打包编译项目部署到手机上之后 - 如何设置开发服务器的地址.png)</li>
+</ul>
+<h2 id="项目结构介绍以及一些注意事项"><a href="#项目结构介绍以及一些注意事项" class="headerlink" title="项目结构介绍以及一些注意事项"></a>项目结构介绍以及一些注意事项</h2><h2 id="使用样式"><a href="#使用样式" class="headerlink" title="使用样式"></a>使用样式</h2><p>##修改项目首屏页面</p>
+<h2 id="基本组件的使用介绍"><a href="#基本组件的使用介绍" class="headerlink" title="基本组件的使用介绍"></a>基本组件的使用介绍</h2><ul>
+<li>View：</li>
+<li>Text：</li>
+<li>TextInput：</li>
+<li>Image：</li>
+<li>Button：</li>
+<li>ActivityIndicator：</li>
+<li>ScrollView：这是一个列表滚动的组件</li>
+<li>ListView：也是一个列表滚动的组件，但是，这个组件已经过时了，官方推荐使用 FlatList 来代替它</li>
+</ul>
+<h2 id="判断组件是否被卸载"><a href="#判断组件是否被卸载" class="headerlink" title="判断组件是否被卸载"></a>判断组件是否被卸载</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>._reactInternalInstance)&#123;<br>	<span class="hljs-comment">// 组件没有被卸载</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="配置Tab栏"><a href="#配置Tab栏" class="headerlink" title="配置Tab栏"></a><a target="_blank" rel="noopener" href="https://github.com/happypancake/react-native-tab-navigator">配置Tab栏</a></h2><h2 id="配置Tab栏的图标"><a href="#配置Tab栏的图标" class="headerlink" title="配置Tab栏的图标"></a><a target="_blank" rel="noopener" href="https://github.com/oblador/react-native-vector-icons">配置Tab栏的图标</a></h2><blockquote>
+<p>注意：使用图标，需要使用 <code>Android SDK Manager</code> 安装 <code>Android SDK Build-tools 26.0.1</code> 并接收其 license;</p>
+</blockquote>
+<h2 id="案例：豆瓣电影列表"><a href="#案例：豆瓣电影列表" class="headerlink" title="案例：豆瓣电影列表"></a>案例：豆瓣电影列表</h2><ul>
+<li>电影列表数据：<code>https://api.douban.com/v2/movie/in_theaters</code></li>
+<li>电影详细数据：<code>https://api.douban.com/v2/movie/subject/26309788</code></li>
+</ul>
+<h2 id="安装路由"><a href="#安装路由" class="headerlink" title="安装路由"></a>安装路由</h2><ol>
+<li>运行<code>npm i react-native-router-flux --save</code></li>
+<li>路由官网：<code>https://github.com/aksonov/react-native-router-flux</code></li>
+<li>路由相关配置：<code>https://github.com/aksonov/react-native-router-flux/blob/master/docs/API.md</code></li>
+<li>路由简单的DEMO：<code>https://github.com/aksonov/react-native-router-flux/blob/v3/docs/MINI_TUTORIAL.md</code></li>
+</ol>
+<h2 id="路由的一些基本使用方法"><a href="#路由的一些基本使用方法" class="headerlink" title="路由的一些基本使用方法"></a>路由的一些基本使用方法</h2><h2 id="配置首页的轮播图"><a href="#配置首页的轮播图" class="headerlink" title="配置首页的轮播图"></a>配置首页的轮播图</h2><ol>
+<li>轮播图官网：<code>https://github.com/leecade/react-native-swiper?utm_source=tuicool&amp;utm_medium=referral</code></li>
+<li>运行<code>npm i react-native-swiper --save</code>安装轮播图组件</li>
+<li>导入轮播图组件<code>import Swiper from &#39;react-native-swiper&#39;;</code></li>
+<li>其中，在Swiper身上，<code>showsPagination=&#123;false&#125;</code>是用来控制页码的；<code>showsButtons=&#123;false&#125;</code>是用来控制左右箭头显示与隐藏；<code>height=&#123;160&#125;</code>是用来控制轮播图区域的高度的！</li>
+<li>设置轮播图的样式：</li>
+</ol>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">var styles = StyleSheet.<span class="hljs-keyword">create</span>(&#123;<br>    <span class="hljs-keyword">wrapper</span>: &#123;&#125;,<br>    slide1: &#123;<br>        flex: <span class="hljs-number">1</span>,<br>        justifyContent: <span class="hljs-string">&#x27;center&#x27;</span>,<br>        alignItems: <span class="hljs-string">&#x27;center&#x27;</span>,<br>        backgroundColor: <span class="hljs-string">&#x27;#9DD6EB&#x27;</span>,<br>    &#125;,<br>    slide2: &#123;<br>        flex: <span class="hljs-number">1</span>,<br>        justifyContent: <span class="hljs-string">&#x27;center&#x27;</span>,<br>        alignItems: <span class="hljs-string">&#x27;center&#x27;</span>,<br>        backgroundColor: <span class="hljs-string">&#x27;#97CAE5&#x27;</span>,<br>    &#125;,<br>    slide3: &#123;<br>        flex: <span class="hljs-number">1</span>,<br>        justifyContent: <span class="hljs-string">&#x27;center&#x27;</span>,<br>        alignItems: <span class="hljs-string">&#x27;center&#x27;</span>,<br>        backgroundColor: <span class="hljs-string">&#x27;#92BBD9&#x27;</span>,<br>    &#125;,<br>    image:&#123;<br>        width:<span class="hljs-string">&#x27;100%&#x27;</span>,<br>        height:<span class="hljs-string">&#x27;100%&#x27;</span><br>    &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>将组件的代码结构引入到页面上：</li>
+</ol>
+<figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs handlebars"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Swiper</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;styles.wrapper&#125;</span> <span class="hljs-attr">showsButtons</span>=<span class="hljs-string">&#123;true&#125;</span> <span class="hljs-attr">height</span>=<span class="hljs-string">&#123;160&#125;</span> <span class="hljs-attr">autoplay</span>=<span class="hljs-string">&#123;true&#125;</span>&gt;</span></span><br><span class="xml">                <span class="hljs-tag">&lt;<span class="hljs-name">View</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;styles.slide1&#125;</span>&gt;</span></span><br><span class="xml">                    <span class="hljs-tag">&lt;<span class="hljs-name">Image</span> <span class="hljs-attr">source</span>=</span></span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">uri:</span><span class="hljs-string">&#x27;http://www.itcast.cn/images/slidead/BEIJING/2017410109413000.jpg&#x27;</span>&#125;&#125;</span><span class="xml"><span class="hljs-tag"> <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;styles.image&#125;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Image</span>&gt;</span></span><br><span class="xml">                <span class="hljs-tag">&lt;/<span class="hljs-name">View</span>&gt;</span></span><br><span class="xml">                <span class="hljs-tag">&lt;<span class="hljs-name">View</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;styles.slide2&#125;</span>&gt;</span></span><br><span class="xml">                    <span class="hljs-tag">&lt;<span class="hljs-name">Image</span> <span class="hljs-attr">source</span>=</span></span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">uri:</span><span class="hljs-string">&#x27;http://www.itcast.cn/images/slidead/BEIJING/2017440109442800.jpg&#x27;</span>&#125;&#125;</span><span class="xml"><span class="hljs-tag"> <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;styles.image&#125;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Image</span>&gt;</span></span><br><span class="xml">                <span class="hljs-tag">&lt;/<span class="hljs-name">View</span>&gt;</span></span><br><span class="xml">                <span class="hljs-tag">&lt;<span class="hljs-name">View</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;styles.slide3&#125;</span>&gt;</span></span><br><span class="xml">                    <span class="hljs-tag">&lt;<span class="hljs-name">Image</span> <span class="hljs-attr">source</span>=</span></span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">uri:</span><span class="hljs-string">&#x27;http://www.itcast.cn/images/slidead/BEIJING/2017441409442800.jpg&#x27;</span>&#125;&#125;</span><span class="xml"><span class="hljs-tag"> <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;styles.image&#125;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Image</span>&gt;</span></span><br><span class="xml">                <span class="hljs-tag">&lt;/<span class="hljs-name">View</span>&gt;</span></span><br><span class="xml">            <span class="hljs-tag">&lt;/<span class="hljs-name">Swiper</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
+
+<h4 id="首页轮播图片URL地址："><a href="#首页轮播图片URL地址：" class="headerlink" title="首页轮播图片URL地址："></a>首页轮播图片URL地址：</h4><ul>
+<li>图片地址1：<a target="_blank" rel="noopener" href="http://www.itcast.cn/images/slidead/BEIJING/2017410109413000.jpg">http://www.itcast.cn/images/slidead/BEIJING/2017410109413000.jpg</a></li>
+<li>图片地址2：<a target="_blank" rel="noopener" href="http://www.itcast.cn/images/slidead/BEIJING/2017440109442800.jpg">http://www.itcast.cn/images/slidead/BEIJING/2017440109442800.jpg</a></li>
+<li>图片地址3：<a target="_blank" rel="noopener" href="http://www.itcast.cn/images/slidead/BEIJING/2017441409442800.jpg">http://www.itcast.cn/images/slidead/BEIJING/2017441409442800.jpg</a></li>
+</ul>
+<h2 id="渲染电影列表数据"><a href="#渲染电影列表数据" class="headerlink" title="渲染电影列表数据"></a>渲染电影列表数据</h2><h2 id="渲染电影详情页面"><a href="#渲染电影详情页面" class="headerlink" title="渲染电影详情页面"></a>渲染电影详情页面</h2><h2 id="调用摄像头拍照"><a href="#调用摄像头拍照" class="headerlink" title="调用摄像头拍照"></a>调用摄像头拍照</h2><p><a target="_blank" rel="noopener" href="https://github.com/marcshilling/react-native-image-picker">react-native-image-picker的github官网</a><br><a target="_blank" rel="noopener" href="http://www.cnblogs.com/shaoting/p/6148085.html">react native 之 react-native-image-picke的详细使用图解</a></p>
+<ol>
+<li>运行<code>npm install react-native-image-picker@latest --save</code>安装到项目运行依赖，此时调试<strong>可能会报错</strong>，如果报错，需要使用下面的步骤解决：<ul>
+<li>先删除<code>node_modules</code>文件夹</li>
+<li>运行<code>npm i</code></li>
+<li>运行<code>npm start --reset-cache</code></li>
+</ul>
+</li>
+<li> 运行<code>react-native link</code>自动注册相关的组件到原生配置中</li>
+<li> 打开项目中的<code>android</code>-&gt;<code>app</code>-&gt;<code>src</code>-&gt;<code>main</code>-&gt;<code>AndroidManifest.xml</code>文件，在第8行添加如下配置：</li>
+</ol>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;uses-permission android:<span class="hljs-attribute">name</span>=<span class="hljs-string">&quot;android.permission.CAMERA&quot;</span> /&gt;<br>&lt;uses-permission android:<span class="hljs-attribute">name</span>=<span class="hljs-string">&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;</span>/&gt;<br></code></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><p>打开项目中的<code>android</code>-&gt;<code>app</code>-&gt;<code>src</code>-&gt;<code>main</code>-&gt;<code>java</code>-&gt;<code>com</code>-&gt;<code>当前项目名称文件夹</code>-&gt;<code>MainActivity.java</code>文件，修改配置如下：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs scala"><span class="hljs-keyword">package</span> com.native_camera;<br><span class="hljs-keyword">import</span> com.facebook.react.<span class="hljs-type">ReactActivity</span>;<br><br><span class="hljs-comment">// 1. 添加以下两行：</span><br><span class="hljs-keyword">import</span> com.imagepicker.permissions.<span class="hljs-type">OnImagePickerPermissionsCallback</span>; <span class="hljs-comment">// &lt;- add this import</span><br><span class="hljs-keyword">import</span> com.facebook.react.modules.core.<span class="hljs-type">PermissionListener</span>; <span class="hljs-comment">// &lt;- add this import</span><br><br>public <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ReactActivity</span> </span>&#123;<br>    <span class="hljs-comment">// 2. 添加如下一行：</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">PermissionListener</span> listener; <span class="hljs-comment">// &lt;- add this attribute</span><br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * Returns the name of the main component registered from JavaScript.</span><br><span class="hljs-comment">     * This is used to schedule rendering of the component.</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">protected</span> <span class="hljs-type">String</span> getMainComponentName() &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;native_camera&quot;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure></li>
+<li><p>在项目中添加如下代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">// 第1步：</span><br><span class="hljs-keyword">import</span> &#123;View, Button, Image&#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-native&#x27;</span><br><span class="hljs-keyword">import</span> ImagePicker <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-native-image-picker&#x27;</span><br><span class="hljs-keyword">var</span> photoOptions = &#123;<br>  <span class="hljs-comment">//底部弹出框选项</span><br>  <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;请选择&#x27;</span>,<br>  <span class="hljs-attr">cancelButtonTitle</span>: <span class="hljs-string">&#x27;取消&#x27;</span>,<br>  <span class="hljs-attr">takePhotoButtonTitle</span>: <span class="hljs-string">&#x27;拍照&#x27;</span>,<br>  <span class="hljs-attr">chooseFromLibraryButtonTitle</span>: <span class="hljs-string">&#x27;选择相册&#x27;</span>,<br>  <span class="hljs-attr">quality</span>: <span class="hljs-number">0.75</span>,<br>  <span class="hljs-attr">allowsEditing</span>: <span class="hljs-literal">true</span>,<br>  <span class="hljs-attr">noData</span>: <span class="hljs-literal">false</span>,<br>  <span class="hljs-attr">storageOptions</span>: &#123;<br>    <span class="hljs-attr">skipBackup</span>: <span class="hljs-literal">true</span>,<br>    <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;images&#x27;</span><br>  &#125;<br>&#125;<br><br><span class="hljs-comment">// 第2步：</span><br><span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">props</span>)</span> &#123;<br><span class="hljs-built_in">super</span>(props);<br>    <span class="hljs-built_in">this</span>.state = &#123;<br>      <span class="hljs-attr">imgURL</span>: <span class="hljs-string">&#x27;&#x27;</span><br>    &#125;<br>  &#125;<br><br><span class="hljs-comment">// 第3步：</span><br>&lt;Image source=&#123;&#123; <span class="hljs-attr">uri</span>: <span class="hljs-built_in">this</span>.state.imgURL &#125;&#125; style=&#123;&#123; <span class="hljs-attr">width</span>: <span class="hljs-number">200</span>, <span class="hljs-attr">height</span>: <span class="hljs-number">200</span> &#125;&#125;&gt;&lt;/Image&gt;<br><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;拍照&quot;</span> <span class="hljs-attr">onPress</span>=<span class="hljs-string">&#123;this.cameraAction&#125;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span></span><br><br><span class="hljs-comment">// 第4步：</span><br>cameraAction = <span class="hljs-function">() =&gt;</span> &#123;<br>ImagePicker.showImagePicker(photoOptions, <span class="hljs-function">(<span class="hljs-params">response</span>) =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;response&#x27;</span> + response);<br>  <span class="hljs-keyword">if</span> (response.didCancel) &#123;<br>    <span class="hljs-keyword">return</span><br>  &#125;<br>  <span class="hljs-built_in">this</span>.setState(&#123;<br>    <span class="hljs-attr">imgURL</span>: response.uri<br>  &#125;);<br>&#125;)<br>  &#125;<br></code></pre></td></tr></table></figure></li>
+<li><p><strong>一定要退出之前调试的App</strong>，并重新运行<code>react-native run-android</code>进行打包部署；这次打包期间会下载一些jar的包，需要耐心等待！</p>
+</li>
+</ol>
+<h2 id="签名打包发布Release版本的apk安装包"><a href="#签名打包发布Release版本的apk安装包" class="headerlink" title="签名打包发布Release版本的apk安装包"></a>签名打包发布Release版本的apk安装包</h2><ul>
+<li>请参考以下两篇文章：</li>
+</ul>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/1380d4c8b596">ReactNative之Android打包APK方法（趟坑过程）</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/fengyuzhengfan/article/details/51958848">React Native发布APP之签名打包APK</a></li>
+</ul>
+<h3 id="如何发布一个apk"><a href="#如何发布一个apk" class="headerlink" title="如何发布一个apk"></a>如何发布一个apk</h3><ol>
+<li>先保证自己正确配置了所有的 RN 环境</li>
+<li>在 cmd 命令行中，运行这一句话<code>keytool -genkey -v -keystore my-release-key2.keystore -alias my-key-alias2 -keyalg RSA -keysize 2048 -validity 10000</code></li>
+</ol>
+<ul>
+<li>其中： <code>my-release-key.keystore</code> 表示你一会儿要生成的那个 签名文件的 名称【很重要，包找个小本本记下来】</li>
+<li><code>-alias</code> 后面的东西，也很重要，需要找个小本本记下来，这个名称可以根据自己的需求改动<code>my-key-alias</code></li>
+<li>当运行找个命令的时候，需要输入一系列的参数，找个口令的密码，【一定要找个小本本记下来】</li>
+</ul>
+<ol start="3">
+<li>当生成了签名之后，这个签名，默认保存到了自己的用户目录下<code>C:\Users\liulongbin\my-release-key2.keystore</code></li>
+<li>将你的签名证书copy到 android/app目录下。</li>
+<li>编辑 <code>android</code> -&gt; <code>gradle.properties</code>文件，在最后，添加如下代码：</li>
+</ol>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">MYAPP_RELEASE_STORE_FILE</span>=your keystore filename<br><span class="hljs-attr">MYAPP_RELEASE_KEY_ALIAS</span>=your keystore alias<br><span class="hljs-attr">MYAPP_RELEASE_STORE_PASSWORD</span>=*****<br><span class="hljs-attr">MYAPP_RELEASE_KEY_PASSWORD</span>=*****<br></code></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>编辑 android/app/build.gradle文件添加如下代码：</li>
+</ol>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs dts">...<br><span class="hljs-class">android </span>&#123;<br>    ...<br>    <span class="hljs-class">defaultConfig </span>&#123; ... &#125;<br>    + <span class="hljs-class">signingConfigs </span>&#123;<br>    +    <span class="hljs-class">release </span>&#123;<br>    +        storeFile file(MYAPP_RELEASE_STORE_FILE)<br>    +        storePassword MYAPP_RELEASE_STORE_PASSWORD<br>    +        keyAlias MYAPP_RELEASE_KEY_ALIAS<br>    +        keyPassword MYAPP_RELEASE_KEY_PASSWORD<br>    +    &#125;<br>    +&#125;<br>    <span class="hljs-class">buildTypes </span>&#123;<br>        <span class="hljs-class">release </span>&#123;<br>            ...<br>    +        signingConfig signingConfigs.release<br>        &#125;<br>    &#125;<br>&#125;<br>...<br></code></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>进入项目根目录下的<code>android</code>文件夹，在当前目录打开终端，然后输入<code>./gradlew assembleRelease</code>开始发布APK的Release版；</li>
+<li>当发行完毕后，进入自己项目的<code>android\app\build\outputs\apk</code>目录中，找到<code>app-release.apk</code>，这就是我们发布完毕之后的完整安装包；就可以上传到各大应用商店供用户使用啦；</li>
+</ol>
+<blockquote>
+<p>注意：请记得妥善地保管好你的密钥库文件，不要上传到版本库或者其它的地方。</p>
+</blockquote>
+<h2 id="相关文章-3"><a href="#相关文章-3" class="headerlink" title="相关文章"></a>相关文章</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/u011240877/article/details/51983262">React Native 小米（红米）手机安装失败、白屏 Failed to establish session 解决方案</a></li>
+<li><a target="_blank" rel="noopener" href="http://lib.csdn.net/article/reactnative/48721">React Native Android 初次试用遇到的各种坑</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.redux.org.cn/">Redux 中文文档</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/u014038534/article/details/53943862">react-native 在使用require加载本地图片时报Unexcepted character</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/u013531824/article/details/51003775">React Native for Android 发布独立的安装包</a></li>
+</ul>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Web/">Web</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/React/">React</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2018/01/09/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A016-Angular/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">前端学习16-Angular</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2018/01/08/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A014-%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+                        <span class="hidden-mobile">前端学习14-微信小程序</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"fc36e17008bd1e3e898d","clientSecret":"d9d3bc7feb2b8abbb2d05b43b2d16a1d19c9bba2","repo":"cylinclinv.github.io","owner":"cylinclinv","admin":["cylinclinv"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":true,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'fbe4f1a3b8bf9ac9ac3388d8b3d89d85'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>clyde</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
