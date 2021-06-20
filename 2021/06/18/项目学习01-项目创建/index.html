@@ -1,0 +1,699 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/logo.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="clyde">
+  <meta name="keywords" content="">
+  
+  <title>项目学习01-项目创建和mybatis plus使用 - Clyde</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Clyde</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/cover/32.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="项目学习01-项目创建和mybatis plus使用">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-06-18 22:13" pubdate>
+        2021年6月18日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      47
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">项目学习01-项目创建和mybatis plus使用</h1>
+            
+            <div class="markdown-body">
+              <h1 id="idea设置"><a href="#idea设置" class="headerlink" title="idea设置"></a>idea设置</h1><p>** 创建前设置</p>
+<h2 id="1-maven仓库设置"><a href="#1-maven仓库设置" class="headerlink" title="1. maven仓库设置"></a>1. maven仓库设置</h2><p>做项目前推荐使用课程提供的maven仓库,具体配置如下</p>
+<p>将课程提供的maven仓库解压到本地,然后到settings下maven,修改local repository</p>
+<p><img src="/img/idea/create04.jpg" srcset="/img/loading.gif" lazyload></p>
+<h2 id="2-编码设置"><a href="#2-编码设置" class="headerlink" title="2. 编码设置"></a>2. 编码设置</h2><blockquote>
+<p>ctrl+alt+s打开settings快捷键</p>
+</blockquote>
+<h3 id="1-settings下设置java-compiler中jdk"><a href="#1-settings下设置java-compiler中jdk" class="headerlink" title="1) settings下设置java compiler中jdk"></a>1) settings下设置java compiler中jdk</h3><p><img src="/img/idea/create05.jpg" srcset="/img/loading.gif" lazyload></p>
+<h3 id="2-settings下设置file-encoding-这个要注意-否则会在编译运行阶段发生乱码问题"><a href="#2-settings下设置file-encoding-这个要注意-否则会在编译运行阶段发生乱码问题" class="headerlink" title="2) settings下设置file encoding(这个要注意,否则会在编译运行阶段发生乱码问题)"></a>2) settings下设置file encoding(这个要注意,否则会在编译运行阶段发生乱码问题)</h3><p><img src="/img/idea/create06.jpg" srcset="/img/loading.gif" lazyload></p>
+<h3 id="3-在settings下检查annotation-processor"><a href="#3-在settings下检查annotation-processor" class="headerlink" title="3) 在settings下检查annotation processor"></a>3) 在settings下检查annotation processor</h3><h3 id="4-开始的时候需要修改pom文件-调整依赖-所以需要在maven管理工具中点击闪电的图标-跳过test步骤"><a href="#4-开始的时候需要修改pom文件-调整依赖-所以需要在maven管理工具中点击闪电的图标-跳过test步骤" class="headerlink" title="4) 开始的时候需要修改pom文件,调整依赖,所以需要在maven管理工具中点击闪电的图标,跳过test步骤"></a>4) 开始的时候需要修改pom文件,调整依赖,所以需要在maven管理工具中点击闪电的图标,跳过test步骤</h3><p><img src="/img/idea/create07.jpg" srcset="/img/loading.gif" lazyload></p>
+<h1 id="项目创建"><a href="#项目创建" class="headerlink" title="项目创建"></a>项目创建</h1><h2 id="1-使用spring-initializr创建项目会相对方便一些-但需要联网"><a href="#1-使用spring-initializr创建项目会相对方便一些-但需要联网" class="headerlink" title="1) 使用spring initializr创建项目会相对方便一些,但需要联网"></a>1) 使用spring initializr创建项目会相对方便一些,但需要联网</h2><p><img src="/img/idea/create01.jpg" srcset="/img/loading.gif" lazyload></p>
+<h2 id="2-而且创建后选择的版本相对较新-如果要引入旧版本则需要先导入有旧版本springboot的maven库"><a href="#2-而且创建后选择的版本相对较新-如果要引入旧版本则需要先导入有旧版本springboot的maven库" class="headerlink" title="2) 而且创建后选择的版本相对较新,如果要引入旧版本则需要先导入有旧版本springboot的maven库"></a>2) 而且创建后选择的版本相对较新,如果要引入旧版本则需要先导入有旧版本springboot的maven库</h2><pre><code>否则即时是阿里镜像,也会出现旧版本一直down不下来的情况
+</code></pre>
+<p><img src="/img/idea/create02.jpg" srcset="/img/loading.gif" lazyload></p>
+<h2 id="3-如果出现创建项目失败-提示联网问题-可以考虑换个网络-或者使用手机热点创建"><a href="#3-如果出现创建项目失败-提示联网问题-可以考虑换个网络-或者使用手机热点创建" class="headerlink" title="3) 如果出现创建项目失败,提示联网问题,可以考虑换个网络,或者使用手机热点创建"></a>3) 如果出现创建项目失败,提示联网问题,可以考虑换个网络,或者使用手机热点创建</h2><p><img src="/img/idea/create03.jpg" srcset="/img/loading.gif" lazyload></p>
+<h1 id="项目编写"><a href="#项目编写" class="headerlink" title="项目编写"></a>项目编写</h1><h2 id="1-配置pom文件-添加开始使用需要的依赖"><a href="#1-配置pom文件-添加开始使用需要的依赖" class="headerlink" title="1. 配置pom文件,添加开始使用需要的依赖"></a>1. 配置pom文件,添加开始使用需要的依赖</h2><p>如果新加入的依赖有报错,可以采取以下的处理方法</p>
+<blockquote>
+<ol>
+<li><p>在maven管理界面点击刷新</p>
+</li>
+<li><p>先点击clean,再点击install</p>
+</li>
+<li><p>将报错的依赖剪切出来,点刷新,然后再将依赖复制回去,刷新</p>
+</li>
+<li><p>换网络,架梯子</p>
+</li>
+</ol>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">project</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag">         <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">modelVersion</span>&gt;</span>4.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">modelVersion</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">parent</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>2.2.1.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">relativePath</span>/&gt;</span> <span class="hljs-comment">&lt;!-- lookup parent from repository --&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">parent</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.clyde<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>cyglstudyol<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>cyglstudyol<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">description</span>&gt;</span>Demo project for Spring Boot<span class="hljs-tag">&lt;/<span class="hljs-name">description</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">properties</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">java.version</span>&gt;</span>1.8<span class="hljs-tag">&lt;/<span class="hljs-name">java.version</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">exclusions</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">exclusion</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.junit.vintage<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>junit-vintage-engine<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>                <span class="hljs-tag">&lt;/<span class="hljs-name">exclusion</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">exclusions</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>        <span class="hljs-comment">&lt;!--mybatis-plus--&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.baomidou<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mybatis-plus-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.0.5<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>        <span class="hljs-comment">&lt;!--mysql--&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>mysql<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mysql-connector-java<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>        <span class="hljs-comment">&lt;!--lombok用来简化实体类--&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.projectlombok<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>lombok<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">build</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">plugins</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">plugin</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">plugins</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">build</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">project</span>&gt;</span><br><br><br></code></pre></td></tr></table></figure>
+
+<h2 id="2-配置lombok插件"><a href="#2-配置lombok插件" class="headerlink" title="2. 配置lombok插件"></a>2. 配置lombok插件</h2><p>因为又使用lombok插件,所以需要到settings-&gt;plugins下配置lombok插件</p>
+<h2 id="3-配置文件resources-application-properties"><a href="#3-配置文件resources-application-properties" class="headerlink" title="3. 配置文件resources/application.properties"></a>3. 配置文件resources/application.properties</h2><p>springboot2.1以后配置mysql连接需要在<code>com.mysql.cj.jdbc.Driver</code> 加上cj</p>
+<p>在<code> jdbc:mysql://localhost:3306/mybatis_plus?serverTimezone=GMT%2B8</code>加上后面的时区</p>
+<blockquote>
+<p>这个配置文件可以使用properties或者yaml格式</p>
+</blockquote>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs maxima">spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver<br>spring.datasource.url=jdbc:mysql://localhost:<span class="hljs-number">3306</span>/mybatis_plus?serverTimezone=GMT%<span class="hljs-number">2B8</span><br>spring.datasource.username=root<br>spring.datasource.password=root<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-启动主类java-package-CyglstudyolApplication-java"><a href="#4-启动主类java-package-CyglstudyolApplication-java" class="headerlink" title="4. 启动主类java/package/CyglstudyolApplication.java"></a>4. 启动主类java/package/CyglstudyolApplication.java</h2><p>这个是自动生成的</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-meta">@SpringBootApplication</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CyglstudyolApplication</span> </span>&#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-built_in">void</span> <span class="hljs-function"><span class="hljs-title">main</span>(<span class="hljs-params"><span class="hljs-built_in">String</span>[] args</span>)</span> &#123;<br>        SpringApplication.run(CyglstudyolApplication.class, args);<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h2 id="5-创建Bean和Mapper"><a href="#5-创建Bean和Mapper" class="headerlink" title="5. 创建Bean和Mapper"></a>5. 创建Bean和Mapper</h2><h3 id="流程说明"><a href="#流程说明" class="headerlink" title="流程说明"></a>流程说明</h3><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs livescript">-&gt; 数据库user表<br>-&gt; User实体类<br>-&gt; 做UserMapper映射User类<span class="hljs-function"><span class="hljs-params">(@Repository注解)</span></span><br><span class="hljs-function">-&gt;</span> 在启动主类中做包扫描<span class="hljs-function"><span class="hljs-params">(@MapperScan(<span class="hljs-string">&quot;com.clyde.cyglstudyol&quot;</span>))</span></span><br><span class="hljs-function">-&gt;</span> 在测试类中引入UserMapper<span class="hljs-function"><span class="hljs-params">(@Autowired)</span></span><br><span class="hljs-function">-&gt;</span> 进行查询List&lt;User&gt; users = userMapper.selectList(<span class="hljs-literal">null</span>);<br><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">IF</span> <span class="hljs-keyword">EXISTS</span> <span class="hljs-keyword">USER</span>;<br><br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">USER</span><br>(<br>    id <span class="hljs-type">BIGINT</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">&#x27;主键ID&#x27;</span>,<br><br>    <span class="hljs-type">NAME</span> <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">30</span>) <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">&#x27;姓名&#x27;</span>,<br><br>    age <span class="hljs-type">INT</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">&#x27;年龄&#x27;</span>,<br><br>    email <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">COMMENT</span> <span class="hljs-string">&#x27;邮箱&#x27;</span>,<br><br>    <span class="hljs-keyword">PRIMARY KEY</span> (id)<br>);<br></code></pre></td></tr></table></figure>
+
+<h3 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">user</span>;<br><br><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> <span class="hljs-keyword">user</span> (id, <span class="hljs-type">name</span>, age, email) <span class="hljs-keyword">VALUES</span><br><br>(<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;Jone&#x27;</span>, <span class="hljs-number">18</span>, <span class="hljs-string">&#x27;test1@baomidou.com&#x27;</span>),<br><br>(<span class="hljs-number">2</span>, <span class="hljs-string">&#x27;Jack&#x27;</span>, <span class="hljs-number">20</span>, <span class="hljs-string">&#x27;test2@baomidou.com&#x27;</span>),<br><br>(<span class="hljs-number">3</span>, <span class="hljs-string">&#x27;Tom&#x27;</span>, <span class="hljs-number">28</span>, <span class="hljs-string">&#x27;test3@baomidou.com&#x27;</span>),<br><br>(<span class="hljs-number">4</span>, <span class="hljs-string">&#x27;Sandy&#x27;</span>, <span class="hljs-number">21</span>, <span class="hljs-string">&#x27;test4@baomidou.com&#x27;</span>),<br><br>(<span class="hljs-number">5</span>, <span class="hljs-string">&#x27;Billie&#x27;</span>, <span class="hljs-number">24</span>, <span class="hljs-string">&#x27;test5@baomidou.com&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>插入完成后查看数据情况,是否正常插入,有无乱码等</p>
+<figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> <span class="hljs-keyword">USER</span>;<br></code></pre></td></tr></table></figure>
+
+<h3 id="entity-User-java"><a href="#entity-User-java" class="headerlink" title="entity/User.java"></a>entity/User.java</h3><figure class="highlight irpf90"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs irpf90">@<span class="hljs-keyword">Data</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> User &#123;<br>    <span class="hljs-keyword">private</span> Long id;<br>    <span class="hljs-keyword">private</span> String <span class="hljs-keyword">name</span>;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">Integer</span> age;<br>    <span class="hljs-keyword">private</span> String email;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="mapper-UserMapper-java"><a href="#mapper-UserMapper-java" class="headerlink" title="mapper/UserMapper.java"></a>mapper/UserMapper.java</h3><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-symbol">UserMapper</span> <span class="hljs-symbol">extends</span> <span class="hljs-symbol">BaseMapper</span>&lt;<span class="hljs-symbol">User</span>&gt; &#123;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="主类做包扫描-添加的包是UserMapper所在的包"><a href="#主类做包扫描-添加的包是UserMapper所在的包" class="headerlink" title="主类做包扫描,添加的包是UserMapper所在的包"></a>主类做包扫描,添加的包是UserMapper所在的包</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-variable">@SpringBootApplication</span><br><span class="hljs-variable">@MapperScan</span>(<span class="hljs-string">&quot;com.clyde.cyglstudyol&quot;</span>)<br>public class CyglstudyolApplication &#123;<br><br>    <span class="hljs-selector-tag">public</span> <span class="hljs-selector-tag">static</span> <span class="hljs-selector-tag">void</span> <span class="hljs-selector-tag">main</span>(String[] args) &#123;<br>        <span class="hljs-selector-tag">SpringApplication</span><span class="hljs-selector-class">.run</span>(CyglstudyolApplication.class, args);<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="进行测试test-package-CyglstudyolApplicationTests-java"><a href="#进行测试test-package-CyglstudyolApplicationTests-java" class="headerlink" title="进行测试test/package/CyglstudyolApplicationTests.java"></a>进行测试test/package/CyglstudyolApplicationTests.java</h3><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><br>@SpringBootTest<br><span class="hljs-keyword">class</span> CyglstudyolApplicationTests &#123;<br><br>    @Autowired<br>    <span class="hljs-keyword">private</span> UserMapper userMapper;<br><br>    @Test<br>    void context<span class="hljs-constructor">Loads()</span> &#123;<br>        List&lt;User&gt; users = userMapper.select<span class="hljs-constructor">List(<span class="hljs-params">null</span>)</span>;<br>        <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.printf(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">String</span>.</span></span>value<span class="hljs-constructor">Of(<span class="hljs-params">users</span>)</span>);<br><br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="在resources-application-properties添加mybatis日志配置"><a href="#在resources-application-properties添加mybatis日志配置" class="headerlink" title="在resources/application.properties添加mybatis日志配置"></a>在resources/application.properties添加mybatis日志配置</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus">#mybatis日志<br>mybatis-plus<span class="hljs-selector-class">.configuration</span>.log-impl=org<span class="hljs-selector-class">.apache</span><span class="hljs-selector-class">.ibatis</span><span class="hljs-selector-class">.logging</span><span class="hljs-selector-class">.stdout</span>.StdOutImpl<br></code></pre></td></tr></table></figure>
+
+<p>配置完成之后,会多出sql session的log输出,可以看到执行的查询语句,查询获取的结果</p>
+<p>与下方的获取到的输出文件相对应</p>
+<p><img src="/img/idea/create09.jpg" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>如果编译运行提示没有mysql相关的配置,可以查看编译后的文件target下是否有配置文件,<br>如果没有,将resources下的配置文件复制到这里就行<br><img src="/img/idea/create08.jpg" srcset="/img/loading.gif" lazyload></p>
+</blockquote>
+<h3 id="Mybatis实现插入"><a href="#Mybatis实现插入" class="headerlink" title="Mybatis实现插入"></a>Mybatis实现插入</h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">@Test<br>  <span class="hljs-built_in">public</span> <span class="hljs-type">void</span> testInsert()&#123;<br>      <span class="hljs-keyword">User</span> <span class="hljs-keyword">user</span> = <span class="hljs-built_in">new</span> <span class="hljs-keyword">User</span>();<br>      <span class="hljs-keyword">user</span>.setName(&quot;Helen&quot;);<br>      <span class="hljs-keyword">user</span>.setAge(<span class="hljs-number">18</span>);<br>      <span class="hljs-keyword">user</span>.setEmail(&quot;55317332@qq.com&quot;);<br>      <span class="hljs-type">int</span> result = userMapper.<span class="hljs-keyword">insert</span>(<span class="hljs-keyword">user</span>);<br><br>      <span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(result); //影响的行数<br>      <span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(<span class="hljs-keyword">user</span>); //id自动回填<br>  &#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>主键id没有插入,mb会自动生成一个19位的id进行插入</p>
+</blockquote>
+<p>设置主键自增entity/User.java给主键添加自增的注解</p>
+<blockquote>
+<p> 这个配置是给数据库主键设置为AUTO INCREMENT使用,如果主键没有设置自增,则会报错</p>
+<p>使用时如果数据库没有数据,默认是从1开始的</p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-meta">@TableId(type = IdType.AUTO)</span><br><span class="hljs-keyword">private</span> <span class="hljs-built_in">Long</span> id;<br></code></pre></td></tr></table></figure>
+
+<p>设置全局自增</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#全局设置主键生成策略</span><br>mybatis-plus.<span class="hljs-keyword">global</span>-config.db-config.<span class="hljs-built_in">id</span>-<span class="hljs-built_in">type</span>=auto<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<p><img src="/img/idea/create10.jpg" srcset="/img/loading.gif" lazyload></p>
+<h3 id="Update"><a href="#Update" class="headerlink" title="Update"></a>Update</h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">@Test<br>   <span class="hljs-built_in">public</span> <span class="hljs-type">void</span> testUpdateById()&#123;<br>       <span class="hljs-keyword">User</span> <span class="hljs-keyword">user</span> = <span class="hljs-built_in">new</span> <span class="hljs-keyword">User</span>();<br><br>       <span class="hljs-keyword">user</span>.setId(<span class="hljs-number">1</span>L);<br><br>       <span class="hljs-keyword">user</span>.setAge(<span class="hljs-number">28</span>);<br><br>       <span class="hljs-type">int</span> result = userMapper.updateById(<span class="hljs-keyword">user</span>);<br><br>       <span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(result);<br>   &#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="自动填充"><a href="#自动填充" class="headerlink" title="自动填充"></a>自动填充</h4><ol>
+<li><p>entity/User.java中配置</p>
+<blockquote>
+<p>注意需要将数据库中下划线格式修改成驼峰式</p>
+</blockquote>
+</li>
+</ol>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-comment">//create_time</span><br>   @<span class="hljs-constructor">TableField(<span class="hljs-params">fill</span> = FieldFill.INSERT)</span><br>   <span class="hljs-keyword">private</span> Date createTime;<br><br><span class="hljs-comment">//update_time</span><br>   @<span class="hljs-constructor">TableField(<span class="hljs-params">fill</span> = FieldFill.INSERT_UPDATE)</span><br>   <span class="hljs-keyword">private</span> Date updateTime;<br></code></pre></td></tr></table></figure>
+
+
+
+<ol start="2">
+<li>新建/handler/MyMetaObjectHandler</li>
+</ol>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyMetaObjectHandler</span> <span class="hljs-title">implements</span> <span class="hljs-title">MetaObjectHandler</span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> <span class="hljs-function"><span class="hljs-title">insertFill</span>(<span class="hljs-params">MetaObject metaObject</span>)</span> &#123;<br>        LOGGER.info(<span class="hljs-string">&quot;start insert fill ....&quot;</span>);<br><br>        <span class="hljs-built_in">this</span>.setFieldValByName(<span class="hljs-string">&quot;createTime&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(), metaObject);<br><br>        <span class="hljs-built_in">this</span>.setFieldValByName(<span class="hljs-string">&quot;updateTime&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(), metaObject);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> <span class="hljs-function"><span class="hljs-title">updateFill</span>(<span class="hljs-params">MetaObject metaObject</span>)</span> &#123;<br>        LOGGER.info(<span class="hljs-string">&quot;start update fill ....&quot;</span>);<br>        <br>        <span class="hljs-built_in">this</span>.setFieldValByName(<span class="hljs-string">&quot;updateTime&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(), metaObject);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h3 id="乐观"><a href="#乐观" class="headerlink" title="乐观"></a>乐观</h3><p><strong>主要适用场景：</strong>当要更新一条记录的时候，希望这条记录没有被别人更新，也就是说实现线程安全的数据更新</p>
+<p><strong>乐观锁实现方式：</strong></p>
+<ul>
+<li>取出记录时，获取当前version</li>
+<li>更新时，带上这个version</li>
+<li>执行更新时， set version = newVersion where version = oldVersion</li>
+<li>如果version不对，就更新失败</li>
+</ul>
+<p>数据添加version字段</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> `<span class="hljs-keyword">user</span>` <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">COLUMN</span> `<span class="hljs-keyword">version</span>` <span class="hljs-type">INT</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p>entity/user.java添加域数据库对应字段</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-variable">@Version</span><br><span class="hljs-variable">@TableField</span>(fill = FieldFill.INSERT)<br>private Integer version;<br></code></pre></td></tr></table></figure>
+
+
+
+<p>handler/MyMetaObjectHandler.java上添加version的插入配置</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> <span class="hljs-function"><span class="hljs-title">insertFill</span>(<span class="hljs-params">MetaObject metaObject</span>)</span> &#123;<br>      LOGGER.info(<span class="hljs-string">&quot;start insert fill ....&quot;</span>);<br><br>      <span class="hljs-built_in">this</span>.setFieldValByName(<span class="hljs-string">&quot;createTime&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(), metaObject);<br><br>      <span class="hljs-built_in">this</span>.setFieldValByName(<span class="hljs-string">&quot;updateTime&quot;</span>, <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(), metaObject);<br><br>      <span class="hljs-built_in">this</span>.setFieldValByName(<span class="hljs-string">&quot;version&quot;</span>, <span class="hljs-number">1</span>, metaObject);<br><br>  &#125;<br></code></pre></td></tr></table></figure>
+
+<p>新增config/MybatisPlusConfig.java,这里将在CyglstudyolApplication上的MapperScan移动到这边,需要配置@Configuration</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs less"><br><span class="hljs-variable">@EnableTransactionManagement</span><br><span class="hljs-variable">@Configuration</span><br><span class="hljs-variable">@MapperScan</span>(<span class="hljs-string">&quot;com.clyde.cyglstudyol.mapper&quot;</span>)<br>public class MybatisPlusConfig &#123;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 乐观锁插件</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-variable">@Bean</span><br>    public OptimisticLockerInterceptor optimisticLockerInterceptor() &#123;<br>        <span class="hljs-selector-tag">return</span> <span class="hljs-selector-tag">new</span> <span class="hljs-selector-tag">OptimisticLockerInterceptor</span>();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="根据id查询"><a href="#根据id查询" class="headerlink" title="根据id查询"></a>根据id查询</h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">@Test<br><span class="hljs-built_in">public</span> <span class="hljs-type">void</span> testSelectById()&#123;<br>    <span class="hljs-keyword">User</span> <span class="hljs-keyword">user</span> = userMapper.selectById(<span class="hljs-number">1</span>L);<br>    <span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(<span class="hljs-keyword">user</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="批量查询"><a href="#批量查询" class="headerlink" title="批量查询"></a>批量查询</h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">@Test<br><span class="hljs-built_in">public</span> <span class="hljs-type">void</span> testSelectBatchIds()&#123;<br>    List&lt;<span class="hljs-keyword">User</span>&gt; users = userMapper.selectBatchIds(Arrays.asList(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>));<br>    users.<span class="hljs-keyword">forEach</span>(<span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>::println);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="Map简单查询"><a href="#Map简单查询" class="headerlink" title="Map简单查询"></a>Map简单查询</h3><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs processing">@Test<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> testSelectByMap()&#123;<br>    <span class="hljs-keyword">HashMap</span>&lt;<span class="hljs-keyword">String</span>, <span class="hljs-keyword">Object</span>&gt; <span class="hljs-built_in">map</span> = <span class="hljs-keyword">new</span> <span class="hljs-keyword">HashMap</span>&lt;&gt;();<br>    <span class="hljs-built_in">map</span>.put(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;Helen&quot;</span>);<br>    <span class="hljs-built_in">map</span>.put(<span class="hljs-string">&quot;age&quot;</span>, <span class="hljs-number">18</span>);<br>    List&lt;User&gt; users = userMapper.selectByMap(<span class="hljs-built_in">map</span>);<br>    users.forEach(System.out::<span class="hljs-built_in">println</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p><strong>注意：</strong>map中的key对应的是数据库中的列名。例如数据库user_id，实体类是userId，这时map的key需要填写user_id</p>
+</blockquote>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>在config/MybatisPlusConfig.java配置分类插件</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 分页插件</span><br><span class="hljs-comment"> */</span><br><span class="hljs-meta">@Bean</span><br><span class="hljs-keyword">public</span> PaginationInterceptor <span class="hljs-function"><span class="hljs-title">paginationInterceptor</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> PaginationInterceptor();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>测试分页</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">@Test<br>public void test<span class="hljs-constructor">SelectMapsPage()</span> &#123;<br>    Page&lt;User&gt; page = <span class="hljs-keyword">new</span> Page&lt;&gt;(<span class="hljs-number">1</span>, <span class="hljs-number">5</span>);<br>    IPage&lt;Map&lt;String, Object&gt;&gt; mapIPage = userMapper.select<span class="hljs-constructor">MapsPage(<span class="hljs-params">page</span>, <span class="hljs-params">null</span>)</span>;<br>    <span class="hljs-comment">//注意：此行必须使用 mapIPage 获取记录列表，否则会有数据类型转换错误</span><br>    mapIPage.get<span class="hljs-constructor">Records()</span>.<span class="hljs-keyword">for</span><span class="hljs-constructor">Each(System.<span class="hljs-params">out</span>::<span class="hljs-params">println</span>)</span>;<br><br>    <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(page.get<span class="hljs-constructor">Current()</span>);<br><br>    <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(page.get<span class="hljs-constructor">Pages()</span>);<br><br>    <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(page.get<span class="hljs-constructor">Size()</span>);<br><br>    <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(page.get<span class="hljs-constructor">Total()</span>);<br><br>    <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(page.has<span class="hljs-constructor">Next()</span>);<br><br>    <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(page.has<span class="hljs-constructor">Previous()</span>);<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="根据id删除记录"><a href="#根据id删除记录" class="headerlink" title="根据id删除记录"></a>根据id删除记录</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testDeleteById</span><span class="hljs-params">()</span></span>&#123;<br>    <span class="hljs-keyword">int</span> result = userMapper.deleteById(<span class="hljs-number">8L</span>);<br><br>    System.out.println(result);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="批量删除"><a href="#批量删除" class="headerlink" title="批量删除"></a>批量删除</h3><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">@Test<br>public void test<span class="hljs-constructor">DeleteBatchIds()</span> &#123;<br>    <span class="hljs-built_in">int</span> result = userMapper.delete<span class="hljs-constructor">BatchIds(Arrays.<span class="hljs-params">asList</span>(8, 9, 10)</span>);<br>    <br>    <span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">System</span>.</span></span>out.println(result);<br>    <br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="简单条件查询删除"><a href="#简单条件查询删除" class="headerlink" title="简单条件查询删除"></a>简单条件查询删除</h3><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs arduino">@<span class="hljs-function">Test</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testDeleteByMap</span><span class="hljs-params">()</span> </span>&#123;  <br>    HashMap&lt;<span class="hljs-keyword">String</span>, Object&gt; map = <span class="hljs-keyword">new</span> HashMap&lt;&gt;();<br>    <br>    map.<span class="hljs-built_in">put</span>(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;Helen&quot;</span>);<br>    <br>    map.<span class="hljs-built_in">put</span>(<span class="hljs-string">&quot;age&quot;</span>, <span class="hljs-number">18</span>);<br>            <br>    <span class="hljs-keyword">int</span> result = userMapper.<span class="hljs-built_in">deleteByMap</span>(map);<br>    <br>    System.out.<span class="hljs-built_in">println</span>(result);<br>    <br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="逻辑删除"><a href="#逻辑删除" class="headerlink" title="逻辑删除"></a>逻辑删除</h1><ul>
+<li>物理删除：真实删除，将对应数据从数据库中删除，之后查询不到此条被删除数据</li>
+<li>逻辑删除：假删除，将对应数据中代表是否被删除字段状态修改为“被删除状态”，之后在数据库中仍旧能看到此条数据记录</li>
+</ul>
+<p><strong>（1）数据库中添加 deleted字段</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> `<span class="hljs-keyword">user</span>` <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">COLUMN</span> `deleted` <span class="hljs-type">boolean</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>（2）实体类添加deleted *<em>字段*</em></strong></p>
+<p>并加上 @TableLogic 注解 和 @TableField(fill = FieldFill.INSERT) 注解</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-variable">@TableLogic</span><br><span class="hljs-variable">@TableField</span>(fill = FieldFill.INSERT)<br>private Integer deleted;<br></code></pre></td></tr></table></figure>
+
+<p><strong>（3）元对象处理器接口添加deleted的insert默认值</strong></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-meta">@Override</span><br><span class="hljs-keyword">public</span> <span class="hljs-built_in">void</span> <span class="hljs-function"><span class="hljs-title">insertFill</span>(<span class="hljs-params">MetaObject metaObject</span>)</span> &#123;<br>    ......<br>    <span class="hljs-built_in">this</span>.setFieldValByName(<span class="hljs-string">&quot;deleted&quot;</span>, <span class="hljs-number">0</span>, metaObject);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>（4）application.properties 加入配置</strong></p>
+<p>此为默认值，如果你的默认值和mp默认的一样,该配置可无</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs arduino">mybatis-plus.global-config.db-config.logic-<span class="hljs-keyword">delete</span>-value=<span class="hljs-number">1</span><br>mybatis-plus.global-config.db-config.logic-<span class="hljs-keyword">not</span>-<span class="hljs-keyword">delete</span>-value=<span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>（5）在 MybatisPlusConfig 中注册 Bean</strong></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-meta">@Bean</span><br><span class="hljs-keyword">public</span> ISqlInjector <span class="hljs-function"><span class="hljs-title">sqlInjector</span>(<span class="hljs-params"></span>)</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> LogicSqlInjector();<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>（6）测试逻辑删除</strong></p>
+<ul>
+<li>测试后发现，数据并没有被删除，deleted字段的值由0变成了1</li>
+<li>测试后分析打印的sql语句，是一条update</li>
+<li><strong>注意：</strong>被删除数据的deleted 字段的值必须是 0，才能被选取出来执行逻辑删除的操作</li>
+</ul>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 测试 逻辑删除</span><br><span class="hljs-comment"> */</span><br>@<span class="hljs-function">Test</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">testLogicDelete</span><span class="hljs-params">()</span> </span>&#123;<br>    <span class="hljs-keyword">int</span> result = userMapper.<span class="hljs-built_in">deleteById</span>(<span class="hljs-number">1L</span>);<br>    System.out.<span class="hljs-built_in">println</span>(result);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+<p><strong>（7）测试逻辑删除后的查询</strong></p>
+<p>MyBatis Plus中查询操作也会自动添加逻辑删除字段的判断</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 测试 逻辑删除后的查询：</span><br><span class="hljs-comment"> * 不包括被逻辑删除的记录</span><br><span class="hljs-comment"> */</span><br>@Test<br><span class="hljs-built_in">public</span> <span class="hljs-type">void</span> testLogicDeleteSelect() &#123;<br>    <span class="hljs-keyword">User</span> <span class="hljs-keyword">user</span> = <span class="hljs-built_in">new</span> <span class="hljs-keyword">User</span>();<br>    List&lt;<span class="hljs-keyword">User</span>&gt; users = userMapper.selectList(<span class="hljs-keyword">null</span>);<br>    users.<span class="hljs-keyword">forEach</span>(<span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>::println);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>测试后分析打印的sql语句，包含 WHERE deleted=0 </p>
+<p>SELECT id,name,age,email,create_time,update_time,deleted FROM user WHERE deleted=0</p>
+</blockquote>
+<h1 id="性能分析"><a href="#性能分析" class="headerlink" title="性能分析"></a>性能分析</h1><p>性能分析拦截器，用于输出每条 SQL 语句及其执行时间</p>
+<p>SQL 性能执行分析,开发环境使用，超过指定时间，停止运行。有助于发现问题</p>
+<h2 id="1、配置插件"><a href="#1、配置插件" class="headerlink" title="1、配置插件"></a>1、配置插件</h2><p><strong>（1）参数说明</strong></p>
+<p>参数：maxTime： SQL 执行最大时长，超过自动停止运行，有助于发现问题。</p>
+<p>参数：format： SQL是否格式化，默认false。</p>
+<p><strong>（2）在 MybatisPlusConfig 中配置</strong></p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * SQL 执行性能分析插件</span><br><span class="hljs-comment"> * 开发环境使用，线上不推荐。 maxTime 指的是 sql 最大执行时长</span><br><span class="hljs-comment"> */</span><br>@Bean<br>@<span class="hljs-constructor">Profile(&#123;<span class="hljs-string">&quot;dev&quot;</span>,<span class="hljs-string">&quot;test&quot;</span>&#125;)</span><span class="hljs-comment">// 设置 dev test 环境开启</span><br>public PerformanceInterceptor performance<span class="hljs-constructor">Interceptor()</span> &#123;<br>    PerformanceInterceptor performanceInterceptor = <span class="hljs-keyword">new</span> <span class="hljs-constructor">PerformanceInterceptor()</span>;<br>    performanceInterceptor.set<span class="hljs-constructor">MaxTime(100)</span>;<span class="hljs-comment">//ms，超过此处设置的ms则sql不执行</span><br>    performanceInterceptor.set<span class="hljs-constructor">Format(<span class="hljs-params">true</span>)</span>;<br>    return performanceInterceptor;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>（3）Spring Boot 中设置dev环境</strong></p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-comment">#环境设置：dev、test、prod</span><br><span class="hljs-attr">spring.profiles.active</span>=dev<br></code></pre></td></tr></table></figure>
+
+<p>可以针对各环境新建不同的配置文件<code>application-dev.properties</code>、<code>application-test.properties</code>、<code>application-prod.properties</code></p>
+<p>也可以自定义环境名称：如test1、test2</p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 测试 性能分析插件</span><br><span class="hljs-comment"> */</span><br>@Test<br><span class="hljs-built_in">public</span> <span class="hljs-type">void</span> testPerformance() &#123;<br>    <span class="hljs-keyword">User</span> <span class="hljs-keyword">user</span> = <span class="hljs-built_in">new</span> <span class="hljs-keyword">User</span>();<br>    <span class="hljs-keyword">user</span>.setName(&quot;我是Helen&quot;);<br>    <span class="hljs-keyword">user</span>.setEmail(&quot;helen@sina.com&quot;);<br>    <span class="hljs-keyword">user</span>.setAge(<span class="hljs-number">18</span>);<br>    userMapper.<span class="hljs-keyword">insert</span>(<span class="hljs-keyword">user</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="Wrapper实现复杂查询"><a href="#Wrapper实现复杂查询" class="headerlink" title="Wrapper实现复杂查询"></a>Wrapper实现复杂查询</h2><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">  //mp实现复杂查询操作<br>    @Test<br>    <span class="hljs-built_in">public</span> <span class="hljs-type">void</span> testSelectQuery() &#123;<br>        //创建QueryWrapper对象<br>        QueryWrapper&lt;<span class="hljs-keyword">User</span>&gt; <span class="hljs-keyword">wrapper</span> = <span class="hljs-built_in">new</span> QueryWrapper&lt;&gt;();<br><br>        //通过QueryWrapper设置条件<br>        //ge(&gt;=)、gt(&gt;)、le(&lt;=)、lt(&lt;)<br>        //查询age&gt;=<span class="hljs-number">30</span>记录<br>        //第一个参数字段名称，第二个参数设置值<br>//         <span class="hljs-keyword">wrapper</span>.gt(&quot;age&quot;,<span class="hljs-number">30</span>);<br><br>        //eq(=)、ne(&lt;&gt;)<br>        //<span class="hljs-keyword">wrapper</span>.eq(&quot;name&quot;,&quot;lilei&quot;);<br>//        <span class="hljs-keyword">wrapper</span>.ne(&quot;name&quot;,&quot;lilei&quot;);<br><br>        //<span class="hljs-keyword">between</span><br>        //查询年龄 <span class="hljs-number">20</span><span class="hljs-number">-30</span><br>        // <span class="hljs-keyword">wrapper</span>.<span class="hljs-keyword">between</span>(&quot;age&quot;,<span class="hljs-number">20</span>,<span class="hljs-number">30</span>);<br><br>        //<span class="hljs-keyword">like</span><br>        //<span class="hljs-keyword">wrapper</span>.<span class="hljs-keyword">like</span>(&quot;name&quot;,&quot;岳&quot;);<br><br>        //orderByDesc<br>        // <span class="hljs-keyword">wrapper</span>.orderByDesc(&quot;id&quot;);<br><br>        //last<br>        //<span class="hljs-keyword">wrapper</span>.last(&quot;limit 1&quot;);<br><br>        //指定要查询的列<br>        <span class="hljs-keyword">wrapper</span>.<span class="hljs-keyword">select</span>(&quot;id&quot;,&quot;name&quot;);<br><br>        List&lt;<span class="hljs-keyword">User</span>&gt; users = userMapper.selectList(<span class="hljs-keyword">wrapper</span>);<br>        <span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(users);<br><br>    &#125;<br></code></pre></td></tr></table></figure>
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Java/">Java</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Mybatis/">Mybatis</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Idea/">Idea</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/06/18/%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A002-%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E7%AE%A1%E7%90%86/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">项目学习02-数据库和接口开发管理</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/06/18/%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E5%94%AF%E4%B8%80ID%E7%94%9F%E6%88%90%E6%96%B9%E6%A1%88%E6%B1%87%E6%80%BB/">
+                        <span class="hidden-mobile">分布式系统唯一ID生成方案汇总</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"fc36e17008bd1e3e898d","clientSecret":"d9d3bc7feb2b8abbb2d05b43b2d16a1d19c9bba2","repo":"cylinclinv.github.io","owner":"cylinclinv","admin":["cylinclinv"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":true,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '79e46525bfb23522c2593b4c7c6ed798'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>clyde</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

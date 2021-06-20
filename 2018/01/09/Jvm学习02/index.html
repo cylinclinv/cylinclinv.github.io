@@ -1,0 +1,564 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/logo.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="clyde">
+  <meta name="keywords" content="">
+  
+  <title>Jvm学习02 - Clyde</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Clyde</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/cover/102.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Jvm学习02">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2018-01-09 22:13" pubdate>
+        2018年1月9日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      5.1k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      62
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Jvm学习02</h1>
+            
+            <div class="markdown-body">
+              <h2 id="三、垃圾回收"><a href="#三、垃圾回收" class="headerlink" title="三、垃圾回收"></a>三、垃圾回收</h2><h3 id="1、如果判断对象可以回收"><a href="#1、如果判断对象可以回收" class="headerlink" title="1、如果判断对象可以回收"></a>1、如果判断对象可以回收</h3><p>1）引用计数法<br>当一个对象被引用时，就当引用对象的值加一，当值为 0 时，就表示该对象不被引用，可以被垃圾收集器回收。<br>这个引用计数法听起来不错，但是有一个弊端，如下图所示，循环引用时，两个对象的计数都为1，导致两个对象都无法被释放。</p>
+<p>2）可达性分析算法<br>JVM 中的垃圾回收器通过可达性分析来探索所有存活的对象<br>扫描堆中的对象，看能否沿着 GC Root 对象为起点的引用链找到该对象，如果找不到，则表示可以回收<br>可以作为 GC Root 的对象<br>虚拟机栈（栈帧中的本地变量表）中引用的对象。<br>方法区中类静态属性引用的对象<br>方法区中常量引用的对象<br>本地方法栈中 JNI（即一般说的Native方法）引用的对象</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-built_in">public</span> static <span class="hljs-type">void</span> main(String[] args) throws IOException &#123;<br><br>​    ArrayList&lt;<span class="hljs-keyword">Object</span>&gt; list = <span class="hljs-built_in">new</span> ArrayList&lt;&gt;();<br>​    list.<span class="hljs-keyword">add</span>(&quot;a&quot;);<br>​    list.<span class="hljs-keyword">add</span>(&quot;b&quot;);<br>​    list.<span class="hljs-keyword">add</span>(<span class="hljs-number">1</span>);<br>​    <span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(<span class="hljs-number">1</span>);<br>​    <span class="hljs-keyword">System</span>.<span class="hljs-keyword">in</span>.<span class="hljs-keyword">read</span>();<br><br>​    list = <span class="hljs-keyword">null</span>;<br>​    <span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(<span class="hljs-number">2</span>);<br>​    <span class="hljs-keyword">System</span>.<span class="hljs-keyword">in</span>.<span class="hljs-keyword">read</span>();<br>​    <span class="hljs-keyword">System</span>.<span class="hljs-keyword">out</span>.println(&quot;end&quot;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>对于以上代码，可以使用如下命令将堆内存信息转储成一个文件，然后使用<br>Eclipse Memory Analyzer 工具进行分析。<br>第一步：<br>使用 jps 命令，查看程序的进程</p>
+<p>第二步：</p>
+<p>使用 jmap -dump:format=b,live,file=1.bin 16104 命令转储文件<br>dump：转储文件<br>format=b：二进制文件<br>file：文件名<br>16104：进程的id<br>第三步：打开 Eclipse Memory Analyzer 对 1.bin 文件进行分析。</p>
+<p>分析的 gc root，找到了 ArrayList 对象，然后将 list 置为null，再次转储，那么 list 对象就会被回收。</p>
+<p>3）四种引用</p>
+<p>强引用<br>只有所有 GC Roots 对象都不通过【强引用】引用该对象，该对象才能被垃圾回收<br>软引用（SoftReference）<br>仅有软引用引用该对象时，在垃圾回收后，内存仍不足时会再次出发垃圾回收，回收软引用对象<br>可以配合引用队列来释放软引用自身<br>弱引用（WeakReference）<br>仅有弱引用引用该对象时，在垃圾回收时，无论内存是否充足，都会回收弱引用对象<br>可以配合引用队列来释放弱引用自身<br>虚引用（PhantomReference）<br>必须配合引用队列使用，主要配合 ByteBuffer 使用，被引用对象回收时，会将虚引用入队，<br>由 Reference Handler 线程调用虚引用相关方法释放直接内存<br>终结器引用（FinalReference）<br>无需手动编码，但其内部配合引用队列使用，在垃圾回收时，终结器引用入队（被引用对象暂时没有被回收），再由 Finalizer 线程通过终结器引用找到被引用对象并调用它的 finalize 方法，第二次 GC 时才能回收被引用对象。<br>演示软引用</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment">/**</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"> * 演示 软引用</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"> * -Xmx20m -XX:+PrintGCDetails -verbose:gc</span><br><span class="hljs-comment">   */</span><br>   <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Code_08_SoftReferenceTest</span> &#123;<br><br>   <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-built_in">int</span> _4MB = <span class="hljs-number">4</span> * <span class="hljs-number">1024</span> * <span class="hljs-number">1024</span>;<br><br>   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span>(<span class="hljs-params">String[] args</span>) throws IOException</span> &#123;<br>       method2();<br>   &#125;<br><br>   <span class="hljs-comment">// 设置 -Xmx20m , 演示堆内存不足,</span><br>   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">method1</span>(<span class="hljs-params"></span>) throws IOException</span> &#123;<br>       ArrayList&lt;<span class="hljs-built_in">byte</span>[]&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br><br>   <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) &#123;<br>       list.<span class="hljs-keyword">add</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">byte</span>[_4MB]);<br>   &#125;<br>   System.<span class="hljs-keyword">in</span>.read();<br><br>   &#125;<br><br>   <span class="hljs-comment">// 演示 软引用</span><br>   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">method2</span>(<span class="hljs-params"></span>) throws IOException</span> &#123;<br>       ArrayList&lt;SoftReference&lt;<span class="hljs-built_in">byte</span>[]&gt;&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>       <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) &#123;<br>           SoftReference&lt;<span class="hljs-built_in">byte</span>[]&gt; <span class="hljs-keyword">ref</span> = <span class="hljs-keyword">new</span> SoftReference&lt;&gt;(<span class="hljs-keyword">new</span> <span class="hljs-built_in">byte</span>[_4MB]);<br>           System.<span class="hljs-keyword">out</span>.println(<span class="hljs-keyword">ref</span>.<span class="hljs-keyword">get</span>());<br>           list.<span class="hljs-keyword">add</span>(<span class="hljs-keyword">ref</span>);<br>           System.<span class="hljs-keyword">out</span>.println(list.size());<br>       &#125;<br>       System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;循环结束：&quot;</span> + list.size());<br>       <span class="hljs-keyword">for</span>(SoftReference&lt;<span class="hljs-built_in">byte</span>[]&gt; <span class="hljs-keyword">ref</span> : list) &#123;<br>           System.<span class="hljs-keyword">out</span>.println(<span class="hljs-keyword">ref</span>.<span class="hljs-keyword">get</span>());<br>       &#125;<br>   &#125;<br>   &#125;<br></code></pre></td></tr></table></figure>
+
+
+<p>method1 方法解析：<br>首先会设置一个堆内存的大小为 20m，然后运行 mehtod1 方法，会抛异常，堆内存不足，因为 mehtod1 中的 list 都是强引用。</p>
+<p>method2 方法解析：<br>在 list 集合中存放了 软引用对象，当内存不足时，会触发 full gc，将软引用的对象回收。细节如图：</p>
+<p>上面的代码中，当软引用引用的对象被回收了，但是软引用还存在，所以，一般软引用需要搭配一个引用队列一起使用。<br>修改 method2 如下：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment">// 演示 软引用 搭配引用队列</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">method3</span>(<span class="hljs-params"></span>) throws IOException</span> &#123;<br>        ArrayList&lt;SoftReference&lt;<span class="hljs-built_in">byte</span>[]&gt;&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>        <span class="hljs-comment">// 引用队列</span><br>        ReferenceQueue&lt;<span class="hljs-built_in">byte</span>[]&gt; queue = <span class="hljs-keyword">new</span> ReferenceQueue&lt;&gt;();<br><br>​    <span class="hljs-keyword">for</span>(<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) &#123;<br>​        <span class="hljs-comment">// 关联了引用队列，当软引用所关联的 byte[] 被回收时，软引用自己会加入到 queue 中去</span><br>​        SoftReference&lt;<span class="hljs-built_in">byte</span>[]&gt; <span class="hljs-keyword">ref</span> = <span class="hljs-keyword">new</span> SoftReference&lt;&gt;(<span class="hljs-keyword">new</span> <span class="hljs-built_in">byte</span>[_4MB], queue);<br>​        System.<span class="hljs-keyword">out</span>.println(<span class="hljs-keyword">ref</span>.<span class="hljs-keyword">get</span>());<br>​        list.<span class="hljs-keyword">add</span>(<span class="hljs-keyword">ref</span>);<br>​        System.<span class="hljs-keyword">out</span>.println(list.size());<br>​    &#125;<br><br>​    <span class="hljs-comment">// 从队列中获取无用的 软引用对象，并移除</span><br>​    Reference&lt;? extends <span class="hljs-built_in">byte</span>[]&gt; poll = queue.poll();<br>​    <span class="hljs-keyword">while</span>(poll != <span class="hljs-literal">null</span>) &#123;<br>​        list.<span class="hljs-keyword">remove</span>(poll);<br>​        poll = queue.poll();<br>​    &#125;<br><br>​    System.<span class="hljs-keyword">out</span>.println(<span class="hljs-string">&quot;=====================&quot;</span>);<br>​    <span class="hljs-keyword">for</span>(SoftReference&lt;<span class="hljs-built_in">byte</span>[]&gt; <span class="hljs-keyword">ref</span> : list) &#123;<br>​        System.<span class="hljs-keyword">out</span>.println(<span class="hljs-keyword">ref</span>.<span class="hljs-keyword">get</span>());<br>​    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<p>弱引用演示</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Code_09_WeakReferenceTest</span> &#123;</span><br><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">String</span>[] args)</span> </span>&#123;<br><br><span class="hljs-comment">//        method1();</span><br>        <span class="hljs-built_in">method2</span>();<br>    &#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> _4MB = <span class="hljs-number">4</span> * <span class="hljs-number">1024</span> *<span class="hljs-number">1024</span>;<br><br><span class="hljs-comment">// 演示 弱引用</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">method1</span><span class="hljs-params">()</span> </span>&#123;<br>    List&lt;WeakReference&lt;<span class="hljs-keyword">byte</span>[]&gt;&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++) &#123;<br>        WeakReference&lt;<span class="hljs-keyword">byte</span>[]&gt; weakReference = <span class="hljs-keyword">new</span> WeakReference&lt;&gt;(<span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[_4MB]);<br>        list.<span class="hljs-built_in">add</span>(weakReference);<br><br>​        <span class="hljs-keyword">for</span>(WeakReference&lt;<span class="hljs-keyword">byte</span>[]&gt; wake : list) &#123;<br>​            System.out.<span class="hljs-built_in">print</span>(wake.<span class="hljs-built_in">get</span>() + <span class="hljs-string">&quot;,&quot;</span>);<br>​        &#125;<br>​        System.out.<span class="hljs-built_in">println</span>();<br>​    &#125;<br>&#125;<br><br><span class="hljs-comment">// 演示 弱引用搭配 引用队列</span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">method2</span><span class="hljs-params">()</span> </span>&#123;<br>    List&lt;WeakReference&lt;<span class="hljs-keyword">byte</span>[]&gt;&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>    ReferenceQueue&lt;<span class="hljs-keyword">byte</span>[]&gt; queue = <span class="hljs-keyword">new</span> ReferenceQueue&lt;&gt;();<br><br>​    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">9</span>; i++) &#123;<br>​        WeakReference&lt;<span class="hljs-keyword">byte</span>[]&gt; weakReference = <span class="hljs-keyword">new</span> WeakReference&lt;&gt;(<span class="hljs-keyword">new</span> <span class="hljs-keyword">byte</span>[_4MB], queue);<br>​        list.<span class="hljs-built_in">add</span>(weakReference);<br>​        <span class="hljs-keyword">for</span>(WeakReference&lt;<span class="hljs-keyword">byte</span>[]&gt; wake : list) &#123;<br>​            System.out.<span class="hljs-built_in">print</span>(wake.<span class="hljs-built_in">get</span>() + <span class="hljs-string">&quot;,&quot;</span>);<br>​        &#125;<br>​        System.out.<span class="hljs-built_in">println</span>();<br>​    &#125;<br>​    System.out.<span class="hljs-built_in">println</span>(<span class="hljs-string">&quot;===========================================&quot;</span>);<br>​    Reference&lt;? extends <span class="hljs-keyword">byte</span>[]&gt; poll = queue.<span class="hljs-built_in">poll</span>();<br>​    <span class="hljs-keyword">while</span> (poll != null) &#123;<br>​        list.<span class="hljs-built_in">remove</span>(poll);<br>​        poll = queue.<span class="hljs-built_in">poll</span>();<br>​    &#125;<br>​    <span class="hljs-keyword">for</span>(WeakReference&lt;<span class="hljs-keyword">byte</span>[]&gt; wake : list) &#123;<br>​        System.out.<span class="hljs-built_in">print</span>(wake.<span class="hljs-built_in">get</span>() + <span class="hljs-string">&quot;,&quot;</span>);<br>​    &#125;<br>&#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<p>2、垃圾回收算法<br>1）标记清除<br>定义：Mark Sweep</p>
+<p>速度较快<br>会产生内存碎片</p>
+<p>2）标记整理<br>Mark Compact</p>
+<p>速度慢<br>没有内存碎片</p>
+<p>3）复制<br>Copy</p>
+<p>不会有内存碎片<br>需要占用两倍内存空间</p>
+<p>3、分代垃圾回收</p>
+<p>新创建的对象首先分配在 eden 区<br>新生代空间不足时，触发 minor gc ，eden 区 和 from 区存活的对象使用 - copy 复制到 to 中，存活的对象年龄加一，然后交换 from to<br>minor gc 会引发 stop the world，暂停其他线程，等垃圾回收结束后，恢复用户线程运行<br>当幸存区对象的寿命超过阈值时，会晋升到老年代，最大的寿命是 15（4bit）<br>当老年代空间不足时，会先触发 minor gc，如果空间仍然不足，那么就触发 full fc ，停止的时间更长！<br>1）相关 JVM 参数<br>含义    参数<br>堆初始大小    -Xms<br>堆最大大小    -Xmx 或 -XX:MaxHeapSize=size<br>新生代大小    -Xmn 或 (-XX:NewSize=size + -XX:MaxNewSize=size )<br>幸存区比例（动态）    -XX:InitialSurvivorRatio=ratio 和 -XX:+UseAdaptiveSizePolicy<br>幸存区比例    -XX:SurvivorRatio=ratio<br>晋升阈值    -XX:MaxTenuringThreshold=threshold<br>晋升详情    -XX:+PrintTenuringDistribution<br>GC详情    -XX:+PrintGCDetails -verbose:gc<br>FullGC 前 MinorGC    -XX:+ScavengeBeforeFullGC<br>2）GC 分析</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs processing"><span class="hljs-keyword">public</span> class Code_10_GCTest &#123;<br><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-built_in">int</span> _512KB = <span class="hljs-number">512</span> * <span class="hljs-number">1024</span>;<br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-built_in">int</span> _1MB = <span class="hljs-number">1024</span> * <span class="hljs-number">1024</span>;<br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-built_in">int</span> _6MB = <span class="hljs-number">6</span> * <span class="hljs-number">1024</span> * <span class="hljs-number">1024</span>;<br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-built_in">int</span> _7MB = <span class="hljs-number">7</span> * <span class="hljs-number">1024</span> * <span class="hljs-number">1024</span>;<br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-built_in">int</span> _8MB = <span class="hljs-number">8</span> * <span class="hljs-number">1024</span> * <span class="hljs-number">1024</span>;<br><br><span class="hljs-comment">// -Xms20m -Xmx20m -Xmn10m -XX:+UseSerialGC -XX:+PrintGCDetails -verbose:gc</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> main(<span class="hljs-keyword">String</span>[] args) &#123;<br>    List&lt;<span class="hljs-built_in">byte</span>[]&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>    list.<span class="hljs-built_in">add</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">byte</span>[_6MB]);<br>    list.<span class="hljs-built_in">add</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">byte</span>[_512KB]);<br>    list.<span class="hljs-built_in">add</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">byte</span>[_6MB]);<br>    list.<span class="hljs-built_in">add</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">byte</span>[_512KB]);<br>    list.<span class="hljs-built_in">add</span>(<span class="hljs-keyword">new</span> <span class="hljs-built_in">byte</span>[_6MB]);<br>&#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<p>通过上面的代码，给 list 分配内存，来观察 新生代和老年代的情况，什么时候触发 minor gc，什么时候触发 full gc 等情况，使用前需要设置 jvm 参数。</p>
+<p>4、垃圾回收器<br>相关概念：</p>
+<p>并行收集：指多条垃圾收集线程并行工作，但此时用户线程仍处于等待状态。<br>并发收集：指用户线程与垃圾收集线程同时工作（不一定是并行的可能会交替执行）。用户程序在继续运行，而垃圾收集程序运行在另一个 CPU 上<br>吞吐量：即 CPU 用于运行用户代码的时间与 CPU 总消耗时间的比值（吞吐量 = 运行用户代码时间 / ( 运行用户代码时间 + 垃圾收集时间 )），也就是。例如：虚拟机共运行 100 分钟，垃圾收集器花掉 1 分钟，那么吞吐量就是 99% 。<br>1）串行<br>单线程<br>堆内存较少，适合个人电脑</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">-XX:+<span class="hljs-attribute">UseSerialGC</span>=serial + serialOld<br></code></pre></td></tr></table></figure>
+
+
+<p>安全点：让其他线程都在这个点停下来，以免垃圾回收时移动对象地址，使得其他线程找不到被移动的对象<br>因为是串行的，所以只有一个垃圾回收线程。且在该线程执行回收工作时，其他线程进入阻塞状态</p>
+<p>Serial 收集器<br>Serial 收集器是最基本的、发展历史最悠久的收集器<br>特点：单线程、简单高效（与其他收集器的单线程相比），采用复制算法。对于限定单个 CPU 的环境来说，Serial 收集器由于没有线程交互的开销，专心做垃圾收集自然可以获得最高的单线程收集效率。收集器进行垃圾回收时，必须暂停其他所有的工作线程，直到它结束（Stop The World）！</p>
+<p>ParNew 收集器<br>ParNew 收集器其实就是 Serial 收集器的多线程版本<br>特点：多线程、ParNew 收集器默认开启的收集线程数与CPU的数量相同，在 CPU 非常多的环境中，可以使用 -XX:ParallelGCThreads 参数来限制垃圾收集的线程数。和 Serial 收集器一样存在 Stop The World 问题</p>
+<p>Serial Old 收集器<br>Serial Old 是 Serial 收集器的老年代版本<br>特点：同样是单线程收集器，采用标记-整理算法</p>
+<p>2）吞吐量优先<br>多线程<br>堆内存较大，多核 cpu<br>让单位时间内，STW 的时间最短 0.2 0.2 = 0.4</p>
+<figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs haml">-<span class="ruby"><span class="hljs-symbol">XX:</span>+UseParallelGC ~ -<span class="hljs-symbol">XX:</span>+UsePrallerOldGC</span><br><span class="ruby"></span>-<span class="ruby"><span class="hljs-symbol">XX:</span>+UseAdaptiveSizePolicy</span><br><span class="ruby"></span>-<span class="ruby"><span class="hljs-symbol">XX:</span>GCTimeRatio=ratio /<span class="hljs-regexp">/ 1/</span>(<span class="hljs-number">1</span>+radio)</span><br><span class="ruby"></span>-<span class="ruby"><span class="hljs-symbol">XX:</span>MaxGCPauseMillis=ms /<span class="hljs-regexp">/ 200ms</span></span><br><span class="hljs-regexp"><span class="ruby"></span></span>-<span class="ruby"><span class="hljs-regexp">XX:ParallelGCThreads=n</span></span><br></code></pre></td></tr></table></figure>
+
+<p>Parallel Scavenge 收集器<br>与吞吐量关系密切，故也称为吞吐量优先收集器<br>特点：属于新生代收集器也是采用复制算法的收集器（用到了新生代的幸存区），又是并行的多线程收集器（与 ParNew 收集器类似）</p>
+<p>该收集器的目标是达到一个可控制的吞吐量。还有一个值得关注的点是：GC自适应调节策略（与 ParNew 收集器最重要的一个区别）</p>
+<p>GC自适应调节策略：<br>Parallel Scavenge 收集器可设置 -XX:+UseAdptiveSizePolicy 参数。<br>当开关打开时不需要手动指定新生代的大小（-Xmn）、Eden 与 Survivor 区的比例（-XX:SurvivorRation）、<br>晋升老年代的对象年龄（-XX:PretenureSizeThreshold）等，虚拟机会根据系统的运行状况收集性能监控信息，动态设置这些参数以提供最优的停顿时间和最高的吞吐量，这种调节方式称为 GC 的自适应调节策略。</p>
+<p>Parallel Scavenge 收集器使用两个参数控制吞吐量：</p>
+<p>XX:MaxGCPauseMillis=ms 控制最大的垃圾收集停顿时间（默认200ms）<br>XX:GCTimeRatio=rario 直接设置吞吐量的大小<br>Parallel Old 收集器<br>是 Parallel Scavenge 收集器的老年代版本<br>特点：多线程，采用标记-整理算法（老年代没有幸存区）</p>
+<p>3）响应时间优先<br>多线程<br>堆内存较大，多核 cpu<br>尽可能让 STW 的单次时间最短 0.1 0.1 0.1 0.1 0.1 = 0.5</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs routeros">-XX:+UseConcMarkSweepGC ~ -XX:+UseParNewGC ~ SerialOld<br>-XX:<span class="hljs-attribute">ParallelGCThreads</span>=n ~ -XX:<span class="hljs-attribute">ConcGCThreads</span>=threads<br>-XX:<span class="hljs-attribute">CMSInitiatingOccupancyFraction</span>=percent<br>-XX:+CMSScavengeBeforeRemark<br></code></pre></td></tr></table></figure>
+
+<p>CMS 收集器<br>Concurrent Mark Sweep，一种以获取最短回收停顿时间为目标的老年代收集器<br>特点：基于标记-清除算法实现。并发收集、低停顿，但是会产生内存碎片<br>应用场景：适用于注重服务的响应速度，希望系统停顿时间最短，给用户带来更好的体验等场景下。如 web 程序、b/s 服务<br>CMS 收集器的运行过程分为下列4步：<br>初始标记：标记 GC Roots 能直接到的对象。速度很快但是仍存在 Stop The World 问题。<br>并发标记：进行 GC Roots Tracing 的过程，找出存活对象且用户线程可并发执行。<br>重新标记：为了修正并发标记期间因用户程序继续运行而导致标记产生变动的那一部分对象的标记记录。仍然存在 Stop The World 问题<br>并发清除：对标记的对象进行清除回收，清除的过程中，可能任然会有新的垃圾产生，这些垃圾就叫浮动垃圾，如果当用户需要存入一个很大的对象时，新生代放不下去，老年代由于浮动垃圾过多，就会退化为 serial Old 收集器，将老年代垃圾进行标记-整理，当然这也是很耗费时间的！</p>
+<p>CMS 收集器的内存回收过程是与用户线程一起并发执行的，可以搭配 ParNew 收集器（多线程，新生代，复制算法）与 Serial Old 收集器（单线程，老年代，标记-整理算法）使用。</p>
+<p>4）G1 收集器<br>定义： Garbage First<br>适用场景：</p>
+<p>同时注重吞吐量和低延迟（响应时间）<br>超大堆内存（内存大的），会将堆内存划分为多个大小相等的区域<br>整体上是标记-整理算法，两个区域之间是复制算法<br>相关参数：<br>JDK8 并不是默认开启的，所需要参数开启</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs routeros">-XX:+UseG1GC<br>-XX:<span class="hljs-attribute">G1HeapRegionSize</span>=size<br>-XX:<span class="hljs-attribute">MaxGCPauseMillis</span>=time<br></code></pre></td></tr></table></figure>
+
+<p>G1 垃圾回收阶段</p>
+<p>Young Collection：对新生代垃圾收集<br>Young Collection + Concurrent Mark：如果老年代内存到达一定的阈值了，新生代垃圾收集同时会执行一些并发的标记。<br>Mixed Collection：会对新生代 + 老年代 + 幸存区等进行混合收集，然后收集结束，会重新进入新生代收集。</p>
+<p>Young Collection<br>新生代存在 STW：<br>分代是按对象的生命周期划分，分区则是将堆空间划分连续几个不同小区间，每一个小区间独立回收，可以控制一次回收多少个小区间，方便控制 GC 产生的停顿时间！<br>E：eden，S：幸存区，O：老年代<br>新生代收集会产生 STW ！</p>
+<p>Young Collection + CM<br>在 Young GC 时会进行 GC Root 的初始化标记<br>老年代占用堆空间比例达到阈值时，进行并发标记（不会STW），由下面的 JVM 参数决定 -XX:InitiatingHeapOccupancyPercent=percent （默认45%）</p>
+<p>Mixed Collection<br>会对 E S O 进行全面的回收</p>
+<p>最终标记会 STW<br>拷贝存活会 STW<br>-XX:MaxGCPauseMills=xxms 用于指定最长的停顿时间！<br>问：为什么有的老年代被拷贝了，有的没拷贝？<br>因为指定了最大停顿时间，如果对所有老年代都进行回收，耗时可能过高。为了保证时间不超过设定的停顿时间，会回收最有价值的老年代（回收后，能够得到更多内存）</p>
+<p>Full GC<br>G1 在老年代内存不足时（老年代所占内存超过阈值）<br>如果垃圾产生速度慢于垃圾回收速度，不会触发 Full GC，还是并发地进行清理<br>如果垃圾产生速度快于垃圾回收速度，便会触发 Full GC，然后退化成 serial Old 收集器串行的收集，就会导致停顿的时候长。</p>
+<p>Young Collection 跨代引用<br>新生代回收的跨代引用（老年代引用新生代）问题</p>
+<p>卡表 与 Remembered Set<br>Remembered Set 存在于E中，用于保存新生代对象对应的脏卡<br>脏卡：O 被划分为多个区域（一个区域512K），如果该区域引用了新生代对象，则该区域被称为脏卡<br>在引用变更时通过 post-write barried + dirty card queue<br>concurrent refinement threads 更新 Remembered Set</p>
+<p>Remark<br>重新标记阶段<br>在垃圾回收时，收集器处理对象的过程中</p>
+<p>黑色：已被处理，需要保留的<br>灰色：正在处理中的<br>白色：还未处理的</p>
+<p>但是在并发标记过程中，有可能 A 被处理了以后未引用 C ，但该处理过程还未结束，在处理过程结束之前 A 引用了 C ，这时就会用到 remark 。<br>过程如下</p>
+<p>之前 C 未被引用，这时 A 引用了 C ，就会给 C 加一个写屏障，写屏障的指令会被执行，将 C 放入一个队列当中，并将 C 变为 处理中状态<br>在并发标记阶段结束以后，重新标记阶段会 STW ，然后将放在该队列中的对象重新处理，发现有强引用引用它，就会处理它，由灰色变成黑色。</p>
+<p>JDK 8u20 字符串去重<br>过程</p>
+<p>将所有新分配的字符串（底层是 char[] ）放入一个队列<br>当新生代回收时，G1 并发检查是否有重复的字符串<br>如果字符串的值一样，就让他们引用同一个字符串对象<br>注意，其与 String.intern() 的区别<br>String.intern() 关注的是字符串对象<br>字符串去重关注的是 char[]<br>在 JVM 内部，使用了不同的字符串标<br>优点与缺点</p>
+<p>节省了大量内存<br>新生代回收时间略微增加，导致略微多占用 CPU</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs diff"><span class="hljs-deletion">-XX:+UseStringDeduplication</span><br></code></pre></td></tr></table></figure>
+
+
+<p>JDK 8u40 并发标记类卸载<br>在并发标记阶段结束以后，就能知道哪些类不再被使用。如果一个类加载器的所有类都不在使用，则卸载它所加载的所有类</p>
+<p>JDK 8u60 回收巨型对象<br>一个对象大于region的一半时，就称为巨型对象<br>G1不会对巨型对象进行拷贝<br>回收时被优先考虑<br>G1会跟踪老年代所有incoming引用，如果老年代incoming引用为0的巨型对象就可以在新生代垃圾回收时处理掉</p>
+<p>JDK 9 并发标记起始时间的调整<br>并发标记必须在堆空间占满前完成，否则退化为 FulGC<br>JDK 9 之前需要使用 -XX:InitiatingHeapOccupancyPercent<br>JDK 9 可以动态调整<br>-XX:InitiatingHeapOccupancyPercent 用来设置初始值<br>进行数据采样并动态调整<br>总会添加一个安全的空挡空间<br>5、垃圾回收调优<br>查看虚拟机参数命令</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">D</span>:\JavaJDK<span class="hljs-number">1</span>.<span class="hljs-number">8</span>\bin\java  -XX:+PrintFlagsFinal -version | findstr <span class="hljs-string">&quot;GC&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>可以根据参数去查询具体的信息</p>
+<p>1）调优领域<br>内存<br>锁竞争<br>cpu 占用<br>io<br>gc<br>2）确定目标<br>低延迟/高吞吐量？ 选择合适的GC</p>
+<p>CMS G1 ZGC<br>ParallelGC<br>Zing<br>3）最快的 GC<br>首先排除减少因为自身编写的代码而引发的内存问题</p>
+<p>查看 Full GC 前后的内存占用，考虑以下几个问题<br>数据是不是太多？<br>resultSet = statement.executeQuery(“select * from 大表 limit n”)<br>数据表示是否太臃肿<br>对象图<br>对象大小 16 Integer 24 int 4<br>是否存在内存泄漏<br>static Map map …<br>软<br>弱<br>第三方缓存实现<br>4）新生代调优<br>新生代的特点</p>
+<p>所有的 new 操作分配内存都是非常廉价的<br>TLAB thread-lcoal allocation buffer<br>死亡对象回收零代价<br>大部分对象用过即死（朝生夕死）<br>Minor GC 所用时间远小于 Full GC<br>新生代内存越大越好么？</p>
+<p>不是<br>新生代内存太小：频繁触发 Minor GC ，会 STW ，会使得吞吐量下降<br>新生代内存太大：老年代内存占比有所降低，会更频繁地触发 Full GC。而且触发 Minor GC 时，清理新生代所花费的时间会更长<br>新生代内存设置为内容纳[并发量*(请求-响应)]的数据为宜<br>幸存区需要能够保存 当前活跃对象+需要晋升的对象</p>
+<p>晋升阈值配置得当，让长时间存活的对象尽快晋升</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs diff"><span class="hljs-deletion">-XX:MaxTenuringThreshold=threshold</span><br><span class="hljs-deletion">-XX:+PrintTenuringDistrubution</span><br></code></pre></td></tr></table></figure>
+
+<p>5）老年代调优<br>以 CMS 为例：</p>
+<p>CMS 的老年代内存越大越好<br>先尝试不做调优，如果没有 Full GC 那么已经，否者先尝试调优新生代。<br>观察发现 Full GC 时老年代内存占用，将老年代内存预设调大 1/4 ~ 1/3</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">-XX:<span class="hljs-attribute">CMSInitiatingOccupancyFraction</span>=percent<br></code></pre></td></tr></table></figure>
+
+<p>6）案例<br>案例1：Full GC 和 Minor GC 频繁<br>案例2：请求高峰期发生 Full GC，单次暂停时间特别长（CMS）<br>案例3：老年代充裕情况下，发生 Full GC（jdk1.7）</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Java/">Java</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Jvm/">Jvm</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2018/01/09/maven%E4%BB%A3%E7%90%86/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">maven代理</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2018/01/09/%E4%BE%9D%E8%B5%96%E5%86%B2%E7%AA%81%E8%A7%A3%E5%86%B3%E6%80%9D%E8%B7%AF/">
+                        <span class="hidden-mobile">依赖冲突解决思路</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"fc36e17008bd1e3e898d","clientSecret":"d9d3bc7feb2b8abbb2d05b43b2d16a1d19c9bba2","repo":"cylinclinv.github.io","owner":"cylinclinv","admin":["cylinclinv"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":true,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'c29590c5f00906bc5647e759cf812f08'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>clyde</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

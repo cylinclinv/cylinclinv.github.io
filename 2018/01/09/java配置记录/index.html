@@ -1,0 +1,576 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/logo.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="clyde">
+  <meta name="keywords" content="">
+  
+  <title>java配置记录 - Clyde</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Clyde</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/cover/62.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="java配置记录">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2018-01-09 22:13" pubdate>
+        2018年1月9日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.5k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      17
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">java配置记录</h1>
+            
+            <div class="markdown-body">
+              <h2 id="idea安装配置"><a href="#idea安装配置" class="headerlink" title="idea安装配置"></a>idea安装配置</h2><p>1,安装lombok插件,安装这个插件在使用lombok框架注解时才不会导致一大批getter,setter方法爆红</p>
+<p>2,设置jdk,编码格式project部分设置版本号,module上设置版本号,还有settings的java compiler中也要设置</p>
+<p>3,配置maven</p>
+<h2 id="jmeter环境中jdk配置"><a href="#jmeter环境中jdk配置" class="headerlink" title="jmeter环境中jdk配置"></a>jmeter环境中jdk配置</h2><p>jmeter中因为默认安装在program file下,会有空格,导致识别有问题,需要进行以下环境配置</p>
+<p>环境变量classpath上</p>
+<p>%JMETER_HOME%\lib\ext\ApacheJMeter_core.jar;%JMETER_HOME%\lib\jorphan.jar;  %JMETER_HOME%\lib/logkit-2.0.jar;</p>
+<h2 id="Maven安装配置"><a href="#Maven安装配置" class="headerlink" title="Maven安装配置"></a>Maven安装配置</h2><h3 id="1-配置安装路径"><a href="#1-配置安装路径" class="headerlink" title="1.配置安装路径"></a>1.配置安装路径</h3><p>D:/maven/apache-maven-3.5.2</p>
+<h3 id="2-配置maven安装配置文件"><a href="#2-配置maven安装配置文件" class="headerlink" title="2.配置maven安装配置文件"></a>2.配置maven安装配置文件</h3><p>D:\maven\apache-maven-3.5.2\conf\settings.xml</p>
+<h3 id="3-配置maven仓库路径"><a href="#3-配置maven仓库路径" class="headerlink" title="3.配置maven仓库路径"></a>3.配置maven仓库路径</h3><p>D:\maven\repository_boot</p>
+<p><img src="/img/idea/maven%E9%85%8D%E7%BD%AE.jpg" srcset="/img/loading.gif" lazyload></p>
+<h2 id="project-structer很卡顿-难加载出来的问题"><a href="#project-structer很卡顿-难加载出来的问题" class="headerlink" title="project structer很卡顿,难加载出来的问题"></a>project structer很卡顿,难加载出来的问题</h2><p><img src="/img/idea/idea03.jpg" srcset="/img/loading.gif" lazyload></p>
+<h2 id="快速启动"><a href="#快速启动" class="headerlink" title="快速启动"></a>快速启动</h2><p>win+r</p>
+<p>code    //vs code</p>
+<p>typora  //typora</p>
+<p>notepad2  //notepad2</p>
+<h2 id="jvm中debugger查看内存使用情况界面"><a href="#jvm中debugger查看内存使用情况界面" class="headerlink" title="jvm中debugger查看内存使用情况界面"></a>jvm中debugger查看内存使用情况界面</h2><p><img src="/img/idea/jvm%E4%B8%ADdebugger%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E7%95%8C%E9%9D%A2.jpg" srcset="/img/loading.gif" lazyload></p>
+<h2 id="Nuxt项目启动失败解决方法"><a href="#Nuxt项目启动失败解决方法" class="headerlink" title="Nuxt项目启动失败解决方法"></a>Nuxt项目启动失败解决方法</h2><p>nuxt项目启动,提示</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<span class="hljs-attr">&quot;info&quot;</span>:<span class="hljs-string">&quot;Invalid request!&quot;</span>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这个是端口被占用了,默认使用端口是10000</p>
+<p>在package.json文件修改端口为10002后能正常打开</p>
+<h2 id="项目一直提示model微服务里面的类找不到"><a href="#项目一直提示model微服务里面的类找不到" class="headerlink" title="项目一直提示model微服务里面的类找不到"></a>项目一直提示model微服务里面的类找不到</h2><p>解决方法:build-rebuild project</p>
+<h2 id="nohup和-amp-后台运行，进程查看及终止"><a href="#nohup和-amp-后台运行，进程查看及终止" class="headerlink" title="nohup和&amp;后台运行，进程查看及终止"></a>nohup和&amp;后台运行，进程查看及终止</h2><p>1.nohup</p>
+<p>用途：不挂断地运行命令。</p>
+<p>语法：nohup Command [ Arg … ] [　&amp; ]</p>
+<p>　　无论是否将 nohup 命令的输出重定向到终端，输出都将附加到当前目录的 nohup.out 文件中。</p>
+<p>　　如果当前目录的 nohup.out 文件不可写，输出重定向到 $HOME/nohup.out 文件中。</p>
+<p>　　如果没有文件能创建或打开以用于追加，那么 Command 参数指定的命令不可调用。</p>
+<p>退出状态：该命令返回下列出口值： 　</p>
+<p>　　126 可以查找但不能调用 Command 参数指定的命令。 　</p>
+<p>　　127 nohup 命令发生错误或不能查找由 Command 参数指定的命令。 　</p>
+<p>　　否则，nohup 命令的退出状态是 Command 参数指定命令的退出状态。</p>
+<p>2.&amp;</p>
+<p>用途：在后台运行</p>
+<p>一般两个一起用</p>
+<p>nohup command &amp;</p>
+<p>eg:</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">nohup <span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/node/</span>bin<span class="hljs-regexp">/node /</span>www<span class="hljs-regexp">/im/</span>chat.js &gt;&gt; <span class="hljs-regexp">/usr/</span>local<span class="hljs-regexp">/node/</span>output.log <span class="hljs-number">2</span>&gt;&amp;<span class="hljs-number">1</span> &amp;<br></code></pre></td></tr></table></figure>
+
+<p>进程号7585</p>
+<p>查看运行的后台进程</p>
+<p>（1）jobs -l</p>
+<p>jobs命令只看当前终端生效的，关闭终端后，在另一个终端jobs已经无法看到后台跑得程序了，此时利用ps（进程查看命令）</p>
+<p>（2）ps -ef </p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs dts">ps -aux|grep chat.js<br><span class="hljs-symbol"> a:</span>显示所有程序 <br><span class="hljs-symbol"> u:</span>以用户为主的格式来显示 <br><span class="hljs-symbol"> x:</span>显示所有程序，不以终端机来区分<br></code></pre></td></tr></table></figure>
+
+<p>注：</p>
+<p>　　用ps -def | grep查找进程很方便，最后一行总是会grep自己</p>
+<p>　　用grep -v参数可以将grep命令排除掉</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim"><span class="hljs-keyword">ps</span> -aux|<span class="hljs-keyword">grep</span> chat.js| <span class="hljs-keyword">grep</span> -v <span class="hljs-keyword">grep</span><br></code></pre></td></tr></table></figure>
+
+
+
+<p>　　再用awk提取一下进程ID　</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs perl">ps -aux|<span class="hljs-keyword">grep</span> chat.js| <span class="hljs-keyword">grep</span> -v <span class="hljs-keyword">grep</span> | awk <span class="hljs-string">``</span><span class="hljs-string">&#x27;&#123;print $2&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>3.如果某个进程起不来，可能是某个端口被占用</p>
+<p>查看使用某端口的进程</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">lsof</span> -i:<span class="hljs-number">8090</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 1c">netstat -ap<span class="hljs-string">|grep 8090</span><br></code></pre></td></tr></table></figure>
+
+<p>查看到进程id之后，使用netstat命令查看其占用的端口</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 1c">netstat -nap<span class="hljs-string">|grep 7779</span><br></code></pre></td></tr></table></figure>
+
+<p>使用kill杀掉进城后再启动</p>
+<p>4.终止后台运行的进程</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">kill</span> -<span class="hljs-number">9</span> 进程号<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="一些快捷键笔记"><a href="#一些快捷键笔记" class="headerlink" title="一些快捷键笔记"></a>一些快捷键笔记</h2><h4 id="1-windows快捷键"><a href="#1-windows快捷键" class="headerlink" title="1.windows快捷键"></a>1.windows快捷键</h4><p>win+shift+s  快速截屏</p>
+<p>chrome内核浏览器  ctrl+shift+t 快速恢复关闭浏览器</p>
+<p>edge浏览器航特有  ctrl+shift+u阅读网页,其中xiaoxiao语言很不错</p>
+<p>win+w  全屏截图</p>
+<p>win+.  表情包</p>
+<h4 id="2-idea快捷键"><a href="#2-idea快捷键" class="headerlink" title="2.idea快捷键"></a>2.idea快捷键</h4><p>shiftx2  快速搜索  tab切换</p>
+<p>ctrl+E  最近操作的文件</p>
+<p>ctrl+alt+b接口实现类</p>
+<p>alt+f7   查看方法的使用</p>
+<p>alt+insert  快速方法</p>
+<h4 id="3-idea快捷配置"><a href="#3-idea快捷配置" class="headerlink" title="3.idea快捷配置"></a>3.idea快捷配置</h4><p>选择faltter package<br>这样就会把每一级目录都单独出一行</p>
+<ol>
+<li><p>按键盘中的向右箭头<br>选中要展开的目录，按下键盘的向右箭头，这时候会展开一层当前目录。如果要展开所有，一直按住向右箭头不放即可。</p>
+</li>
+<li><p>按数字键盘中的*<br>选中要展开的目录，按下数字键盘中的<em>，这时候会展开一层当前目录。如果要展开所有，一直按住数字键盘中的</em>不放即可。</p>
+</li>
+<li><p>自己自定义展开的快捷键<br>在Preference偏好设置中，<br> 搜索Fully Expand Tree Node，<br>在Keymap选项页面中进行快捷键修改即可。比如，你可以增加Mouse Shortcut鼠标快捷键：alt+鼠标下滑键。(tab+向右)<br>修改完毕后，选中要展开的目录，然后通过按下键盘的alt键+鼠标下滑键即可展开选中目录。</p>
+</li>
+</ol>
+<p>相应的，你也可以设置折叠目录的快捷键，在Preference偏好设置中，<br>    搜索Collapse Node，<br>在Keymap选项页面中对Other下的Collapse Tree Node进行快捷键修改即可。<br>比如，你可以增加Mouse Shortcut鼠标快捷键：alt+鼠标上滑键(tab+向左)。修改完毕后，<br>选中被折叠目录的上层目录，然后通过按下键盘的alt键+鼠标上滑键即可进行目录折叠。</p>
+<h2 id="内网穿透"><a href="#内网穿透" class="headerlink" title="内网穿透"></a>内网穿透</h2><p>zerotier one</p>
+<p>花生壳</p>
+<p>ngrok</p>
+<p>frp</p>
+<h2 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs 示例代码">var str = &quot;123abc&quot;;<br>var patt1 = /^[0-9]+abc$/;<br>document.write(str.match(patt1));<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>^</strong> 为匹配输入字符串的开始位置。</li>
+<li><strong>[0-9]+<strong>匹配多个数字， <strong>[0-9]</strong> 匹配单个数字，</strong>+</strong> 匹配一个或者多个。</li>
+<li><strong>abc$<strong>匹配字母 <strong>abc</strong> 并以 <strong>abc</strong> 结尾，</strong>$</strong> 为匹配输入字符串的结束位置。</li>
+</ul>
+<p>###3 匹配123abcABC</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs 基本操作">/[abc]+/      abc   //匹配abc字符,后面+号表示匹配多个<br>/[abc]/       a     //匹配abc字符,后面没+号只能匹配一个字符<br><br>/[^abc]+/     123  	//匹配除abc外的字符<br>/[^abc]+$/	  ABC	//匹配结尾 <br><br>/[A-Z]+/   ABC   //匹配A-Z<br>/[^/n/r]+/  123abcABC  //匹配除/n,/r外所有字符<br><br> /[\s]+/    null    //   \s 是匹配所有空白符，包括换行<br> /[\S]+/    123abcABC    //   \S 非空白符，包括换行<br><br> /[\w]+/   123abcABC  等价于 [A-Za-z0-9_]<br></code></pre></td></tr></table></figure>
+
+
+
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Java/">Java</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%AD%A6%E6%88%90%E5%9C%A8%E7%BA%BF%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/">学成在线问题解决</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2018/01/09/logstash%E5%90%AF%E5%8A%A8%E6%97%A0%E6%B3%95%E6%89%BE%E5%88%B0%E4%B8%BB%E7%B1%BB/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">logstash启动无法找到主类</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2018/01/09/java%E5%9B%9B%E7%A7%8D%E5%BC%95%E7%94%A8%E5%AF%B9%E8%B1%A1/">
+                        <span class="hidden-mobile">java四种引用对象</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"fc36e17008bd1e3e898d","clientSecret":"d9d3bc7feb2b8abbb2d05b43b2d16a1d19c9bba2","repo":"cylinclinv.github.io","owner":"cylinclinv","admin":["cylinclinv"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":true,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'e454ad945f062f4f5b996c9f578c333c'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>clyde</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

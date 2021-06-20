@@ -1,0 +1,517 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/logo.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="clyde">
+  <meta name="keywords" content="">
+  
+  <title>java四种引用对象 - Clyde</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Clyde</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/cover/101.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="java四种引用对象">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2018-01-09 22:13" pubdate>
+        2018年1月9日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      31
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">java四种引用对象</h1>
+            
+            <div class="markdown-body">
+              <h2 id="Java四种引用对象"><a href="#Java四种引用对象" class="headerlink" title="Java四种引用对象"></a>Java四种引用对象</h2><p>在JDK1.2之前，创建的对象只有在处于可触及（reachable）的状态下，才能被程序使用。也就是说，若一个对象不被任何变量引用，那么程序就无法再使用这个对象。垃圾回收器一旦发现这些无用对象，就会对其进行回收。但是，在某些情况下，我们会希望有些对象不需要被立即回收，或者说从全局的角度来说没有立即回收的必要性。比如缓存系统的设计，在内存不吃紧或者说为了提高运行效率的情况下，一些暂时不用的对象仍然可放置在内存中，而不是立即进行回收。</p>
+<p>为了满足这种要求，从JDK1.2版本开始，Java的设计人员把对象的引用细分为强引用（Strong Reference）、软引用（Soft Reference）、弱引用（Weak Reference）和虚引用（Phantom Reference）四种级别，细分的准则是体现在被GC回收的优先级上：强引用&gt;软引用&gt;弱引用&gt;虚引用。</p>
+<p>这样，从JDK1.2开始，GC垃圾回收器回收对象时，对象的有效性分析不仅仅是需要考虑对象可达性，还需要考虑对象的引用强度，从而使程序可以更加灵活地控制对象的生命周期。可以用一个公式概括：对象的有效性=可达性+引用类型。</p>
+<p><strong>强引用（Strong Reference）</strong></p>
+<p>强引用表示一个对象处在【有用，必须】的状态，是使用最普遍的引用。如果一个对象具有强引用，那么垃圾回收器绝不会回收它。就算在内存空间不足的情况下，Java虚拟机宁可抛出OutOfMemoryError错误，使程序异常终止，也不会通过回收具有强引用的对象来解决内存不足的问题。</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haxe">Student student = <span class="hljs-keyword">new</span> <span class="hljs-type">Student</span>(); <span class="hljs-comment">// 这就是强引用</span><br></code></pre></td></tr></table></figure>
+
+<p>后面的软引用、弱引用和虚引用都是基于强引用的，都需要强引用的对象。意思就是说，必须先有强引用的对象，然后在这个强引用的对象上做文章，通过一定操作把它变成软引用、弱引用或虚引用的对象。</p>
+<p><strong>软引用（Soft Reference）</strong></p>
+<p>软引用表示一个对象处在【有用，但非必须】的状态。在内存空间足够的情况下，如果一个对象只具有软引用，那么垃圾回收器就不会回收它，但是如果内存空间不足，垃圾回收器就会回收这个对象（回收发生在OutOfMemoryError错误之前）。只要垃圾回收器没有回收它，这个对象就能被程序使用。</p>
+<p>软引用可以用来实现内存敏感的高速缓存。</p>
+<p>软引用可以和一个引用队列（Reference Queue）联合使用，如果软引用所引用的对象被垃圾回收器回收，Java虚拟机就会把这个软引用加入到与之关联的引用队列中，以便在恰当的时机将该软引用回收。但是由于GC线程的优先级较低，通常手动调用System.gc()并不能立即执行GC，因此软引用所引用的对象并不一定会被马上回收。</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">Student student = <span class="hljs-keyword">new</span> <span class="hljs-constructor">Student()</span>;<br>SoftReference softReference = <span class="hljs-keyword">new</span> <span class="hljs-constructor">SoftReference(<span class="hljs-params">student</span>)</span>;<br></code></pre></td></tr></table></figure>
+
+<p><strong>弱引用（Weak Reference）</strong></p>
+<p>弱引用表示一个对象处在【可能有用，但非必须】的状态。类似于软引用，但是强度比软引用更弱一些：只具有弱引用的对象拥有更短暂的生命周期。GC线程在扫描它所管辖的内存区域的过程中，一旦发现只具有弱引用的对象，就会回收掉这些被弱引用关联的对象。也就是说，无论当前内存是否紧缺，GC都会回收被弱引用关联的对象。不过，由于GC是一个优先级很低的线程，因此不一定会很快发现那些只具有弱引用的对象。</p>
+<p>弱引用同样可以和一个引用队列（Reference Queue）联合使用，如果弱引用所引用的对象被垃圾回收器回收，Java虚拟机就会把这个弱引用加入到与之关联的引用队列中。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs php">Student student = <span class="hljs-keyword">new</span> Student();<br><span class="hljs-built_in">WeakReference</span> <span class="hljs-built_in">weakReference</span> = <span class="hljs-keyword">new</span> <span class="hljs-built_in">WeakReference</span>(student);<br></code></pre></td></tr></table></figure>
+
+<p><strong>虚引用（Phantom Reference）</strong></p>
+<p>虚引用表示一个对象处在【无用】的状态。这意味着虚引用等同于没有引用，在任何时候都可能被GC回收。设置虚引用的目的是为了被虚引用关联的对象在被垃圾回收器回收的时候，能够收到一个系统通知（用来跟踪对象被GC回收的活动）。</p>
+<p>虚引用和弱引用的区别在于：虚引用的使用必须和引用队列（Reference Queue）联合使用。</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">ReferenceQueue referenceQueue = <span class="hljs-keyword">new</span> <span class="hljs-constructor">ReferenceQueue()</span>;<br>PhantomReference phantomReference = <span class="hljs-keyword">new</span> <span class="hljs-constructor">PhantomReference(<span class="hljs-params">object</span>， <span class="hljs-params">queue</span>)</span>;<br></code></pre></td></tr></table></figure>
+
+<p>这意味着，GC在回收一个对象时，如果发现该对象具有虚引用，那么在回收之前就会首先将该对象的虚引用加入到与之关联的引用队列中。程序可以通过判断引用队列中是否已经加入虚引用来了解被引用的对象是否将要被GC回收。如果程序发现某个虚引用已经被加入到引用队列，那么就可以在所引用的对象的内存被回收之前采取必要的行动。</p>
+<p><strong>应用：使用软引用构建敏感数据的缓存</strong></p>
+<p>1.为什么需要使用软引用</p>
+<p>首先，我们看一个雇员信息系统查询的实例。我们将使用一个Java语言实现的雇员信息查询系统去查询存储在磁盘文件或者数据库中的雇员的人事档案信息。作为一个用户，我们完全有可能需要回头去查看几分钟前，甚至是几秒钟前查看过的雇员档案信息（同样，我们在浏览WEB页面的时候也经常会使用后退按钮）。</p>
+<p>这时我们通常会有两种程序实现方式，一种是把历史查看过的雇员信息保存在内存中，每一个存储了雇员档案信息的Java对象的生命周期贯穿整个应用程序；另一种是当用户开始查看其它雇员的档案信息的时候，把存储了当前所查看的雇员档案信息的Java对象结束引用，使得垃圾收集线程可以回收其所占用的内存空间，当用户再次需要浏览该雇员的档案信息的时候，重新构建该雇员的信息。</p>
+<p>很显然，第一种实现方式将造成大量的内存浪费；而第二种实现的缺陷在于，即使垃圾收集线程还没有进行垃圾收集，包含雇员档案信息的对象仍然完好地存放在内存中，应用程序也要重新构建一个对象（垃圾回收线程不是即时回收的）。我们知道，访问磁盘文件、访问网络资源、查询数据库等操作都是影响应用程序执行性能的重要因素，如果能重新获取那些尚未被回收的Java对象的引用，必将减少不必要的访问，大大地提高程序的运行速度。</p>
+<p>2.如果使用软引用</p>
+<p>SoftReference的特点是它的一个实例保存对一个Java对象的软引用，该软引用的存在不妨碍垃圾收集线程对该Java对象的回收。也就是说，一旦SoftReference保存了对一个Java对象的软引用后，在垃圾回收线程将这个Java对象回收前，SoftReference类所提供的get()方法返回Java对象的强引用。另外，一旦垃圾回收线程回收该Java对象之后，get()方法将返回null。</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">MyObject aRef = <span class="hljs-keyword">new</span> <span class="hljs-constructor">MyObject()</span>;<br>SoftReference aSoftRef = <span class="hljs-keyword">new</span> <span class="hljs-constructor">SoftReference(<span class="hljs-params">aRef</span>)</span>; <br></code></pre></td></tr></table></figure>
+
+<p>在上面的代码中，对于这个new出来的MyObject对象，有两个引用路径，一个是来自SoftReference对象的软引用，一个是来自变量aRef的强引用，所以现在这个new出来的MyObject对象是一个强可及对象。我们可以随即结束aRef变量对它的强引用：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">aRef</span> = null<span class="hljs-comment">;</span><br></code></pre></td></tr></table></figure>
+
+<p>这时，这个new出来的MyObject对象就变成了软可及对象。如果垃圾收集线程开始进行内存垃圾收集，并不会因为有一个SoftReference对该对象的引用而始终保留该对象。Java虚拟机的垃圾收集线程对软可及对象和其它一般Java对象进行了区别对待：软可及对象的清理是由垃圾收集线程根据其特定算法按照内存需求决定的。也就是说，垃圾收集线程会在虚拟机抛出OutOfMemoryError之前回收软可及对象，而且虚拟机会尽可能优先回收长时间闲置不用的软可及对象，而尽可能保留那些刚刚构建的或刚刚使用过的”新”软可及对象。那么，在回收这些对象之前，我们可以通过下面的代码重新获得该实例对象的强引用：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">MyObject anotherRef = (MyObject)aSoftRef.<span class="hljs-builtin-name">get</span>(); <br></code></pre></td></tr></table></figure>
+
+<p>但是要是该实例对象已经被垃圾收集线程回收了的话，调用get()方法也只能获得null了。</p>
+<p>3.使用ReferenceQueue清除失去了软引用对象的SoftReference</p>
+<p>作为一个Java对象，SoftReference对象除了具有保存软引用的特殊性之外，也具有Java对象的一般性。所以当软可及对象被回收之后，虽然可能需要这个SoftReference对象的get()方法返回null，但是这个SoftReference对象已经不再具有存在的价值，需要一个适当的清除机制，避免大量SoftReference对象带来的内存泄漏。</p>
+<p>在java.lang.ref包里还提供了ReferenceQueue类。在创建SoftReference对象的时候，可以使用一个ReferenceQueue对象作为参数提供给SoftReference的构造方法。</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">ReferenceQueue queue = <span class="hljs-keyword">new</span> <span class="hljs-constructor">ReferenceQueue()</span>;<br>SoftReference <span class="hljs-built_in">ref</span> = <span class="hljs-keyword">new</span> <span class="hljs-constructor">SoftReference(<span class="hljs-params">aMyObject</span>, <span class="hljs-params">queue</span>)</span>; <br></code></pre></td></tr></table></figure>
+
+<p>这样，当这个SoftReference所软引用的实例对象被垃圾收集器回收的同时，ref所强引用的SoftReference对象也会被列入ReferenceQueue中。也就是说，ReferenceQueue中保存的对象是Reference对象，而且是已经失去了它所软引用的对象的Reference对象。另外从ReferenceQueue的名字也可以看出，它是一个队列，当我们调用它提供的poll()方法的时候，如果这个队列不是空队列，那么将返回队列前面的哪个Reference对象。</p>
+<p>在任何时候，我们都可以调用ReferenceQueue的poll()方法来检查它所关心的非强可及对象被回收。如果队列为空，将返回一个null，否则将返回队列中前面的一个Reference对象。利用这个方法，我们可以检查哪个SoftReference所软引用的对象已经被回收。于是我们可以把这些失去所软引用对象的SoftReference对象清除掉。常用的方式为：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">SoftReference <span class="hljs-built_in">ref</span> = <span class="hljs-literal">null</span>;<br><span class="hljs-keyword">while</span> ((<span class="hljs-built_in">ref</span> = (EmployeeRef) queue.poll()) != <span class="hljs-literal">null</span>) &#123;<br>    <span class="hljs-comment">// 清除ref</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>4.使用软引用的总结</p>
+<p>因为使用的是软引用，那么当需要查看之前的查看过的雇员信息的时候，就可以重新创建强关联的引用，把之前取消强关联的、但还没被垃圾回收线程回收的、存放了雇员信息的Java对象重新捡起来用，这样就相当于做了缓存，既避免了对象不回收造成的内存浪费，也可以有效避免创建新对象的资源消耗（只有原来的对象被垃圾回收线程回收了，才需要创建新的对象）。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Java/">Java</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2018/01/09/java%E9%85%8D%E7%BD%AE%E8%AE%B0%E5%BD%95/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">java配置记录</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2018/01/09/nohup%E5%92%8C&amp;%E5%90%8E%E5%8F%B0%E8%BF%90%E8%A1%8C%EF%BC%8C%E8%BF%9B%E7%A8%8B%E6%9F%A5%E7%9C%8B%E5%8F%8A%E7%BB%88%E6%AD%A2/">
+                        <span class="hidden-mobile">nohup和&后台运行，进程查看及终止</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"fc36e17008bd1e3e898d","clientSecret":"d9d3bc7feb2b8abbb2d05b43b2d16a1d19c9bba2","repo":"cylinclinv.github.io","owner":"cylinclinv","admin":["cylinclinv"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":true,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: 'd853294d42668d1f5e5b2f6cb9ffe5c7'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>clyde</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

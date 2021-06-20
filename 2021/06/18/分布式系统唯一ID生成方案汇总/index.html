@@ -1,0 +1,553 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/logo.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="">
+  <meta name="author" content="clyde">
+  <meta name="keywords" content="">
+  
+  <title>分布式系统唯一ID生成方案汇总 - Clyde</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.7.2/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.11","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>Clyde</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/cover/102.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="分布式系统唯一ID生成方案汇总">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-06-18 22:13" pubdate>
+        2021年6月18日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      38
+       分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">分布式系统唯一ID生成方案汇总</h1>
+            
+            <div class="markdown-body">
+              <h1 id="分布式系统唯一ID生成方案汇总"><a href="#分布式系统唯一ID生成方案汇总" class="headerlink" title="分布式系统唯一ID生成方案汇总"></a>分布式系统唯一ID生成方案汇总</h1><p>系统唯一ID是我们在设计一个系统的时候常常会遇见的问题，也常常为这个问题而纠结。生成ID的方法有很多，适应不同的场景、需求以及性能要求。所以有些比较复杂的系统会有多个ID生成的策略。下面就介绍一些常见的ID生成策略。</p>
+<p><strong>1. 数据库自增长序列或字段</strong></p>
+<p>最常见的方式。利用数据库，全数据库唯一。</p>
+<p>优点：</p>
+<p>1）简单，代码方便，性能可以接受。</p>
+<p>2）数字ID天然排序，对分页或者需要排序的结果很有帮助。</p>
+<p>缺点：</p>
+<p>1）不同数据库语法和实现不同，数据库迁移的时候或多数据库版本支持的时候需要处理。</p>
+<p>2）在单个数据库或读写分离或一主多从的情况下，只有一个主库可以生成。有单点故障的风险。</p>
+<p>3）在性能达不到要求的情况下，比较难于扩展。（不适用于海量高并发）</p>
+<p>4）如果遇见多个系统需要合并或者涉及到数据迁移会相当痛苦。</p>
+<p>5）分表分库的时候会有麻烦。</p>
+<p>6）并非一定连续，类似MySQL，当生成新ID的事务回滚，那么后续的事务也不会再用这个ID了。这个在性能和连续性的折中。如果为了保证连续，必须要在事务结束后才能生成ID，那性能就会出现问题。</p>
+<p>7）在分布式数据库中，如果采用了自增主键的话，有可能会带来尾部热点。分布式数据库常常使用range的分区方式，在大量新增记录的时候，IO会集中在一个分区上，造成热点数据。</p>
+<p>优化方案：</p>
+<p>1）针对主库单点，如果有多个Master库，则每个Master库设置的起始数字不一样，步长一样，可以是Master的个数。比如：Master1 生成的是 1，4，7，10，Master2生成的是2,5,8,11 Master3生成的是 3,6,9,12。这样就可以有效生成集群中的唯一ID，也可以大大降低ID生成数据库操作的负载。</p>
+<p><strong>2. UUID</strong></p>
+<p>常见的方式。可以利用数据库也可以利用程序生成，一般来说全球唯一。UUID是由32个的16进制数字组成，所以每个UUID的长度是128位（16^32 = 2^128）。UUID作为一种广泛使用标准，有多个实现版本，影响它的因素包括时间、网卡MAC地址、自定义Namesapce等等。</p>
+<p>优点：</p>
+<p>1）简单，代码方便。</p>
+<p>2）生成ID性能非常好，基本不会有性能问题。</p>
+<p>3）全球唯一，在遇见数据迁移，系统数据合并，或者数据库变更等情况下，可以从容应对。</p>
+<p>缺点：</p>
+<p>1）没有排序，无法保证趋势递增。</p>
+<p>2）UUID往往是使用字符串存储，查询的效率比较低。</p>
+<p>3）存储空间比较大，如果是海量数据库，就需要考虑存储量的问题。</p>
+<p>4）传输数据量大</p>
+<p>5）不可读。</p>
+<p><strong>3. UUID的变种</strong></p>
+<p>1）为了解决UUID不可读，可以使用UUID to Int64的方法。及</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;summary&gt;</span></span><br><span class="hljs-comment"><span class="hljs-doctag">///</span> 根据GUID获取唯一数字序列</span><br><span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;/summary&gt;</span></span><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-built_in">long</span> <span class="hljs-title">GuidToInt64</span>(<span class="hljs-params"></span>)</span><br>&#123;<br>    <span class="hljs-built_in">byte</span>[] bytes = Guid.NewGuid().ToByteArray();<br>    <span class="hljs-keyword">return</span> BitConverter.ToInt64(bytes, <span class="hljs-number">0</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"> <br></code></pre></td></tr></table></figure>
+
+<p>2）为了解决UUID无序的问题，NHibernate在其主键生成方式中提供了Comb算法（combined guid/timestamp）。保留GUID的10个字节，用另6个字节表示GUID生成的时间（DateTime）。</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-comment">/// &lt;summary&gt; </span><br><span class="hljs-comment">/// Generate a new &lt;see cref=&quot;Guid&quot;/&gt; using the comb algorithm. </span><br><span class="hljs-comment">/// &lt;/summary&gt; </span><br>private <span class="hljs-built_in">Guid</span> GenerateComb()<br>&#123;<br>    byte[] guidArray = <span class="hljs-built_in">Guid</span>.NewGuid().ToByteArray();<br> <br>    DateTime baseDate = <span class="hljs-keyword">new</span> DateTime(<span class="hljs-number">1900</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>);<br>    DateTime now = DateTime.<span class="hljs-built_in">Now</span>;<br> <br>    <span class="hljs-comment">// Get the days and milliseconds which will be used to build    </span><br>    <span class="hljs-comment">//the byte string    </span><br>    TimeSpan days = <span class="hljs-keyword">new</span> TimeSpan(now.Ticks - baseDate.Ticks);<br>    TimeSpan msecs = now.TimeOfDay;<br> <br>    <span class="hljs-comment">// Convert to a byte array        </span><br>    <span class="hljs-comment">// Note that SQL Server is accurate to 1/300th of a    </span><br>    <span class="hljs-comment">// millisecond so we divide by 3.333333    </span><br>    byte[] daysArray = BitConverter.GetBytes(days.Days);<br>    byte[] msecsArray = BitConverter.GetBytes((long)<br>      (msecs.TotalMilliseconds / <span class="hljs-number">3.333333</span>));<br> <br>    <span class="hljs-comment">// Reverse the bytes to match SQL Servers ordering    </span><br>    Array.<span class="hljs-built_in">Reverse</span>(daysArray);<br>    Array.<span class="hljs-built_in">Reverse</span>(msecsArray);<br> <br>    <span class="hljs-comment">// Copy the bytes into the guid    </span><br>    Array.Copy(daysArray, daysArray.<span class="hljs-built_in">Length</span> - <span class="hljs-number">2</span>, guidArray,<br>      guidArray.<span class="hljs-built_in">Length</span> - <span class="hljs-number">6</span>, <span class="hljs-number">2</span>);<br>    Array.Copy(msecsArray, msecsArray.<span class="hljs-built_in">Length</span> - <span class="hljs-number">4</span>, guidArray,<br>      guidArray.<span class="hljs-built_in">Length</span> - <span class="hljs-number">4</span>, <span class="hljs-number">4</span>);<br> <br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Guid</span>(guidArray);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"> <br></code></pre></td></tr></table></figure>
+
+<p>用上面的算法测试一下，得到如下的结果：作为比较，前面3个是使用COMB算法得出的结果，最后12个字符串是时间序（统一毫秒生成的3个UUID），过段时间如果再次生成，则12个字符串会比图示的要大。后面3个是直接生成的GUID。</p>
+<p><img src="/img/idea/create11.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>如果想把时间序放在前面，可以生成后改变12个字符串的位置，也可以修改算法类的最后两个Array.Copy。</p>
+<p><strong>4. Redis生成ID</strong></p>
+<p>当使用数据库来生成ID性能不够要求的时候，我们可以尝试使用Redis来生成ID。这主要依赖于Redis是单线程的，所以也可以用生成全局唯一的ID。可以用Redis的原子操作 INCR和INCRBY来实现。</p>
+<p>可以使用Redis集群来获取更高的吞吐量。假如一个集群中有5台Redis。可以初始化每台Redis的值分别是1,2,3,4,5，然后步长都是5。各个Redis生成的ID为：</p>
+<p>A：1,6,11,16,21</p>
+<p>B：2,7,12,17,22</p>
+<p>C：3,8,13,18,23</p>
+<p>D：4,9,14,19,24</p>
+<p>E：5,10,15,20,25</p>
+<p>这个，随便负载到哪个机确定好，未来很难做修改。但是3-5台服务器基本能够满足器上，都可以获得不同的ID。但是步长和初始值一定需要事先需要了。使用Redis集群也可以方式单点故障的问题。</p>
+<p>另外，比较适合使用Redis来生成每天从0开始的流水号。比如订单号=日期+当日自增长号。可以每天在Redis中生成一个Key，使用INCR进行累加。</p>
+<p>优点：</p>
+<p>1）不依赖于数据库，灵活方便，且性能优于数据库。</p>
+<p>2）数字ID天然排序，对分页或者需要排序的结果很有帮助。</p>
+<p>缺点：</p>
+<p>1）如果系统中没有Redis，还需要引入新的组件，增加系统复杂度。</p>
+<p>2）需要编码和配置的工作量比较大。</p>
+<p><strong>5. Twitter的snowflake算法</strong></p>
+<p>snowflake是Twitter开源的分布式ID生成算法，结果是一个long型的ID。其核心思想是：使用41bit作为毫秒数，10bit作为机器的ID（5个bit是数据中心，5个bit的机器ID），12bit作为毫秒内的流水号（意味着每个节点在每毫秒可以产生 4096 个 ID），最后还有一个符号位，永远是0。具体实现的代码可以参看<a target="_blank" rel="noopener" href="https://github.com/twitter/snowflake%E3%80%82%E9%9B%AA%E8%8A%B1%E7%AE%97%E6%B3%95%E6%94%AF%E6%8C%81%E7%9A%84TPS%E5%8F%AF%E4%BB%A5%E8%BE%BE%E5%88%B0419%E4%B8%87%E5%B7%A6%E5%8F%B3%EF%BC%882^22*1000%EF%BC%89%E3%80%82">https://github.com/twitter/snowflake。雪花算法支持的TPS可以达到419万左右（2^22*1000）。</a></p>
+<p>雪花算法在工程实现上有单机版本和分布式版本。单机版本如下，分布式版本可以参看美团leaf算法：<a target="_blank" rel="noopener" href="https://github.com/Meituan-Dianping/Leaf">https://github.com/Meituan-Dianping/Leaf</a></p>
+<p>C#代码如下：</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;summary&gt;</span></span><br>    <span class="hljs-comment"><span class="hljs-doctag">///</span> From: https://github.com/twitter/snowflake</span><br>    <span class="hljs-comment"><span class="hljs-doctag">///</span> An object that generates IDs.</span><br>    <span class="hljs-comment"><span class="hljs-doctag">///</span> This is broken into a separate class in case</span><br>    <span class="hljs-comment"><span class="hljs-doctag">///</span> we ever want to support multiple worker threads</span><br>    <span class="hljs-comment"><span class="hljs-doctag">///</span> per process</span><br>    <span class="hljs-comment"><span class="hljs-doctag">///</span> <span class="hljs-doctag">&lt;/summary&gt;</span></span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">IdWorker</span><br>    &#123;<br>        <span class="hljs-keyword">private</span> <span class="hljs-built_in">long</span> workerId;<br>        <span class="hljs-keyword">private</span> <span class="hljs-built_in">long</span> datacenterId;<br>        <span class="hljs-keyword">private</span> <span class="hljs-built_in">long</span> sequence = <span class="hljs-number">0L</span>;<br><br>        <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-built_in">long</span> twepoch = <span class="hljs-number">1288834974657L</span>;<br><br>        <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-built_in">long</span> workerIdBits = <span class="hljs-number">5L</span>;<br>        <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-built_in">long</span> datacenterIdBits = <span class="hljs-number">5L</span>;<br>        <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-built_in">long</span> maxWorkerId = <span class="hljs-number">-1L</span> ^ (<span class="hljs-number">-1L</span> &lt;&lt; (<span class="hljs-built_in">int</span>)workerIdBits);<br>        <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-built_in">long</span> maxDatacenterId = <span class="hljs-number">-1L</span> ^ (<span class="hljs-number">-1L</span> &lt;&lt; (<span class="hljs-built_in">int</span>)datacenterIdBits);<br>        <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-built_in">long</span> sequenceBits = <span class="hljs-number">12L</span>;<br><br>        <span class="hljs-keyword">private</span> <span class="hljs-built_in">long</span> workerIdShift = sequenceBits;<br>        <span class="hljs-keyword">private</span> <span class="hljs-built_in">long</span> datacenterIdShift = sequenceBits + workerIdBits;<br>        <span class="hljs-keyword">private</span> <span class="hljs-built_in">long</span> timestampLeftShift = sequenceBits + workerIdBits + datacenterIdBits;<br>        <span class="hljs-keyword">private</span> <span class="hljs-built_in">long</span> sequenceMask = <span class="hljs-number">-1L</span> ^ (<span class="hljs-number">-1L</span> &lt;&lt; (<span class="hljs-built_in">int</span>)sequenceBits);<br><br>        <span class="hljs-keyword">private</span> <span class="hljs-built_in">long</span> lastTimestamp = <span class="hljs-number">-1L</span>;<br>        <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-built_in">object</span> syncRoot = <span class="hljs-keyword">new</span> <span class="hljs-built_in">object</span>();<br><br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">IdWorker</span>(<span class="hljs-params"><span class="hljs-built_in">long</span> workerId, <span class="hljs-built_in">long</span> datacenterId</span>)</span><br>        &#123;<br><br>            <span class="hljs-comment">// sanity check for workerId</span><br>            <span class="hljs-keyword">if</span> (workerId &gt; maxWorkerId || workerId &lt; <span class="hljs-number">0</span>)<br>            &#123;<br>                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> ArgumentException(<span class="hljs-built_in">string</span>.Format(<span class="hljs-string">&quot;worker Id can&#x27;t be greater than %d or less than 0&quot;</span>, maxWorkerId));<br>            &#125;<br>            <span class="hljs-keyword">if</span> (datacenterId &gt; maxDatacenterId || datacenterId &lt; <span class="hljs-number">0</span>)<br>            &#123;<br>                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> ArgumentException(<span class="hljs-built_in">string</span>.Format(<span class="hljs-string">&quot;datacenter Id can&#x27;t be greater than %d or less than 0&quot;</span>, maxDatacenterId));<br>            &#125;<br>            <span class="hljs-keyword">this</span>.workerId = workerId;<br>            <span class="hljs-keyword">this</span>.datacenterId = datacenterId;<br>        &#125;<br><br>        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">long</span> <span class="hljs-title">nextId</span>(<span class="hljs-params"></span>)</span><br>        &#123;<br>            <span class="hljs-keyword">lock</span> (syncRoot)<br>            &#123;<br>                <span class="hljs-built_in">long</span> timestamp = timeGen();<br><br>                <span class="hljs-keyword">if</span> (timestamp &lt; lastTimestamp)<br>                &#123;<br>                    <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> ApplicationException(<span class="hljs-built_in">string</span>.Format(<span class="hljs-string">&quot;Clock moved backwards.  Refusing to generate id for %d milliseconds&quot;</span>, lastTimestamp - timestamp));<br>                &#125;<br><br>                <span class="hljs-keyword">if</span> (lastTimestamp == timestamp)<br>                &#123;<br>                    sequence = (sequence + <span class="hljs-number">1</span>) &amp; sequenceMask;<br>                    <span class="hljs-keyword">if</span> (sequence == <span class="hljs-number">0</span>)<br>                    &#123;<br>                        timestamp = tilNextMillis(lastTimestamp);<br>                    &#125;<br>                &#125;<br>                <span class="hljs-keyword">else</span><br>                &#123;<br>                    sequence = <span class="hljs-number">0L</span>;<br>                &#125;<br><br>                lastTimestamp = timestamp;<br><br>                <span class="hljs-keyword">return</span> ((timestamp - twepoch) &lt;&lt; (<span class="hljs-built_in">int</span>)timestampLeftShift) | (datacenterId &lt;&lt; (<span class="hljs-built_in">int</span>)datacenterIdShift) | (workerId &lt;&lt; (<span class="hljs-built_in">int</span>)workerIdShift) | sequence;<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-built_in">long</span> <span class="hljs-title">tilNextMillis</span>(<span class="hljs-params"><span class="hljs-built_in">long</span> lastTimestamp</span>)</span><br>        &#123;<br>            <span class="hljs-built_in">long</span> timestamp = timeGen();<br>            <span class="hljs-keyword">while</span> (timestamp &lt;= lastTimestamp)<br>            &#123;<br>                timestamp = timeGen();<br>            &#125;<br>            <span class="hljs-keyword">return</span> timestamp;<br>        &#125;<br><br>        <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-built_in">long</span> <span class="hljs-title">timeGen</span>(<span class="hljs-params"></span>)</span><br>        &#123;<br>            <span class="hljs-keyword">return</span> (<span class="hljs-built_in">long</span>)(DateTime.UtcNow - <span class="hljs-keyword">new</span> DateTime(<span class="hljs-number">1970</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, DateTimeKind.Utc)).TotalMilliseconds;<br>        &#125;<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+<p>测试代码如下：</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">private</span> static void <span class="hljs-constructor">TestIdWorker()</span><br>        &#123;<br>            HashSet&lt;long&gt; set = <span class="hljs-keyword">new</span> HashSet&lt;long&gt;<span class="hljs-literal">()</span>;<br>            IdWorker idWorker1 = <span class="hljs-keyword">new</span> <span class="hljs-constructor">IdWorker(0, 0)</span>;<br>            IdWorker idWorker2 = <span class="hljs-keyword">new</span> <span class="hljs-constructor">IdWorker(1, 0)</span>;<br>            Thread t1 = <span class="hljs-keyword">new</span> <span class="hljs-constructor">Thread(()</span> =&gt; <span class="hljs-constructor">DoTestIdWoker(<span class="hljs-params">idWorker1</span>, <span class="hljs-params">set</span>)</span>);<br>            Thread t2 = <span class="hljs-keyword">new</span> <span class="hljs-constructor">Thread(()</span> =&gt; <span class="hljs-constructor">DoTestIdWoker(<span class="hljs-params">idWorker2</span>, <span class="hljs-params">set</span>)</span>);<br>            t1.IsBackground = <span class="hljs-literal">true</span>;<br>            t2.IsBackground = <span class="hljs-literal">true</span>;<br><br>            t1.<span class="hljs-constructor">Start()</span>;<br>            t2.<span class="hljs-constructor">Start()</span>;<br>            <span class="hljs-keyword">try</span><br>            &#123;<br>                Thread.<span class="hljs-constructor">Sleep(30000)</span>;<br>                t1.<span class="hljs-constructor">Abort()</span>;<br>                t2.<span class="hljs-constructor">Abort()</span>;<br>            &#125;<br>            catch (Exception e)<br>            &#123;<br>            &#125;<br><br>            Console.<span class="hljs-constructor">WriteLine(<span class="hljs-string">&quot;done&quot;</span>)</span>;<br>        &#125;<br><br>        <span class="hljs-keyword">private</span> static void <span class="hljs-constructor">DoTestIdWoker(IdWorker <span class="hljs-params">idWorker</span>, HashSet&lt;<span class="hljs-params">long</span>&gt; <span class="hljs-params">set</span>)</span><br>        &#123;<br>            <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>)<br>            &#123;<br>                long id = idWorker.next<span class="hljs-constructor">Id()</span>;<br>                <span class="hljs-keyword">if</span> (!set.<span class="hljs-constructor">Add(<span class="hljs-params">id</span>)</span>)<br>                &#123;<br>                    Console.<span class="hljs-constructor">WriteLine(<span class="hljs-string">&quot;duplicate:&quot;</span> + <span class="hljs-params">id</span>)</span>;<br>                &#125;<br><br>                Thread.<span class="hljs-constructor">Sleep(1)</span>;<br>            &#125;<br>        &#125;<br></code></pre></td></tr></table></figure>
+
+<h6 id><a href="#" class="headerlink" title></a></h6><p>snowflake算法可以根据自身项目的需要进行一定的修改。比如估算未来的数据中心个数，每个数据中心的机器数以及统一毫秒可以能的并发数来调整在算法中所需要的bit数。</p>
+<p>优点：</p>
+<p>1）不依赖于数据库，灵活方便，且性能优于数据库。</p>
+<p>2）ID按照时间在单机上是递增的。</p>
+<p>缺点：</p>
+<p>1）在单机上是递增的，但是由于涉及到分布式环境，每台机器上的时钟不可能完全同步，在算法上要解决时间回拨的问题。</p>
+<p><strong>6. 利用zookeeper生成唯一ID</strong></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs markdown">zookeeper主要通过其znode数据版本来生成序列号，可以生成32位和64位的数据版本号，客户端可以使用这个版本号来作为唯一的序列号。<br>很少会使用zookeeper来生成唯一ID。主要是由于需要依赖zookeeper，并且是多步调用API，如果在竞争较大的情况下，需要考虑使用分布式锁。因此，性能在高并发的分布式环境下，也不甚理想。<br> <br><span class="hljs-bullet">7.</span> MongoDB的ObjectId<br>MongoDB的ObjectId和snowflake算法类似。它设计成轻量型的，不同的机器都能用全局唯一的同种方法方便地生成它。MongoDB 从一开始就设计用来作为分布式数据库，处理多个节点是一个核心要求。使其在分片环境中要容易生成得多。<br></code></pre></td></tr></table></figure>
+
+<p>其格式如下：</p>
+<p><img src="/img/idea/create12.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>前4 个字节是从标准纪元开始的时间戳，单位为秒。时间戳，与随后的5 个字节组合起来，提供了秒级别的唯一性。由于时间戳在前，这意味着ObjectId 大致会按照插入的顺序排列。这对于某些方面很有用，如将其作为索引提高效率。这4 个字节也隐含了文档创建的时间。绝大多数客户端类库都会公开一个方法从ObjectId 获取这个信息。<br>接下来的3 字节是所在主机的唯一标识符。通常是机器主机名的散列值。这样就可以确保不同主机生成不同的ObjectId，不产生冲突。<br>为了确保在同一台机器上并发的多个进程产生的ObjectId 是唯一的，接下来的两字节来自产生ObjectId 的进程标识符（PID）。<br>前9 字节保证了同一秒钟不同机器不同进程产生的ObjectId 是唯一的。后3 字节就是一个自动增加的计数器，确保相同进程同一秒产生的ObjectId 也是不一样的。同一秒钟最多允许每个进程拥有2563（16 777 216）个不同的ObjectId。</p>
+<p>实现的源码可以到MongoDB官方网站下载。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-bullet">8.</span> TiDB的主键<br></code></pre></td></tr></table></figure>
+
+<p>TiDB默认是支持自增主键的，对未声明主键的表，会提供了一个隐式主键_tidb_rowid，因为这个主键大体上是单调递增的，所以也会出现我们前面说的“尾部热点”问题。</p>
+<p>TiDB也提供了UUID函数，而且在4.0版本中还提供了另一种解决方案AutoRandom。TiDB 模仿MySQL的 AutoIncrement，提供了AutoRandom关键字用于生成一个随机ID填充指定列。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Java/">Java</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Mybatis/">Mybatis</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/06/18/%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A001-%E9%A1%B9%E7%9B%AE%E5%88%9B%E5%BB%BA/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">项目学习01-项目创建和mybatis plus使用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/06/08/coding%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E6%B5%81%E7%A8%8B/">
+                        <span class="hidden-mobile">coding部署博客流程</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#gitalk-container', function() {
+      Fluid.utils.createCssLink('/css/gitalk.css')
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/gitalk@1.7.2/dist/gitalk.min.js', function() {
+        var options = Object.assign(
+          {"clientID":"fc36e17008bd1e3e898d","clientSecret":"d9d3bc7feb2b8abbb2d05b43b2d16a1d19c9bba2","repo":"cylinclinv.github.io","owner":"cylinclinv","admin":["cylinclinv"],"language":"zh-CN","labels":["Gitalk"],"perPage":10,"pagerDirection":"last","distractionFreeMode":true,"createIssueManually":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"},
+          {
+            id: '06adf9506b95b7b4d171942c68710f54'
+          }
+        )
+        var gitalk = new Gitalk(options);
+        gitalk.render('gitalk-container');
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>clyde</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.3/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.1/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.8/dist/clipboard.min.js" ></script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>
