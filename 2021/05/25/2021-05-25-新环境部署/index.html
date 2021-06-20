@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      312 字
+      577 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      3
+      7
        分钟
     </span>
   
@@ -228,7 +228,7 @@
             <h1 style="display: none">新环境部署</h1>
             
             <div class="markdown-body">
-              <p>便宜入了台游戏本，算上运费也就3600左右，是两年前i7-8750h+1060的机器，配置说不上高，但玩了一圈下来是足够用的了，想玩的荒野大镖客2，死亡搁浅都能在不错的画质下运行，拆机换硅脂查看后看了一圈主板，显卡，cpu都没有啥问题，看固态的运行时间3000小时左右，应该是正常家用</p>
+              <p>便宜入了台游戏本，算上运费也就3600左右，是两年前i7-8750h+1060的机器，配置说不上高，但玩了一圈下来是足够用的了，想玩的荒野大镖客2，死亡搁浅都能在不错的画质下运行，拆机换硅脂查看主板，显卡，cpu都没有啥问题，看固态的运行时间3000小时左右，上家应该是正常家用</p>
 <p>新机器当然要配置开发环境，下面是记录</p>
 <h2 id="常用软件安装"><a href="#常用软件安装" class="headerlink" title="常用软件安装"></a>常用软件安装</h2><table>
 <thead>
@@ -239,28 +239,48 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>jdk<br>idea<br>webstorm<br>vscode<br>佛跳墙<br>vmware<br>node<br>git&amp;&amp;tortoiseGit<br></td>
-<td>zeal    //离线文档配置<br><br><br>sqlyog<br>mysql<br>xshell<br>xmind<br>typora<br>axure9<br>亿图图示</td>
-<td>edge/chrome<br>qq影音<br>sqlyog<br>winrar<br>wps/office<br></td>
+<td>jdk<br>idea<br>webstorm<br>vscode<br>佛跳墙<br>vmware<br>node<br>git&amp;&amp;tortoiseGit<br>maven</td>
+<td>zeal    //离线文档配置<br>sqlyog<br>mysql<br>xshell+xftp<br>xmind<br>typora<br>axure9<br>亿图图示</td>
+<td>edge/chrome<br>qq影音<br>vlc<br>sqlyog<br>winrar<br>wps/office<br></td>
 </tr>
 </tbody></table>
-<h2 id="hexo配置"><a href="#hexo配置" class="headerlink" title="hexo配置"></a>hexo配置</h2><h3 id="1-node配置nrm"><a href="#1-node配置nrm" class="headerlink" title="1.node配置nrm"></a>1.node配置nrm</h3><p>配置nrm能方便切换镜像</p>
+<blockquote>
+<ol>
+<li>浏览器目前个人常用的是edge和chrome</li>
+<li>文本类用的是typora和vscode</li>
+<li>压缩用的是较为干净版本的winrar,这样就没国产那么恶心的一堆广告弹窗后台软件,备选是7zip但功能没那么全面</li>
+<li>视频播放器qq影音算是国内比较好用的没啥弹窗也较为好用的,当然用VLC最方便</li>
+<li>版本控制目前使用的是git和小乌龟,因为这边使用主要是github,coding,gitlab</li>
+<li>数据库方面主要为了方便先安装了mysql+sqlyog,后续准备将数据库都装在虚拟机上,这边只装连接工具,redis,mongodb后续同样配置</li>
+<li>虚拟机方便,基础环境VMware和xshell,xftp后续配置上centos可以使用lrzsz</li>
+</ol>
+</blockquote>
+<h2 id="hexo配置"><a href="#hexo配置" class="headerlink" title="hexo配置"></a>hexo配置</h2><p>node下载,一直下一步安装,默认全局模块路径</p>
+<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs taggerscript">C:<span class="hljs-symbol">\U</span>sers<span class="hljs-symbol">\~</span>用户名<span class="hljs-symbol">\A</span>ppData<span class="hljs-symbol">\R</span>oaming<span class="hljs-symbol">\n</span>pm<span class="hljs-symbol">\n</span>ode_modules<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="1-node配置nrm"><a href="#1-node配置nrm" class="headerlink" title="1.node配置nrm"></a>1.node配置nrm</h3><p>配置nrm能方便切换镜像</p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">npm <span class="hljs-keyword">install</span> nrm -g<br></code></pre></td></tr></table></figure>
 
 <p>常用指令</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs awk">nrm ls  <span class="hljs-regexp">//</span>查看镜像<br>nrm use taobao <span class="hljs-regexp">//</span>切换<br>nrm test npm   <span class="hljs-regexp">//</span>测试速度<br>nrm test taobao <span class="hljs-regexp">//</span>测试指定镜像<br></code></pre></td></tr></table></figure>
 
 <p>nrm ls查看镜像发现报错</p>
-<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs taggerscript">在全局模块目录下C:<span class="hljs-symbol">\U</span>sers<span class="hljs-symbol">\~</span>系统名<span class="hljs-symbol">\A</span>ppData<span class="hljs-symbol">\R</span>oaming<span class="hljs-symbol">\n</span>pm<span class="hljs-symbol">\n</span>ode_modules<span class="hljs-symbol">\n</span>rm打开cli.js <br>第17行修改成<br>const NRMRC = path.join(process.env[(process.platform == &#x27;win32&#x27;) ? &#x27;USERPROFILE&#x27; : &#x27;HOME&#x27;], &#x27;.nrmrc&#x27;);<br></code></pre></td></tr></table></figure>
+<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs taggerscript">在全局模块目录下C:<span class="hljs-symbol">\U</span>sers<span class="hljs-symbol">\~</span>用户名<span class="hljs-symbol">\A</span>ppData<span class="hljs-symbol">\R</span>oaming<span class="hljs-symbol">\n</span>pm<span class="hljs-symbol">\n</span>ode_modules<span class="hljs-symbol">\n</span>rm打开cli.js <br>第17行修改成<br>const NRMRC = path.join(process.env[(process.platform == &#x27;win32&#x27;) ? &#x27;USERPROFILE&#x27; : &#x27;HOME&#x27;], &#x27;.nrmrc&#x27;);<br></code></pre></td></tr></table></figure>
 
 <p>配置完nrm后最好重启一下电脑</p>
+<h4 id="cnpm"><a href="#cnpm" class="headerlink" title="cnpm"></a>cnpm</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs cpp">npm install -g cnpm –registry=http:<span class="hljs-comment">//r.cnpmjs.org</span><br><span class="hljs-comment">// 或者用淘宝</span><br>npm install -g cnpm –registry=https:<span class="hljs-comment">//registry.npm.taobao.org</span><br></code></pre></td></tr></table></figure>
+<p>npm命令改成cnpm就行</p>
 <h3 id="2-hexo-配置"><a href="#2-hexo-配置" class="headerlink" title="2. hexo 配置"></a>2. hexo 配置</h3><p>进入hexo项目文件夹下，为了方便使用配置全局hexo</p>
 <figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs avrasm">npm install -g hexo-<span class="hljs-keyword">cli</span><br></code></pre></td></tr></table></figure>
 
 <p>运行</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">hexo s</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs awk">hexo s<br><span class="hljs-regexp">//</span>查看<br>localhost:<span class="hljs-number">4000</span>   <br></code></pre></td></tr></table></figure>
 
 
+
+<h2 id="git设置"><a href="#git设置" class="headerlink" title="git设置"></a>git设置</h2><h3 id="1-配置github连接"><a href="#1-配置github连接" class="headerlink" title="1. 配置github连接"></a>1. 配置github连接</h3>
             </div>
             <hr>
             <div>
@@ -304,8 +324,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/12/25/Git%E6%8F%90%E4%BA%A4%E4%B8%8D%E5%8C%BA%E5%88%86%E5%A4%A7%E5%B0%8F%E5%86%99&amp;Hexo%E5%8D%9A%E5%AE%A2%E9%87%8D%E6%96%B0%E9%83%A8%E7%BD%B2/">
-                        <span class="hidden-mobile">Git提交不区分大小写&Hexo博客重新部署</span>
+                      <a href="/2020/12/25/dotNet%E5%8D%B8%E8%BD%BD%E5%90%8E%E6%97%A0%E6%B3%95%E8%BF%9B%E5%85%A5%E6%A1%8C%E9%9D%A2&amp;%E4%BA%9A%E6%B4%B2%E9%97%AE%E9%A2%98/">
+                        <span class="hidden-mobile">dotNet卸载后无法进入桌面&亚洲问题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

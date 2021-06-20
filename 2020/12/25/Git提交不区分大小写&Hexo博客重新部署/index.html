@@ -231,11 +231,11 @@
               <h2 id="部署完成后发现分类功能本地4000端口正常但部署github上的发生page-not-found"><a href="#部署完成后发现分类功能本地4000端口正常但部署github上的发生page-not-found" class="headerlink" title="部署完成后发现分类功能本地4000端口正常但部署github上的发生page not found"></a>部署完成后发现分类功能本地4000端口正常但部署github上的发生page not found</h2><h3 id="1-本地项目配置区分大小写"><a href="#1-本地项目配置区分大小写" class="headerlink" title="1.本地项目配置区分大小写"></a>1.本地项目配置区分大小写</h3><p>在网上找了一下,原因是git提交的时候不区分大小写导致,所以需要在这个目录下<code>blog\.deploy_git\.git\config</code>进行修改</p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-attr">ignorecase</span> = <span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="2-全局开启"><a href="#2-全局开启" class="headerlink" title="2.全局开启"></a>2.全局开启</h3><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">git config --global core.ignorecase <span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure>
+<h3 id="2-全局开启"><a href="#2-全局开启" class="headerlink" title="2.全局开启"></a>2.全局开启</h3><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs livescript">git config --<span class="hljs-built_in">global</span> core.ignorecase <span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="3-查看-找到core-ignorecase-false说明全局配置成功"><a href="#3-查看-找到core-ignorecase-false说明全局配置成功" class="headerlink" title="3.查看,找到core.ignorecase=false说明全局配置成功"></a>3.查看,找到core.ignorecase=false说明全局配置成功</h3><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lua">git <span class="hljs-built_in">config</span> <span class="hljs-comment">--list</span><br></code></pre></td></tr></table></figure>
 
-<h2 id="修改完成后-如果直接提交-会导致有有大写小写文件共存情况-所以需要清空github仓库重新部署-因为之前有过gitee直接删库导致gitee维护期间无法重新部署的情况-下面使用git命令进行操作"><a href="#修改完成后-如果直接提交-会导致有有大写小写文件共存情况-所以需要清空github仓库重新部署-因为之前有过gitee直接删库导致gitee维护期间无法重新部署的情况-下面使用git命令进行操作" class="headerlink" title="修改完成后,如果直接提交,会导致有有大写小写文件共存情况,所以需要清空github仓库重新部署,因为之前有过gitee直接删库导致gitee维护期间无法重新部署的情况,下面使用git命令进行操作"></a>修改完成后,如果直接提交,会导致有有大写小写文件共存情况,所以需要清空github仓库重新部署,因为之前有过gitee直接删库导致gitee维护期间无法重新部署的情况,下面使用git命令进行操作</h2><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs avrasm">git rm *<br>git commit -m <span class="hljs-string">&quot;clean all files&quot;</span><br>git <span class="hljs-keyword">push</span><br></code></pre></td></tr></table></figure>
+<h2 id="修改完成后-如果直接提交-会导致有有大写小写文件共存情况-所以需要清空github仓库重新部署-因为之前有过gitee直接删库导致gitee维护期间无法重新部署的情况-下面使用git命令进行操作"><a href="#修改完成后-如果直接提交-会导致有有大写小写文件共存情况-所以需要清空github仓库重新部署-因为之前有过gitee直接删库导致gitee维护期间无法重新部署的情况-下面使用git命令进行操作" class="headerlink" title="修改完成后,如果直接提交,会导致有有大写小写文件共存情况,所以需要清空github仓库重新部署,因为之前有过gitee直接删库导致gitee维护期间无法重新部署的情况,下面使用git命令进行操作"></a>修改完成后,如果直接提交,会导致有有大写小写文件共存情况,所以需要清空github仓库重新部署,因为之前有过gitee直接删库导致gitee维护期间无法重新部署的情况,下面使用git命令进行操作</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">git</span> rm *<br>git commit -m <span class="hljs-string">&quot;clean all files&quot;</span><br>git push<br></code></pre></td></tr></table></figure>
 
 <p>操作后上github查看仓库,仓库已经被清空,然后就可以在本地路径执行hexo命令重新部署</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">//</span>清除缓存<br>hexo clean<br><span class="hljs-regexp">//</span>编译<br>hexo g<br><span class="hljs-regexp">//</span>部署<br>hexo d<br><span class="hljs-regexp">//</span>编译部署可以简写<br>hexo d -g<br></code></pre></td></tr></table></figure>
@@ -275,9 +275,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/05/25/2021-05-25-%E6%96%B0%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/">
+                      <a href="/2020/12/25/dotNet%E5%8D%B8%E8%BD%BD%E5%90%8E%E6%97%A0%E6%B3%95%E8%BF%9B%E5%85%A5%E6%A1%8C%E9%9D%A2&amp;%E4%BA%9A%E6%B4%B2%E9%97%AE%E9%A2%98/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">新环境部署</span>
+                        <span class="hidden-mobile">dotNet卸载后无法进入桌面&亚洲问题</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -285,8 +285,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/12/25/dotNet%E5%8D%B8%E8%BD%BD%E5%90%8E%E6%97%A0%E6%B3%95%E8%BF%9B%E5%85%A5%E6%A1%8C%E9%9D%A2&amp;%E4%BA%9A%E6%B4%B2%E9%97%AE%E9%A2%98/">
-                        <span class="hidden-mobile">dotNet卸载后无法进入桌面&亚洲问题</span>
+                      <a href="/2019/05/01/rbtree%E7%AC%94%E8%AE%B0/">
+                        <span class="hidden-mobile">红黑树笔记</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

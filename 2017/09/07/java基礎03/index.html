@@ -571,7 +571,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">Integer i = <span class="hljs-number">4</span>;<span class="hljs-comment">//自动装箱。相当于Integer i = Integer.valueOf(4);</span><br>i = i + <span class="hljs-number">5</span>;<span class="hljs-comment">//等号右边：将i对象转成基本数值(自动拆箱) i.intValue() + 5;</span><br><span class="hljs-comment">//加法运算完成后，再次装箱，把基本数值转成对象。</span><br></code></pre></td></tr></table></figure>
 
 <h2 id="5-3-基本类型与字符串之间的转换"><a href="#5-3-基本类型与字符串之间的转换" class="headerlink" title="5.3 基本类型与字符串之间的转换"></a>5.3 基本类型与字符串之间的转换</h2><h3 id="基本类型转换为String"><a href="#基本类型转换为String" class="headerlink" title="基本类型转换为String"></a>基本类型转换为String</h3><p>   基本类型转换String总共有三种方式，查看课后资料可以得知，这里只讲最简单的一种方式： </p>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 1c">基本类型直接与””相连接即可；如：<span class="hljs-number">34</span>+<span class="hljs-string">&quot;&quot;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lsl">基本类型直接与””相连接即可；如：<span class="hljs-number">34</span>+<span class="hljs-string">&quot;&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p>String转换成对应的基本类型 </p>
 <p>除了Character类之外，其他所有包装类都具有parseXxx静态方法可以将字符串参数转换为对应的基本类型：</p>

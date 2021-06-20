@@ -269,7 +269,7 @@
 <p>-f ../config/pipeline.conf</p>
 </blockquote>
 <p><strong>抱歉我知道上面这坨太冗杂了</strong>但是相信我，比较重要吧。<br>观察上面这些输出，再结合logstash.bat中的实际语序，可以发现这实际上是一句简单的java程序启动的cmd.</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">java</span> -opt<span class="hljs-number">1</span> -opt<span class="hljs-number">2</span> -cp <span class="hljs-string">&quot;classpath&quot;</span> org.logstash.Logstash -f ../config/pipeline.conf<br></code></pre></td></tr></table></figure>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vim">java -opt1 -opt2 -<span class="hljs-keyword">cp</span> <span class="hljs-string">&quot;classpath&quot;</span> org.logstash.Logstash -<span class="hljs-keyword">f</span> ../config/pipeline.<span class="hljs-keyword">conf</span><br></code></pre></td></tr></table></figure>
 
 <p>那么到这一步 再结合错误输出为找不到或无法加载主类，可以猜测是-cp 之后的classpath出现了问题。<br>仔细观察classpath，发现一些问题，该字符串明显为拼接字符串，然而有些地址用双引号（**””**）括起来了，有些没有。再观察，可以发现括起来的为logstash自己的jar包，没有的则为系统本身的CLASSPATH环境变量的值。</p>
 <p><em>猜测由双引号引起该问题，再加上前面的解决方案是在整个%CLASSPATH%变量外面加 <strong>“”</strong> 可以猜测为系统本身的CLASSPATH没有加上双引号引起的，按照他的style将双引号加在每个地址上，<strong>问题解决</strong>。</em></p>
@@ -324,9 +324,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2018/01/09/%E4%BE%9D%E8%B5%96%E5%86%B2%E7%AA%81%E8%A7%A3%E5%86%B3%E6%80%9D%E8%B7%AF/">
+                      <a href="/2018/01/09/ES%E4%B8%8D%E7%94%9F%E6%95%88&amp;&amp;%E7%A3%81%E7%9B%98%E6%B0%B4%E4%BD%8D%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">依赖冲突解决思路</span>
+                        <span class="hidden-mobile">ES不生效&&磁盘水位参数设置</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -334,8 +334,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2018/01/09/java%E9%85%8D%E7%BD%AE%E8%AE%B0%E5%BD%95/">
-                        <span class="hidden-mobile">java配置记录</span>
+                      <a href="/2018/01/09/%E4%BE%9D%E8%B5%96%E5%86%B2%E7%AA%81%E8%A7%A3%E5%86%B3%E6%80%9D%E8%B7%AF/">
+                        <span class="hidden-mobile">依赖冲突解决思路</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

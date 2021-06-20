@@ -393,7 +393,7 @@ JS中的注释主要有两种，分别是 单行注释 和 多行注释。
 <h3 id="4-2-多行注释"><a href="#4-2-多行注释" class="headerlink" title="4.2 多行注释"></a>4.2 多行注释</h3><p>多行注释的注释方式如下：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html">/*<br>  获取用户年龄和姓名<br>  并通过提示框显示出来<br>*/<br></code></pre></td></tr></table></figure>
 
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-regexp">/* */</span>  用来注释多行文字（ 默认快捷键  alt +  shift  + a ） <br></code></pre></td></tr></table></figure>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver"><span class="hljs-comment">/* */</span>  用来注释多行文字（ 默认快捷键  alt +  shift  + <span class="hljs-keyword">a</span> ） <br></code></pre></td></tr></table></figure>
 
 
 <p>快捷键修改为：   ctrl + shift  +  /</p>
@@ -671,7 +671,7 @@ JS中的注释主要有两种，分别是 单行注释 和 多行注释。
 </ul>
 <h3 id="8-4-数据类型转换"><a href="#8-4-数据类型转换" class="headerlink" title="8.4 数据类型转换"></a>8.4 数据类型转换</h3><p>​        什么是数据类型转换？</p>
 <p>​        使用表单、prompt 获取过来的数据默认是字符串类型的，此时就不能直接简单的进行加法运算，而需要转换变量的数据类型。通俗来说，就是把一种数据类型的变量转换成另一种数据类型，通常会实现3种方式的转换：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs">转换为字符串类型<br>转换为数字型<br>转换为布尔型<br></code></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs latex">转换为字符串类型<br>转换为数字型<br>转换为布尔型<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li><p>转换为字符串</p>
@@ -951,7 +951,7 @@ JS中的注释主要有两种，分别是 单行注释 和 多行注释。
 <li>后续跟第二轮一致，直至条件表达式为假，结束整个 for 循环。</li>
 </ol>
 <p>断点调试：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">断点调试是指自己在程序的某一行设置一个断点，调试时，程序运行到这一行就会停住，然后你可以一步一步往下调试，调试过程中可以看各个变量当前的值，出错的话，调试到出错的代码行即显示错误，停下。断点调试可以帮助观察程序的运行过程<br></code></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex">断点调试是指自己在程序的某一行设置一个断点，调试时，程序运行到这一行就会停住，然后你可以一步一步往下调试，调试过程中可以看各个变量当前的值，出错的话，调试到出错的代码行即显示错误，停下。断点调试可以帮助观察程序的运行过程<br></code></pre></td></tr></table></figure>
 
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html">断点调试的流程：<br>1、浏览器中按 F12--&gt; sources --&gt;找到需要调试的文件--&gt;在程序的某一行设置断点<br>2、Watch: 监视，通过watch可以监视变量的值的变化，非常的常用。<br>3、摁下F11，程序单步执行，让程序一行一行的执行，这个时候，观察watch中变量的值的变化。<br></code></pre></td></tr></table></figure>
 
@@ -1306,7 +1306,7 @@ JS中的注释主要有两种，分别是 单行注释 和 多行注释。
 
      例如，将“张三疯”的个人的信息保存在数组中的方式为：
 </code></pre>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">var</span> arr = [‘张三疯’, ‘男<span class="hljs-string">&#x27;, 128,154];</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-keyword">var</span> arr = [‘张三疯’, ‘男<span class="hljs-string">&#x27;, 128,154];</span><br></code></pre></td></tr></table></figure>
 
 <p>​        上述例子中用数组保存数据的缺点是：数据只能通过索引值访问，开发者需要清晰的清除所有的数据的排行才能准确地获取数据，而当数据量庞大时，不可能做到记忆所有数据的索引值。</p>
 <p>​        为了让更好地存储一组数据，对象应运而生：对象中为每项数据设置了属性名称，可以访问数据更语义化，数据结构清晰，表意明显，方便开发者使用。</p>
@@ -1402,7 +1402,7 @@ JS中的注释主要有两种，分别是 单行注释 和 多行注释。
 <li><p>构造函数的封装格式：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> 构造函数名(<span class="hljs-params">形参<span class="hljs-number">1</span>,形参<span class="hljs-number">2</span>,形参<span class="hljs-number">3</span></span>) </span>&#123;<br>     <span class="hljs-built_in">this</span>.属性名<span class="hljs-number">1</span> = 参数<span class="hljs-number">1</span>;<br>     <span class="hljs-built_in">this</span>.属性名<span class="hljs-number">2</span> = 参数<span class="hljs-number">2</span>;<br>     <span class="hljs-built_in">this</span>.属性名<span class="hljs-number">3</span> = 参数<span class="hljs-number">3</span>;<br>     <span class="hljs-built_in">this</span>.方法名 = 函数体;<br>&#125;<br></code></pre></td></tr></table></figure></li>
 <li><p>构造函数的调用格式</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">var</span> obj = new 构造函数名(实参<span class="hljs-number">1</span>，实参<span class="hljs-number">2</span>，实参<span class="hljs-number">3</span>)<br></code></pre></td></tr></table></figure>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-keyword">var</span> obj = <span class="hljs-keyword">new</span> <span class="hljs-type"></span>构造函数名(实参<span class="hljs-number">1</span>，实参<span class="hljs-number">2</span>，实参<span class="hljs-number">3</span>)<br></code></pre></td></tr></table></figure>
 
 <p>以上代码中，obj即接收到构造函数创建出来的对象。</p>
 </li>
@@ -1515,7 +1515,7 @@ JS中的注释主要有两种，分别是 单行注释 和 多行注释。
 <li><p>new Array()</p>
 <ul>
 <li><p>示例代码如下：</p>
-<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-type">Array</span>();<br></code></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">var</span> arr = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>();<br></code></pre></td></tr></table></figure>
 
 <p>​    注意：上面代码中arr创建出的是一个空数组，如果需要使用构造函数Array创建非空数组，可以在创建数组时传入参数</p>
 <p>​    参数传递规则如下：</p>
@@ -1609,11 +1609,11 @@ JS中的注释主要有两种，分别是 单行注释 和 多行注释。
 <h4 id="字符串操作方法"><a href="#字符串操作方法" class="headerlink" title="字符串操作方法"></a>字符串操作方法</h4><p>​        字符串通过基本包装类型可以调用部分方法来操作字符串，以下是部分操作方法：</p>
 <p><img src="/2017/12/26/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A007-JavaScript/img/web/js40.jpg)" srcset="/img/loading.gif" lazyload></p>
 <h4 id="replace-方法"><a href="#replace-方法" class="headerlink" title="replace()方法"></a>replace()方法</h4><p>​        replace() 方法用于在字符串中用一些字符替换另一些字符，其使用格式如下：  </p>
-<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs coq">字符串.<span class="hljs-built_in">replace</span>(被替换的字符串， 要替换为的字符串)；<br></code></pre></td></tr></table></figure>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">字符串.<span class="hljs-built_in">replace</span>(被替换的字符串， 要替换为的字符串)；<br></code></pre></td></tr></table></figure>
 
 <h4 id="split-方法"><a href="#split-方法" class="headerlink" title="split()方法"></a>split()方法</h4><p>​        split()方法用于切分字符串，它可以将字符串切分为数组。在切分完毕之后，返回的是一个新数组。</p>
 <p>​        其使用格式如下：</p>
-<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs coq">字符串.<span class="hljs-built_in">split</span>(<span class="hljs-string">&quot;分割字符&quot;</span>)<br></code></pre></td></tr></table></figure>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs processing">字符串.<span class="hljs-built_in">split</span>(<span class="hljs-string">&quot;分割字符&quot;</span>)<br></code></pre></td></tr></table></figure>
 
 <h2 id="2-简单数据类型和复杂数据类型"><a href="#2-简单数据类型和复杂数据类型" class="headerlink" title="2 - 简单数据类型和复杂数据类型"></a>2 - 简单数据类型和复杂数据类型</h2><h3 id="2-1-简单数据类型"><a href="#2-1-简单数据类型" class="headerlink" title="2.1 简单数据类型"></a>2.1 简单数据类型</h3><p>​        <strong>简单类型</strong>（<strong>基本数据类型</strong>、<strong>值类型</strong>）：在存储时变量中存储的是值本身，包括string ，number，boolean，undefined，null</p>
 <h3 id="2-2-复杂数据类型"><a href="#2-2-复杂数据类型" class="headerlink" title="2.2 复杂数据类型"></a>2.2 复杂数据类型</h3><p>​        <strong>复杂数据类型（引用类型）</strong>：在存储时变量中存储的仅仅是地址（引用），通过 new 关键字创建的对象（系统对象、自定义对象），如 Object、Array、Date等；</p>

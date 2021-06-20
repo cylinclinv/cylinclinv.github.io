@@ -489,13 +489,13 @@
 <ol start="4">
 <li>在<code>package.json</code>中的script节点下新增<code>dev</code>命令，通过<code>--config</code>指定webpack启动时要读取的配置文件：</li>
 </ol>
-<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs 1c"><span class="hljs-string">&quot;pub&quot;</span>: <span class="hljs-string">&quot;webpack --config webpack.publish.config.js&quot;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs llvm"><span class="hljs-string">&quot;pub&quot;</span>: <span class="hljs-string">&quot;webpack --config webpack.publish.config.js&quot;</span><br></code></pre></td></tr></table></figure>
 
 <h2 id="每次重新构建时候删除dist目录"><a href="#每次重新构建时候删除dist目录" class="headerlink" title="每次重新构建时候删除dist目录"></a>每次重新构建时候删除dist目录</h2><ol>
 <li>运行<code>cnpm i clean-webpack-plugin --save-dev</code></li>
 <li>在头部引入这个插件：</li>
 </ol>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">var cleanWebpackPlugin</span> = require(<span class="hljs-string">&#x27;clean-webpack-plugin&#x27;</span>);<br></code></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> cleanWebpackPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;clean-webpack-plugin&#x27;</span>);<br></code></pre></td></tr></table></figure>
 
 <ol start="3">
 <li>在<code>plugins</code>节点下使用这个插件：</li>
@@ -516,7 +516,7 @@
 <li><code>html-webpack-plugin</code>在生成<code>index.html</code>文件的时候，会自动将抽离的第三方包引入进去！</li>
 </ol>
 <h2 id="优化压缩JS"><a href="#优化压缩JS" class="headerlink" title="优化压缩JS"></a><a target="_blank" rel="noopener" href="https://webpack.js.org/configuration/plugins/#plugins">优化压缩JS</a></h2><p>在plugins数组中添加：</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-keyword">new</span> webpack.optimize.UglifyJsPlugin(&#123; <span class="hljs-comment">// 优化压缩JS</span><br>    compress:&#123;<br>        warnings:<span class="hljs-literal">false</span> <span class="hljs-comment">// 移除警告</span><br>    &#125;<br>&#125;),<br><span class="hljs-keyword">new</span> webpack.DefinePlugin(&#123; <span class="hljs-comment">// 设置为产品上线环境，进一步压缩JS代码</span><br>    <span class="hljs-string">&#x27;process.env.NODE_ENV&#x27;</span>: <span class="hljs-string">&#x27;&quot;production&quot;&#x27;</span><br>&#125;)<br></code></pre></td></tr></table></figure>
+<figure class="highlight zephir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs zephir"><span class="hljs-keyword">new</span> webpack.optimize.UglifyJsPlugin(&#123; <span class="hljs-comment">// 优化压缩JS</span><br>    compress:&#123;<br>        warnings:<span class="hljs-keyword">false</span> <span class="hljs-comment">// 移除警告</span><br>    &#125;<br>&#125;),<br><span class="hljs-keyword">new</span> webpack.DefinePlugin(&#123; <span class="hljs-comment">// 设置为产品上线环境，进一步压缩JS代码</span><br>    <span class="hljs-string">&#x27;process.env.NODE_ENV&#x27;</span>: <span class="hljs-string">&#x27;&quot;production&quot;&#x27;</span><br>&#125;)<br></code></pre></td></tr></table></figure>
 
 <h2 id="优化压缩HTML文件"><a href="#优化压缩HTML文件" class="headerlink" title="优化压缩HTML文件"></a>优化压缩HTML文件</h2><p>在<code>plugins</code>节点下的<code>htmlWebpackPlugin</code>插件中，添加<code>minify</code>子节点：</p>
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs awk">minify:&#123;<span class="hljs-regexp">//</span> 压缩HTML代码<br>    collapseWhitespace:true, <span class="hljs-regexp">//</span> 合并空白字符<br>    removeComments:true, <span class="hljs-regexp">//</span> 移除注释<br>    removeAttributeQuotes:true <span class="hljs-regexp">//</span> 移除属性上的引号<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -526,7 +526,7 @@
 <li>运行<code>npm install --save-dev extract-text-webpack-plugin</code>安装抽取CSS文件的插件。</li>
 <li>在配置文件中导入插件：</li>
 </ol>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">const ExtractTextPlugin</span> = require(<span class="hljs-string">&quot;extract-text-webpack-plugin&quot;</span>);<br></code></pre></td></tr></table></figure>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs livescript"><span class="hljs-keyword">const</span> ExtractTextPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;extract-text-webpack-plugin&quot;</span>);<br></code></pre></td></tr></table></figure>
 
 <ol start="3">
 <li>修改CSS和Sass的loader如下：</li>
@@ -536,18 +536,18 @@
 <ol start="4">
 <li>在plugins节点下新增插件：</li>
 </ol>
-<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-keyword">new</span> <span class="hljs-type">ExtractTextPlugin</span>(<span class="hljs-string">&quot;css/styles.css&quot;</span>), <span class="hljs-comment">// 抽取CSS文件的插件</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">new</span> <span class="hljs-constructor">ExtractTextPlugin(<span class="hljs-string">&quot;css/styles.css&quot;</span>)</span>, <span class="hljs-comment">// 抽取CSS文件的插件</span><br></code></pre></td></tr></table></figure>
 
 <h2 id="压缩抽取出来的CSS文件"><a href="#压缩抽取出来的CSS文件" class="headerlink" title="压缩抽取出来的CSS文件"></a><a target="_blank" rel="noopener" href="https://github.com/NMFR/optimize-css-assets-webpack-plugin">压缩抽取出来的CSS文件</a></h2><ol>
 <li>运行<code>cnpm i optimize-css-assets-webpack-plugin --save-dev</code>安装插件到开发依赖。</li>
 <li>在配置文件头部导入插件：</li>
 </ol>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">var OptimizeCssAssetsPlugin</span> = require(<span class="hljs-string">&#x27;optimize-css-assets-webpack-plugin&#x27;</span>);<br></code></pre></td></tr></table></figure>
+<figure class="highlight zephir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs zephir"><span class="hljs-keyword">var</span> OptimizeCssAssetsPlugin = <span class="hljs-keyword">require</span>(<span class="hljs-string">&#x27;optimize-css-assets-webpack-plugin&#x27;</span>);<br></code></pre></td></tr></table></figure>
 
 <ol start="3">
 <li>在plugins节点下新增插件：</li>
 </ol>
-<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-keyword">new</span> <span class="hljs-type">OptimizeCssAssetsPlugin</span>() <span class="hljs-comment">// 压缩CSS文件的插件</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">new</span> <span class="hljs-constructor">OptimizeCssAssetsPlugin()</span> <span class="hljs-comment">// 压缩CSS文件的插件</span><br></code></pre></td></tr></table></figure>
 
 <h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><ol>
 <li><a target="_blank" rel="noopener" href="http://www.sasschina.com/guide/">Sass 基础教程</a></li>
@@ -625,7 +625,7 @@
 <li>运行 <code>cnpm i react react-dom -S</code> 安装包</li>
 <li>在项目中导入两个相关的包：</li>
 </ol>
-<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs clean"><span class="hljs-comment">// 1. 在 React 学习中，需要安装 两个包 react  react-dom</span><br><span class="hljs-comment">// 1.1 react 这个包，是专门用来创建React组件、组件生命周期等这些东西的；</span><br><span class="hljs-comment">// 1.2 react-dom 里面主要封装了和 DOM 操作相关的包，比如，要把 组件渲染到页面上</span><br><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span><br><span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-dom&#x27;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs gradle"><span class="hljs-comment">// 1. 在 React 学习中，需要安装 两个包 react  react-dom</span><br><span class="hljs-comment">// 1.1 react 这个包，是专门用来创建React组件、组件生命周期等这些东西的；</span><br><span class="hljs-comment">// 1.2 react-dom 里面主要封装了和 DOM 操作相关的包，比如，要把 组件渲染到页面上</span><br><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span><br><span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-dom&#x27;</span><br></code></pre></td></tr></table></figure>
 
 <ol start="3">
 <li>使用JS的创建虚拟DOM节点：</li>
@@ -752,7 +752,7 @@
 <h2 id="绑定this并传参的三种方式"><a href="#绑定this并传参的三种方式" class="headerlink" title="绑定this并传参的三种方式"></a>绑定this并传参的三种方式</h2><ol>
 <li>在事件中绑定this并传参：</li>
 </ol>
-<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs kotlin">&lt;input type=<span class="hljs-string">&quot;button&quot;</span> value=<span class="hljs-string">&quot;在事件中绑定this并传参&quot;</span> onClick=&#123;<span class="hljs-keyword">this</span>.handleMsg1.bind(<span class="hljs-keyword">this</span>, <span class="hljs-string">&#x27;🍕&#x27;</span>, <span class="hljs-string">&#x27;🍟&#x27;</span>)&#125; /&gt;<br><br><span class="hljs-comment">// 在事件中绑定this并传参</span><br>handleMsg1(arg1, arg2) &#123;<br>    console.log(<span class="hljs-keyword">this</span>);<br>    <span class="hljs-comment">// 此时this是个null</span><br>    <span class="hljs-keyword">this</span>.setState(&#123;<br>        msg: <span class="hljs-string">&#x27;在事件中绑定this并传参：&#x27;</span> + arg1 + arg2<br>    &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs typescript">&lt;input <span class="hljs-keyword">type</span>=<span class="hljs-string">&quot;button&quot;</span> value=<span class="hljs-string">&quot;在事件中绑定this并传参&quot;</span> onClick=&#123;<span class="hljs-built_in">this</span>.handleMsg1.bind(<span class="hljs-built_in">this</span>, <span class="hljs-string">&#x27;🍕&#x27;</span>, <span class="hljs-string">&#x27;🍟&#x27;</span>)&#125; /&gt;<br><br><span class="hljs-comment">// 在事件中绑定this并传参</span><br><span class="hljs-function"><span class="hljs-title">handleMsg1</span>(<span class="hljs-params">arg1, arg2</span>)</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>);<br>    <span class="hljs-comment">// 此时this是个null</span><br>    <span class="hljs-built_in">this</span>.setState(&#123;<br>        <span class="hljs-attr">msg</span>: <span class="hljs-string">&#x27;在事件中绑定this并传参：&#x27;</span> + arg1 + arg2<br>    &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <ol start="2">
 <li>在构造函数中绑定this并传参:</li>
@@ -945,9 +945,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2018/01/09/ERP%E6%B5%81%E7%A8%8B%E8%AE%B0%E5%BD%95/">
+                      <a href="/2018/01/08/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A014-%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">ERP流程记录</span>
+                        <span class="hidden-mobile">前端学习14-微信小程序</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -955,8 +955,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2018/01/08/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A014-%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
-                        <span class="hidden-mobile">前端学习14-微信小程序</span>
+                      <a href="/2018/01/03/%E5%89%8D%E7%AB%AF%E5%AD%A6%E4%B9%A012-Ajax/">
+                        <span class="hidden-mobile">前端学习12-Ajax</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -458,7 +458,7 @@
 
 
 
-<h2 id="npm-scripts-介绍"><a href="#npm-scripts-介绍" class="headerlink" title="npm scripts 介绍"></a><code>npm scripts</code> 介绍</h2><figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs erlang">...<br><span class="hljs-string">&quot;scripts&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;ng&quot;</span>: <span class="hljs-string">&quot;ng&quot;</span>, 运行查看 Angular CLI 脚手架工具使用帮助<br>    <span class="hljs-string">&quot;start&quot;</span>: <span class="hljs-string">&quot;ng serve&quot;</span>, 运行开发模式<br>    <span class="hljs-string">&quot;build&quot;</span>: <span class="hljs-string">&quot;ng build --prod&quot;</span>, 运行项目打包构建（用于发布到生成环境）<br>    <span class="hljs-string">&quot;test&quot;</span>: <span class="hljs-string">&quot;ng test&quot;</span>, 运行karma单元测试<br>    <span class="hljs-string">&quot;lint&quot;</span>: <span class="hljs-string">&quot;ng lint&quot;</span>, 运行TypeScript代码校验<br>    <span class="hljs-string">&quot;e2e&quot;</span>: <span class="hljs-string">&quot;ng e2e&quot;</span> 运行protractor端到端测试<br>  &#125;,<br>...<br></code></pre></td></tr></table></figure>
+<h2 id="npm-scripts-介绍"><a href="#npm-scripts-介绍" class="headerlink" title="npm scripts 介绍"></a><code>npm scripts</code> 介绍</h2><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs lasso"><span class="hljs-params">...</span><br><span class="hljs-string">&quot;scripts&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;ng&quot;</span>: <span class="hljs-string">&quot;ng&quot;</span>, 运行查看 Angular CLI 脚手架工具使用帮助<br>    <span class="hljs-string">&quot;start&quot;</span>: <span class="hljs-string">&quot;ng serve&quot;</span>, 运行开发模式<br>    <span class="hljs-string">&quot;build&quot;</span>: <span class="hljs-string">&quot;ng build --prod&quot;</span>, 运行项目打包构建（用于发布到生成环境）<br>    <span class="hljs-string">&quot;test&quot;</span>: <span class="hljs-string">&quot;ng test&quot;</span>, 运行karma单元测试<br>    <span class="hljs-string">&quot;lint&quot;</span>: <span class="hljs-string">&quot;ng lint&quot;</span>, 运行TypeScript代码校验<br>    <span class="hljs-string">&quot;e2e&quot;</span>: <span class="hljs-string">&quot;ng e2e&quot;</span> 运行protractor端到端测试<br>  &#125;,<br><span class="hljs-params">...</span><br></code></pre></td></tr></table></figure>
 
 
 
@@ -1344,7 +1344,7 @@
 <h3 id="Reading-the-full-response"><a href="#Reading-the-full-response" class="headerlink" title="Reading the full response"></a>Reading the full response</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-built_in">this</span>.http<br>  .get(<span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/posts/1&#x27;</span>, &#123;<span class="hljs-attr">observe</span>: <span class="hljs-string">&#x27;response&#x27;</span>&#125;)<br>  .subscribe(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;<br>  <span class="hljs-built_in">console</span>.log(res)<br>&#125;)<br></code></pre></td></tr></table></figure>
 
 <p>结果示例：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs"><br></code></pre></td></tr></table></figure>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs latex"><br></code></pre></td></tr></table></figure>
 
 <h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs typescript">http<br>  .get(<span class="hljs-string">&#x27;/api/items&#x27;</span>)<br>  .subscribe(<br>    <span class="hljs-comment">// Successful responses call the first callback.</span><br>    <span class="hljs-function"><span class="hljs-params">data</span> =&gt;</span> &#123;...&#125;,<br>    <span class="hljs-comment">// Errors will call this callback instead:</span><br>    <span class="hljs-function"><span class="hljs-params">err</span> =&gt;</span> &#123;<br>      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;Something went wrong!&#x27;</span>);	<br>    &#125;<br>  );<br></code></pre></td></tr></table></figure>
 
@@ -1391,12 +1391,12 @@
 <li>component</li>
 </ul>
 <p>默认路由：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">&#123; path: <span class="hljs-string">&#x27;&#x27;</span>, redirectTo: <span class="hljs-string">&#x27;/dashboard&#x27;</span>, pathMatch: <span class="hljs-string">&#x27;full&#x27;</span> &#125;,<br></code></pre></td></tr></table></figure>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xquery">&#123;<span class="hljs-built_in"> path</span>: <span class="hljs-string">&#x27;&#x27;</span>, redirectTo: <span class="hljs-string">&#x27;/dashboard&#x27;</span>, pathMatch: <span class="hljs-string">&#x27;full&#x27;</span> &#125;,<br></code></pre></td></tr></table></figure>
 
 
 
 <h2 id="动态路由匹配"><a href="#动态路由匹配" class="headerlink" title="动态路由匹配"></a>动态路由匹配</h2><p>动态路径配置：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">&#123; path: <span class="hljs-string">&#x27;detail/:id&#x27;</span>, component: HeroDetailComponent &#125;,<br></code></pre></td></tr></table></figure>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xquery">&#123;<span class="hljs-built_in"> path</span>: <span class="hljs-string">&#x27;detail/:id&#x27;</span>, component: HeroDetailComponent &#125;,<br></code></pre></td></tr></table></figure>
 
 <p>导航链接：</p>
 <figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs handlebars"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> *<span class="hljs-attr">ngFor</span>=<span class="hljs-string">&quot;let hero of heroes&quot;</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;col-1-4&quot;</span></span></span><br><span class="hljs-tag"><span class="xml">    <span class="hljs-attr">routerLink</span>=<span class="hljs-string">&quot;/detail/</span></span></span><span class="hljs-template-variable">&#123;&#123;<span class="hljs-name">hero.id</span>&#125;&#125;</span><span class="xml"><span class="hljs-tag"><span class="hljs-string">&quot;</span>&gt;</span></span><br></code></pre></td></tr></table></figure>
@@ -1547,9 +1547,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2018/01/09/ES%E4%B8%8D%E7%94%9F%E6%95%88&amp;&amp;%E7%A3%81%E7%9B%98%E6%B0%B4%E4%BD%8D%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE/">
+                      <a href="/2018/01/09/maven%E4%BB%A3%E7%90%86/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">ES不生效&&磁盘水位参数设置</span>
+                        <span class="hidden-mobile">maven代理</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -1557,8 +1557,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2018/01/09/ERP%E6%B5%81%E7%A8%8B%E8%AE%B0%E5%BD%95/">
-                        <span class="hidden-mobile">ERP流程记录</span>
+                      <a href="/2018/01/09/java%E9%85%8D%E7%BD%AE%E8%AE%B0%E5%BD%95/">
+                        <span class="hidden-mobile">java配置记录</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
